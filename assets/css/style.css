@@ -1071,38 +1071,4 @@ body {
 .footer-list-title::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 30px;
-  height: 3px;
-  background-color: var(--marigold);
-}
-
-.footer-link {
-  font-size: var(--fs-9);
-  max-width: max-content;
-  transition: var(--transition);
-  padding-block: 8px;
-  font-weight: var(--fw-500);
-}
-
-.footer
-/*-----------------------------------*\
-  #GAME CARD LOGOS
-\*-----------------------------------*/
-
-.game-logo {
-  display: block;
-  width: 190px;
-  height: 76px;
-  object-fit: contain;
-  object-position: left center;
-  margin-bottom: 18px;
-}
-
-@media (max-width: 600px) {
-  .game-logo {
-    width: 170px;
-    height: 68px;
-  }
-}
+  bot
