@@ -1,0 +1,90 @@
+name: Update Genshin Characters
+
+on:
+  schedule:
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-characters:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch character database
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+
+          const base = 'https://genshin.jmp.blue';
+          const response = await fetch(`${base}/characters/all`);
+
+          if (!response.ok) {
+            throw new Error('Character list request failed');
+          }
+
+          const names = await response.json();
+          const characters = [];
+
+          for (const id of names) {
+            try {
+              const result = await fetch(
+                `${base}/characters/${encodeURIComponent(id)}`
+              );
+
+              if (!result.ok) continue;
+
+              const c = await result.json();
+
+              characters.push({
+                id,
+                name: c.name || id,
+                title: c.title || '',
+                vision: c.vision || '',
+                weapon: c.weapon || '',
+                nation: c.nation || '',
+                rarity: c.rarity || null,
+                constellation: c.constellation || '',
+                birthday: c.birthday || '',
+                description: c.description || '',
+                image: `${base}/characters/${id}/icon-big`
+              });
+            } catch (error) {
+              console.log(`Skipped ${id}: ${error.message}`);
+            }
+          }
+
+          if (!characters.length) {
+            throw new Error('No character data received');
+          }
+
+          await fs.writeFile(
+            'characters-auto.json',
+            JSON.stringify({
+              updatedAt: new Date().toISOString(),
+              count: characters.length,
+              characters
+            }, null, 2)
+          );
+
+          console.log(`Saved ${characters.length} characters`);
+          NODE
+
+      - name: Commit updated database
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add characters-auto.json
+          git diff --cached --quiet || git commit -m "Update Genshin character database"
+          git push
+          
