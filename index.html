@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Games Lore Mongolian — тоглоомын ертөнц, түүх, нууц, домог, дүрүүд болон мэдээ.">
+  <meta name="theme-color" content="#101522">
+  <title>Games Lore Mongolian | Gaming Wiki</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">GAMES <span>LORE</span><small>MONGOLIAN WIKI</small></a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Цэс нээх" aria-expanded="false" aria-controls="navMenu">☰</button>
+
+      <nav aria-label="Үндсэн цэс">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home">Нүүр</a></li>
+          <li><a href="#games">Тоглоомууд</a></li>
+          <li><a href="#lore">Түүх ба Lore</a></li>
+          <li><a href="#characters">Дүрүүд</a></li>
+          <li><a href="#news">Мэдээ</a></li>
+          <li><a href="#search">Хайлт</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-label">GAME WORLDS • STORIES • SECRETS</span>
+          <h1>Тоглоомын <span>ертөнцөд</span> тавтай морил</h1>
+          <p class="hero-description">
+            Тоглоом бүрийн ард нуугдсан түүх, домог, дүрүүдийн нууц болон тайлагдаагүй оньсогыг Монгол хэлээр хамтдаа нээцгээе.
+          </p>
+          <div class="hero-buttons">
+            <a href="#games" class="btn btn-primary">Тоглоомууд үзэх</a>
+            <a href="#lore" class="btn btn-outline">Lore унших</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro">
+      <div class="container intro-content">
+        <div class="section-heading">
+          <span class="eyebrow">ABOUT US</span>
+          <h2>Games Lore <span class="gold">Mongolian</span></h2>
+        </div>
+        <p>
+          Games Lore Mongolian бол видео тоглоомын ертөнц, үйл явдал, дүрүүд, домог болон нууц мэдээллийг Монгол хэлээр хүргэх зорилготой тоглоомын мэдээллийн платформ юм.
+          Бид тоглоомын түүхийг сонирхолтой, ойлгомжтой байдлаар судлан хүргэнэ.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-section" id="search">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">SEARCH</span>
+          <h2>Сайтаас <span class="gold">хайх</span></h2>
+        </div>
+        <form class="search-box" id="searchForm" role="search">
+          <input type="search" id="searchInput" placeholder="Жишээ: Genshin, Archon, Rover…" aria-label="Хайх">
+          <button type="submit">Хайх</button>
+        </form>
+        <p class="search-message" id="searchMessage" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- GAMES -->
+    <section class="section" id="games">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">EXPLORE WORLDS</span>
+          <h2>Тоглоомын <span class="gold">ертөнцүүд</span></h2>
+          <p>Судлахыг хүссэн тоглоомоо сонгоод түүний ертөнцийн нууцыг нээгээрэй.</p>
+        </div>
+
+        <div class="games-grid" id="gamesGrid">
+
+          <a href="./genshin.html" class="game-card searchable" data-search="genshin impact teyvat fantasy open world геншин">
+            <span class="game-number">01</span>
+            <img class="game-logo" src="./assets/images/genshin-logo.png" alt="Genshin Impact лого" loading="lazy" onerror="this.style.display='none'">
+            <span class="game-category">Fantasy • Open World</span>
+            <h3>Genshin Impact</h3>
+            <p>Teyvat-ийн долоон үндэстэн, Архонууд болон нууцлаг түүх.</p>
+            <span class="game-link">ЕРТӨНЦӨД НЭВТРЭХ →</span>
+          </a>
+
+          <a href="#lore" class="game-card searchable" data-search="wuthering waves wuwa solaris 3 action open world">
+            <span class="game-number">02</span>
+            <img class="game-logo" src="./assets/images/wuwa-logo.png" alt="Wuthering Waves лого" loading="lazy" onerror="this.style.display='none'">
+            <span class="game-category">Action • Open World</span>
+            <h3>Wuthering Waves</h3>
+            <p>Solaris-3 ертөнц, Resonator-ууд болон Lament-ийн нууц.</p>
+            <span class="game-link">СУДЛАХ →</span>
+          </a>
+
+          <a href="#lore" class="game-card searchable" data-search="ananta adventure open world netease">
+            <span class="game-number">03</span>
+            <img class="game-logo" src="./assets/images/ananta-logo.png" alt="Ananta лого" loading="lazy" onerror="this.style.display='none'">
+            <span class="game-category">Urban • Open World</span>
+            <h3>Ananta</h3>
+            <p>Хотын ертөнц дэх ер бусын үйл явдал ба нууцлаг адал явдал.</p>
+            <span class="game-link">СУДЛАХ →</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LORE -->
+    <section class="section lore-section" id="lore">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">LORE &amp; HISTORY</span>
+          <h2>Түүх ба <span class="gold">Lore</span></h2>
+          <p>Тоглоомын ертөнцийн гарал үүсэл, домог, нууцыг судалсан нийтлэлүүд.</p>
+        </div>
+
+        <div class="lore-grid">
+          <article class="lore-card searchable" data-search="genshin teyvat archon seven nations долоон архон">
+            <div class="lore-art">TEYVAT</div>
+            <div class="lore-body">
+              <span class="lore-tag">Genshin Impact</span>
+              <h3>Долоон Архон ба Teyvat-ийн түүх</h3>
+              <p>Teyvat-ийг захирч буй долоон Архон болон тэдний үүргийн тухай.</p>
+              <a class="read-more" href="./genshin.html">Дэлгэрэнгүй →</a>
+            </div>
+          </article>
+
+          <article class="lore-card searchable" data-search="wuthering waves solaris lament resonator rover">
+            <div class="lore-art">SOLARIS-3</div>
+            <div class="lore-body">
+              <span class="lore-tag">Wuthering Waves</span>
+              <h3>Lament ба Resonator-уудын нууц</h3>
+              <p>Дэлхийг сүйрүүлсэн Lament болон Resonator-уудын гарал үүсэл.</p>
+              <a class="read-more" href="#news">Удахгүй →</a>
+            </div>
+          </article>
+
+          <article class="lore-card searchable" data-search="ananta adventure city anomaly netease">
+            <div class="lore-art">ANANTA</div>
+            <div class="lore-body">
+              <span class="lore-tag">Ananta</span>
+              <h3>Ananta-ийн ертөнцийн танилцуулга</h3>
+              <p>Хотын нууц, ер бусын үзэгдлүүд болон гол дүрүүдийн тойм.</p>
+              <a class="read-more" href="#news">Удахгүй →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTERS -->
+    <section class="section" id="characters">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">CHARACTERS</span>
+          <h2>Алдартай <span class="gold">дүрүүд</span></h2>
+          <p>Тоглоомын ертөнцийн гол дүрүүдтэй танилцаарай.</p>
+        </div>
+
+        <div class="character-grid">
+          <div class="character-card searchable" data-search="traveler aether lumine genshin аяллагч">
+            <div class="character-symbol">T</div>
+            <h3>Traveler</h3>
+            <p>Genshin Impact</p>
+          </div>
+          <div class="character-card searchable" data-search="venti anemo archon barbatos genshin">
+            <div class="character-symbol">V</div>
+            <h3>Venti</h3>
+            <p>Genshin Impact • Anemo</p>
+          </div>
+          <div class="character-card searchable" data-search="zhongli geo archon morax genshin">
+            <div class="character-symbol">Z</div>
+            <h3>Zhongli</h3>
+            <p>Genshin Impact • Geo</p>
+          </div>
+          <div class="character-card searchable" data-search="rover resonator wuthering waves wuwa">
+            <div class="character-symbol">R</div>
+            <h3>Rover</h3>
+            <p>Wuthering Waves</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="section news-section" id="news">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">LATEST NEWS</span>
+          <h2>Сүүлийн <span class="gold">мэдээ</span></h2>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card searchable" data-search="сайт нээлт games lore mongolian мэдээ">
+            <span class="news-date">2026</span>
+            <h3>Games Lore Mongolian сайт нээгдлээ</h3>
+            <p>Монгол хэл дээрх тоглоомын lore сангийн анхны хувилбар ашиглалтад орлоо.</p>
+          </article>
+          <article class="news-card searchable" data-search="genshin нийтлэл удахгүй lore">
+            <span class="news-date">УДАХГҮЙ</span>
+            <h3>Genshin Impact-ийн шинэ нийтлэлүүд</h3>
+            <p>Archon, бүс нутаг, байгууллагуудын тухай нийтлэлүүд удахгүй нэмэгдэнэ.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <p class="no-results" id="noResults" hidden>Хайлтад тохирох илэрц олдсонгүй.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-about">
+          <div class="footer-logo">GAMES <span>LORE</span></div>
+          <p>Тоглоомын ертөнцийн түүх, домог, дүрүүдийн нууцыг Монгол хэлээр хүргэнэ.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Цэс</h3>
+          <a href="#games">Тоглоомууд</a>
+          <a href="#lore">Түүх ба Lore</a>
+          <a href="#characters">Дүрүүд</a>
+          <a href="#news">Мэдээ</a>
+        </div>
+      </div>
+      <p class="copyright">© <span id="year">2026</span> Games Lore Mongolian. Бүх эрх хуулиар хамгаалагдсан.</p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
