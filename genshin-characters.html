@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genshin дүрүүд | Genshin Lore Mongolian</title>
+<style>
+:root {
+  --bg:#101522; --panel:#192235; --gold:#e9bd68;
+  --text:#f3f4f7; --muted:#aab3c4;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,sans-serif;line-height:1.6
+}
+header{
+  padding:24px 6%;background:#151e30;
+  border-bottom:1px solid #344056
+}
+a{color:var(--gold);text-decoration:none}
+.brand{font-size:14px;color:var(--muted)}
+h1{margin:8px 0;color:var(--gold)}
+header p{margin:0;color:var(--muted)}
+main{max-width:1150px;margin:auto;padding:25px 18px}
+.back{display:inline-block;margin-bottom:18px}
+.filters{
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:12px;margin:18px 0 24px
+}
+input,select{
+  width:100%;padding:13px;border-radius:9px;
+  border:1px solid #3a465c;background:var(--panel);
+  color:white;font-size:15px
+}
+.count{color:var(--muted);margin-bottom:15px}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px
+}
+.card{
+  background:var(--panel);border:1px solid #344056;
+  border-radius:13px;padding:18px;cursor:pointer;
+  transition:.2s
+}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.symbol{
+  width:58px;height:58px;border-radius:50%;
+  display:grid;place-items:center;background:#28344c;
+  color:var(--gold);font-size:25px;margin-bottom:12px
+}
+.card h3{margin:5px 0;color:var(--gold)}
+.card p{margin:3px 0;color:var(--muted);font-size:14px}
+.tag{
+  display:inline-block;margin-top:10px;padding:4px 9px;
+  border-radius:20px;background:#303c52;font-size:12px
+}
+.empty{text-align:center;padding:40px;color:var(--muted)}
+footer{text-align:center;padding:30px;color:var(--muted)}
+dialog{
+  width:min(500px,92%);border:1px solid var(--gold);
+  border-radius:14px;background:#192235;color:white;padding:25px
+}
+dialog::backdrop{background:#000b}
+dialog h2{color:var(--gold)}
+.close{
+  float:right;background:#344056;color:white;
+  border:0;padding:8px 13px;border-radius:7px
+}
+@media(max-width:650px){
+  .filters{grid-template-columns:1fr}
+  header{padding:20px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">GENSHIN LORE MONGOLIAN</div>
+  <h1>Тейватын дүрүүд</h1>
+  <p>Genshin Impact дүрүүдийн мэдээллийн сан</p>
+</header>
+<main>
+  <a class="back" href="genshin.html">← Genshin үндсэн хуудас</a>
+  <h2>Дүр хайх</h2>
+  <p>Дүрийн нэр, элемент эсвэл зэвсгийн төрлөөр хайж үзээрэй.</p>
+  <div class="filters">
+    <input id="search" placeholder="Дүрийн нэрээр хайх...">
+    <select id="element">
+      <option value="">Бүх элемент</option>
+      <option>Anemo</option><option>Geo</option>
+      <option>Electro</option><option>Dendro</option>
+      <option>Hydro</option><option>Pyro</option>
+      <option>Cryo</option>
+    </select>
+    <select id="weapon">
+      <option value="">Бүх зэвсэг</option>
+      <option>Sword</option><option>Claymore</option>
+      <option>Polearm</option><option>Bow</option>
+      <option>Catalyst</option>
+    </select>
+  </div>
+  <div class="count" id="count"></div>
+  <section class="grid" id="characters"></section>
+  <div class="empty" id="empty" hidden>Тохирох дүр олдсонгүй.</div>
+</main>
+<dialog id="detail">
+  <button class="close" id="close">Хаах</button>
+  <h2 id="detailName"></h2>
+  <p id="detailInfo"></p>
+  <p id="detailDesc"></p>
+  <p><small>Энэ бол мэдээллийн сангийн эхний загвар. Дэлгэрэнгүй lore мэдээллийг дараа нь нэмнэ.</small></p>
+</dialog>
+<footer>© 2026 Genshin Lore Mongolian</footer>
+<script>
+const data=[
+{name:"Aino",element:"Hydro",weapon:"Claymore",region:"Nod-Krai",rarity:"4★"},
+{name:"Albedo",element:"Geo",weapon:"Sword",region:"Mondstadt",rarity:"5★"},
+{name:"Alhaitham",element:"Dendro",weapon:"Sword",region:"Sumeru",rarity:"5★"},
+{name:"Arlecchino",element:"Pyro",weapon:"Polearm",region:"Fontaine",rarity:"5★"},
+{name:"Furina",element:"Hydro",weapon:"Sword",region:"Fontaine",rarity:"5★"},
+{name:"Nahida",element:"Dendro",weapon:"Catalyst",region:"Sumeru",rarity:"5★"},
+{name:"Neuvillette",element:"Hydro",weapon:"Catalyst",region:"Fontaine",rarity:"5★"},
+{name:"Zhongli",element:"Geo",weapon:"Polearm",region:"Liyue",rarity:"5★"}
+];
+const $=id=>document.getElementById(id);
+function render(){
+ const q=$("search").value.toLowerCase().trim();
+ const e=$("element").value,w=$("weapon").value;
+ const filtered=data.filter(c=>
+ c.name.toLowerCase().includes(q)&&(!e||c.element===e)&&(!w||c.weapon===w)
+ );
+ $("count").textContent=`Нийт ${filtered.length} / ${data.length} дүр`;
+ $("empty").hidden=filtered.length!==0;
+ $("characters").innerHTML=filtered.map(c=>`
+ <article class="card" data-name="${c.name}">
+ <div class="symbol">${c.element[0]}</div>
+ <h3>${c.name}</h3>
+ <p>${c.region}</p>
+ <p>${c.weapon} · ${c.rarity}</p>
+ <span class="tag">${c.element}</span>
+ </article>`).join("");
+}
+$("characters").addEventListener("click",ev=>{
+ const card=ev.target.closest(".card");if(!card)return;
+ const c=data.find(x=>x.name===card.dataset.name);
+ $("detailName").textContent=c.name;
+ $("detailInfo").textContent=`${c.rarity} · ${c.element} · ${c.weapon}`;
+ $("detailDesc").textContent=`Бүс нутаг: ${c.region}. Энэ дүрийн lore мэдээллийг удахгүй дэлгэрүүлнэ.`;
+ $("detail").showModal();
+});
+$("close").onclick=()=>$("detail").close();
+["search","element","weapon"].forEach(id=>$(id).addEventListener("input",render));
+render();
+</script>
+</body>
+</html>
