@@ -1,12 +1,17 @@
+
 name: Update Genshin Characters
 
-'on':
+on:
   schedule:
     - cron: '0 18 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-genshin-characters
+  cancel-in-progress: false
 
 jobs:
   update-characters:
@@ -19,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Fetch character database
         run: |
@@ -27,64 +32,167 @@ jobs:
           import fs from 'node:fs/promises';
 
           const base = 'https://genshin.jmp.blue';
-          const response = await fetch(`${base}/characters`);
 
-          if (!response.ok) {
-            throw new Error('Character list request failed');
+          async function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
           }
 
-          const names = await response.json();
-          const characters = [];
+          async function getJson(url, attempts = 3) {
+            let lastError;
 
-          for (const id of names) {
-            try {
-              const result = await fetch(
-                `${base}/characters/${encodeURIComponent(id)}`
+            for (let i = 1; i <= attempts; i++) {
+              try {
+                const response = await fetch(url, {
+                  headers: {
+                    'Accept': 'application/json',
+                    'User-Agent': 'Genshin-Lore-Mongolian'
+                  },
+                  signal: AbortSignal.timeout(20000)
+                });
+
+                if (!response.ok) {
+                  throw new Error(
+                    `HTTP ${response.status} ${response.statusText}`
+                  );
+                }
+
+                return await response.json();
+              } catch (error) {
+                lastError = error;
+                console.log(`Attempt ${i}/${attempts}: ${error.message}`);
+
+                if (i < attempts) {
+                  await wait(2000 * i);
+                }
+              }
+            }
+
+            throw lastError;
+          }
+
+          function normalizeCharacter(id, c) {
+            return {
+              id,
+              name: c.name || id,
+              title: c.title || '',
+              vision: c.vision || '',
+              weapon: c.weapon || '',
+              nation: c.nation || '',
+              rarity: c.rarity || null,
+              constellation: c.constellation || '',
+              birthday: c.birthday || '',
+              description: c.description || '',
+              affiliation: c.affiliation || '',
+              image: `${base}/characters/${encodeURIComponent(id)}/icon-big`
+            };
+          }
+
+          let characters = [];
+
+          // Эхлээд бүх дүрийн дэлгэрэнгүй мэдээллийг нэг хүсэлтээр татна.
+          try {
+            const data = await getJson(
+              `${base}/characters/all?lang=en`
+            );
+
+            if (Array.isArray(data)) {
+              characters = data.map((c, index) =>
+                normalizeCharacter(
+                  c.id || c.name?.toLowerCase().replaceAll(' ', '-') || String(index),
+                  c
+                )
               );
+            } else if (data && typeof data === 'object') {
+              const entries = data.characters
+                ? Object.entries(data.characters)
+                : Object.entries(data);
 
-              if (!result.ok) continue;
+              characters = entries
+                .filter(([, value]) =>
+                  value && typeof value === 'object'
+                )
+                .map(([id, c]) => normalizeCharacter(id, c));
+            }
 
-              const c = await result.json();
+            console.log(`Bulk API returned ${characters.length} characters`);
+          } catch (error) {
+            console.log(`Bulk API unavailable: ${error.message}`);
+          }
 
-              characters.push({
-                id,
-                name: c.name || id,
-                title: c.title || '',
-                vision: c.vision || '',
-                weapon: c.weapon || '',
-                nation: c.nation || '',
-                rarity: c.rarity || null,
-                constellation: c.constellation || '',
-                birthday: c.birthday || '',
-                description: c.description || '',
-                image: `${base}/characters/${id}/icon-big`
-              });
-            } catch (error) {
-              console.log(`Skipped ${id}: ${error.message}`);
+          // Нөөц хувилбар: ID жагсаалт аваад дүр бүрийн мэдээллийг татна.
+          if (!characters.length) {
+            console.log('Using individual character requests...');
+
+            const names = await getJson(`${base}/characters`);
+
+            if (!Array.isArray(names)) {
+              throw new Error('Character list response is not an array');
+            }
+
+            for (const id of names) {
+              try {
+                const c = await getJson(
+                  `${base}/characters/${encodeURIComponent(id)}?lang=en`,
+                  2
+                );
+
+                characters.push(normalizeCharacter(id, c));
+                await wait(150);
+              } catch (error) {
+                console.log(`Skipped ${id}: ${error.message}`);
+              }
             }
           }
 
           if (!characters.length) {
-            throw new Error('No character data received');
+            throw new Error('No character data received from API');
           }
+
+          characters.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
+
+          const output = {
+            updatedAt: new Date().toISOString(),
+            count: characters.length,
+            source: base,
+            characters
+          };
 
           await fs.writeFile(
             'characters-auto.json',
-            JSON.stringify({
-              updatedAt: new Date().toISOString(),
-              count: characters.length,
-              characters
-            }, null, 2)
+            JSON.stringify(output, null, 2) + '\n'
           );
 
-          console.log(`Saved ${characters.length} characters`);
+          console.log(`Successfully saved ${characters.length} characters`);
+          NODE
+
+      - name: Validate database
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+
+          const data = JSON.parse(
+            await fs.readFile('characters-auto.json', 'utf8')
+          );
+
+          if (!Array.isArray(data.characters) || data.characters.length === 0) {
+            throw new Error('Character database is empty or invalid');
+          }
+
+          console.log(`Validated ${data.count} characters`);
           NODE
 
       - name: Commit updated database
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add characters-auto.json
-          git diff --cached --quiet || git commit -m "Update Genshin character database"
-          git push
-          
+
+          if git diff --cached --quiet; then
+            echo "No character data changes."
+          else
+            git commit -m "Update Genshin character database"
+            git push
+          fi
