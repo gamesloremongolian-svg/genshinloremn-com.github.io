@@ -90,7 +90,18 @@ border-bottom:1px solid var(--line);
 overflow:hidden;
 }
 
-.hero:after{
+..hero:after{
+content:"";
+position:absolute;
+width:280px;
+height:280px;
+border:1px solid #dfc58d55;
+border-radius:50%;
+right:9%;
+top:50px;
+box-shadow:0 0 0 25px #dfc58d09,
+           0 0 0 50px #dfc58d06;
+}
 content:"";
 position:absolute;
 width:400px;
