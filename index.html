@@ -3,23 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="Games Lore Mongolian — тоглоомын ертөнц, түүх, нууц, домог, дүрүүд болон мэдээ мэдээлэл.">
-
+  <meta name="description" content="Games Lore Mongolian — тоглоомын ертөнц, түүх, нууц, домог, дүрүүд болон мэдээ.">
   <meta name="theme-color" content="#101522">
-
   <title>Games Lore Mongolian | Gaming Wiki</title>
 
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./assets/css/style.css">
-
   <style>
+    /* =========================
+       GENERAL SETTINGS
+    ========================= */
+
     :root {
       --bg: #101522;
       --bg-light: #151e2e;
@@ -31,6 +29,7 @@
       --muted: #aab3c4;
       --border: rgba(255,255,255,.09);
       --transition: .3s ease;
+      --container: 1180px;
     }
 
     * {
@@ -57,8 +56,7 @@
       text-decoration: none;
     }
 
-    button,
-    input {
+    button, input {
       font: inherit;
     }
 
@@ -72,22 +70,26 @@
     }
 
     .container {
-      width: min(1180px, 90%);
-      margin: auto;
+      width: min(var(--container), 90%);
+      margin-inline: auto;
     }
 
     .section {
-      padding: 90px 0;
+      padding: 88px 0;
+    }
+
+    .gold {
+      color: var(--gold);
     }
 
     .section-heading {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 42px;
     }
 
-    .section-heading .eyebrow {
+    .eyebrow {
       color: var(--cyan);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -95,28 +97,26 @@
 
     .section-heading h2 {
       font-family: 'Oxanium', sans-serif;
-      font-size: clamp(28px, 5vw, 42px);
-      margin: 10px 0;
+      font-size: clamp(28px, 5vw, 43px);
+      margin: 9px 0;
     }
 
     .section-heading p {
       color: var(--muted);
-      max-width: 650px;
+      max-width: 660px;
       margin: auto;
       font-size: 14px;
     }
 
-    .gold {
-      color: var(--gold);
-    }
-
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================= */
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(16,21,34,.94);
+      background: rgba(16,21,34,.95);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -126,7 +126,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 24px;
     }
 
     .logo {
@@ -154,7 +154,7 @@
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 25px;
+      gap: 24px;
       list-style: none;
     }
 
@@ -175,20 +175,28 @@
       color: var(--white);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 8px 12px;
+      padding: 7px 12px;
       font-size: 23px;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
-      min-height: 650px;
+      min-height: 620px;
       display: flex;
       align-items: center;
       position: relative;
+
       background:
-        linear-gradient(90deg, rgba(9,14,25,.96), rgba(9,14,25,.65)),
+        linear-gradient(
+          90deg,
+          rgba(9,14,25,.96),
+          rgba(9,14,25,.68)
+        ),
         url('./assets/images/hero-bg.png') center/cover no-repeat;
+
       border-bottom: 1px solid var(--border);
     }
 
@@ -225,20 +233,20 @@
       color: #c2c9d5;
       font-size: 15px;
       max-width: 620px;
-      margin-bottom: 32px;
+      margin-bottom: 30px;
     }
 
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 13px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 24px;
+      padding: 13px 23px;
       border-radius: 7px;
       font-size: 13px;
       font-weight: 700;
@@ -266,7 +274,9 @@
       color: var(--cyan);
     }
 
-    /* INTRO */
+    /* =========================
+       INTRODUCTION
+    ========================= */
 
     .intro {
       background: var(--bg-light);
@@ -283,7 +293,9 @@
       font-size: 15px;
     }
 
-    /* GAME CARDS */
+    /* =========================
+       GAME CARDS
+    ========================= */
 
     .games-grid {
       display: grid;
@@ -293,45 +305,69 @@
 
     .game-card {
       position: relative;
-      min-height: 300px;
+      min-height: 340px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 28px;
+      padding: 27px;
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: 12px;
+
       background:
-        radial-gradient(circle at 80% 20%, rgba(117,217,232,.16), transparent 40%),
-        linear-gradient(145deg, #253d55, #172033 70%);
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(117,217,232,.16),
+          transparent 40%
+        ),
+        linear-gradient(145deg,#253d55,#172033 70%);
+
       transition: var(--transition);
     }
 
     .game-card:nth-child(2) {
       background:
-        radial-gradient(circle at 80% 20%, rgba(233,189,104,.2), transparent 40%),
-        linear-gradient(145deg, #473b38, #172033 75%);
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(233,189,104,.2),
+          transparent 40%
+        ),
+        linear-gradient(145deg,#473b38,#172033 75%);
     }
 
     .game-card:nth-child(3) {
       background:
-        radial-gradient(circle at 80% 20%, rgba(140,110,220,.22), transparent 40%),
-        linear-gradient(145deg, #373253, #172033 75%);
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(140,110,220,.22),
+          transparent 40%
+        ),
+        linear-gradient(145deg,#373253,#172033 75%);
     }
 
     .game-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-7px);
       border-color: var(--gold);
     }
 
     .game-number {
       position: absolute;
-      top: 18px;
-      right: 23px;
+      top: 12px;
+      right: 20px;
       color: rgba(255,255,255,.12);
       font-family: 'Oxanium', sans-serif;
       font-size: 70px;
       font-weight: 800;
+    }
+
+    .game-logo {
+      display: block;
+      width: 190px;
+      height: 76px;
+      object-fit: contain;
+      object-position: left center;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.35));
     }
 
     .game-category {
@@ -339,19 +375,19 @@
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .game-card h3 {
       font-family: 'Oxanium', sans-serif;
-      font-size: 27px;
+      font-size: 26px;
       margin-bottom: 8px;
     }
 
     .game-card p {
       color: var(--muted);
       font-size: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 17px;
     }
 
     .game-link {
@@ -360,7 +396,9 @@
       font-weight: 700;
     }
 
-    /* LORE */
+    /* =========================
+       LORE
+    ========================= */
 
     .lore-section {
       background: var(--bg-light);
@@ -368,7 +406,7 @@
 
     .lore-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3,1fr);
       gap: 22px;
     }
 
@@ -381,7 +419,7 @@
     }
 
     .lore-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       border-color: rgba(233,189,104,.5);
     }
 
@@ -390,24 +428,26 @@
       display: grid;
       place-items: center;
       background:
-        radial-gradient(circle at center, rgba(117,217,232,.2), transparent 60%),
-        linear-gradient(135deg, #273c53, #171e30);
+        radial-gradient(circle at center,rgba(117,217,232,.2),transparent 60%),
+        linear-gradient(135deg,#273c53,#171e30);
+
       font-family: 'Oxanium', sans-serif;
-      font-size: 22px;
+      font-size: 25px;
       font-weight: 800;
-      color: rgba(255,255,255,.75);
+      color: rgba(255,255,255,.78);
+      letter-spacing: 2px;
     }
 
     .lore-card:nth-child(2) .lore-art {
       background:
-        radial-gradient(circle at center, rgba(233,189,104,.2), transparent 60%),
-        linear-gradient(135deg, #493c37, #171e30);
+        radial-gradient(circle at center,rgba(233,189,104,.2),transparent 60%),
+        linear-gradient(135deg,#493c37,#171e30);
     }
 
     .lore-card:nth-child(3) .lore-art {
       background:
-        radial-gradient(circle at center, rgba(156,125,235,.22), transparent 60%),
-        linear-gradient(135deg, #393252, #171e30);
+        radial-gradient(circle at center,rgba(156,125,235,.22),transparent 60%),
+        linear-gradient(135deg,#393252,#171e30);
     }
 
     .lore-body {
@@ -432,20 +472,22 @@
       margin-bottom: 15px;
     }
 
-    /* CHARACTERS */
+    /* =========================
+       CHARACTERS
+    ========================= */
 
     .character-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
       gap: 18px;
     }
 
     .character-card {
-      min-height: 190px;
+      min-height: 170px;
       border: 1px solid var(--border);
-      background: linear-gradient(145deg, var(--panel-light), var(--panel));
+      background: linear-gradient(145deg,var(--panel-light),var(--panel));
       border-radius: 10px;
-      padding: 25px 18px;
+      padding: 24px 16px;
       text-align: center;
       transition: var(--transition);
     }
@@ -456,16 +498,16 @@
     }
 
     .character-symbol {
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(117,217,232,.35);
       border-radius: 50%;
-      margin: 0 auto 15px;
+      margin: 0 auto 14px;
       color: var(--cyan);
       font-family: 'Oxanium', sans-serif;
-      font-size: 23px;
+      font-size: 22px;
     }
 
     .character-card h3 {
@@ -478,7 +520,9 @@
       color: var(--muted);
     }
 
-    /* NEWS */
+    /* =========================
+       NEWS
+    ========================= */
 
     .news-section {
       background: var(--bg-light);
@@ -486,14 +530,14 @@
 
     .news-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2,1fr);
       gap: 22px;
     }
 
     .news-card {
       background: var(--panel);
       border: 1px solid var(--border);
-      padding: 25px;
+      padding: 24px;
       border-radius: 10px;
     }
 
@@ -513,7 +557,9 @@
       font-size: 13px;
     }
 
-    /* SEARCH */
+    /* =========================
+       SEARCH
+    ========================= */
 
     .search-section {
       padding: 65px 0;
@@ -542,7 +588,7 @@
     }
 
     .search-box button {
-      border: none;
+      border: 0;
       border-radius: 7px;
       background: var(--gold);
       color: #171b25;
@@ -555,9 +601,23 @@
       text-align: center;
       font-size: 12px;
       margin-top: 12px;
+      min-height: 20px;
     }
 
-    /* FOOTER */
+    .no-results {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      padding: 25px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     .site-footer {
       background: #0b101b;
@@ -607,24 +667,26 @@
       font-size: 11px;
     }
 
-    /* RESPONSIVE */
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================= */
 
     @media (max-width: 900px) {
       .nav-menu {
-        gap: 14px;
+        gap: 13px;
       }
 
       .games-grid,
       .lore-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
       .character-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
       .hero {
-        min-height: 570px;
+        min-height: 560px;
       }
     }
 
@@ -656,12 +718,12 @@
       }
 
       .hero {
-        min-height: 540px;
+        min-height: 530px;
         background-position: center;
       }
 
       .hero-content {
-        padding: 75px 0;
+        padding: 70px 0;
       }
 
       .hero-description {
@@ -669,7 +731,7 @@
       }
 
       .section {
-        padding: 65px 0;
+        padding: 64px 0;
       }
 
       .games-grid,
@@ -679,11 +741,16 @@
       }
 
       .character-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
       .game-card {
-        min-height: 260px;
+        min-height: 285px;
+      }
+
+      .game-logo {
+        width: 170px;
+        height: 68px;
       }
 
       .search-box {
@@ -718,7 +785,6 @@
 <body>
 
   <!-- HEADER -->
-
   <header class="site-header">
     <div class="container header-inner">
 
@@ -727,11 +793,17 @@
         <small>MONGOLIAN WIKI</small>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Цэс нээх">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Цэс нээх"
+        aria-expanded="false"
+        aria-controls="navMenu">
         ☰
       </button>
 
-      <nav>
+      <nav aria-label="Үндсэн цэс">
         <ul class="nav-menu" id="navMenu">
           <li><a href="#home">Нүүр</a></li>
           <li><a href="#games">Тоглоомууд</a></li>
@@ -744,13 +816,12 @@
     </div>
   </header>
 
-
   <main>
 
     <!-- HERO -->
-
     <section class="hero" id="home">
       <div class="container">
+
         <div class="hero-content">
 
           <span class="hero-label">
@@ -758,14 +829,12 @@
           </span>
 
           <h1>
-            Тоглоомын <span>ертөнцөд</span>
-            тавтай морил
+            Тоглоомын <span>ертөнцөд</span> тавтай морил
           </h1>
 
           <p class="hero-description">
-            Тоглоом бүрийн ард нуугдсан түүх, домог,
-            дүрүүдийн нууц болон тайлагдаагүй оньсогыг
-            Монгол хэлээр хамтдаа нээцгээе.
+            Тоглоом бүрийн ард нуугдсан түүх, домог, дүрүүдийн нууц
+            болон тайлагдаагүй оньсогыг Монгол хэлээр хамтдаа нээцгээе.
           </p>
 
           <div class="hero-buttons">
@@ -782,157 +851,116 @@
       </div>
     </section>
 
-
-    <!-- INTRO -->
-
+    <!-- ABOUT -->
     <section class="section intro">
       <div class="container intro-content">
 
         <div class="section-heading">
           <span class="eyebrow">ABOUT US</span>
-          <h2>Games Lore <span class="gold">Mongolian</span></h2>
+          <h2>
+            Games Lore <span class="gold">Mongolian</span>
+          </h2>
         </div>
 
         <p>
-          Games Lore Mongolian бол видео тоглоомын ертөнц,
-          үйл явдал, дүрүүд, домог болон нууц мэдээллийг
-          Монгол хэлээр хүргэх зорилготой тоглоомын
-          мэдээллийн платформ юм.
-          Бид тоглоомын түүхийг сонирхолтой, ойлгомжтой
-          байдлаар судлан хүргэнэ.
+          Games Lore Mongolian бол видео тоглоомын ертөнц, үйл явдал,
+          дүрүүд, домог болон нууц мэдээллийг Монгол хэлээр хүргэх
+          зорилготой тоглоомын мэдээллийн платформ юм.
+          Бид тоглоомын түүхийг сонирхолтой, ойлгомжтой байдлаар судлан хүргэнэ.
         </p>
 
       </div>
     </section>
 
-
     <!-- GAMES -->
-
     <section class="section" id="games">
       <div class="container">
 
         <div class="section-heading">
           <span class="eyebrow">EXPLORE WORLDS</span>
-          <h2>Тоглоомын <span class="gold">ертөнцүүд</span></h2>
+
+          <h2>
+            Тоглоомын <span class="gold">ертөнцүүд</span>
+          </h2>
+
           <p>
-            Судлахыг хүссэн тоглоомоо сонгоод
-            түүний ертөнцийн нууцыг нээгээрэй.
+            Судлахыг хүссэн тоглоомоо сонгоод түүний ертөнцийн нууцыг нээгээрэй.
           </p>
         </div>
 
-        <div class="games-grid">
+        <div class="games-grid" id="gamesGrid">
 
-          <a href="./genshin.html" class="game-card">
+          <!-- GENSHIN IMPACT -->
+          <a
+            href="./genshin.html"
+            class="game-card searchable"
+            data-search="genshin impact teyvat fantasy open world геншин">
+
             <span class="game-number">01</span>
-            <span class="game-category">Fantasy • Open World</span>
+
+            <img
+              class="game-logo"
+              src="./assets/images/genshin-logo.png"
+              alt="Genshin Impact лого"
+              loading="lazy"
+              onerror="this.style.display='none'">
+
+            <span class="game-category">
+              Fantasy • Open World
+            </span>
+
             <h3>Genshin Impact</h3>
+
             <p>
-              Teyvat-ийн долоон үндэстэн,
-              Архонууд болон нууцлаг түүх.
+              Teyvat-ийн долоон үндэстэн, Архонууд болон нууцлаг түүх.
             </p>
-            <span class="game-link">ЕРТӨНЦӨД НЭВТРЭХ →</span>
+
+            <span class="game-link">
+              ЕРТӨНЦӨД НЭВТРЭХ →
+            </span>
+
           </a>
 
-          <a href="#news" class="game-card">
+          <!-- WUTHERING WAVES -->
+          <a
+            href="#lore"
+            class="game-card searchable"
+            data-search="wuthering waves wuwa solaris 3 action open world">
+
             <span class="game-number">02</span>
-            <span class="game-category">Action • Open World</span>
+
+            <img
+              class="game-logo"
+              src="./assets/images/wuwa-logo.png"
+              alt="Wuthering Waves лого"
+              loading="lazy"
+              onerror="this.style.display='none'">
+
+            <span class="game-category">
+              Action • Open World
+            </span>
+
             <h3>Wuthering Waves</h3>
+
             <p>
-              Solaris-3 ертөнц, Resonator-ууд
-              болон Lament-ийн нууц.
+              Solaris-3 ертөнц, Resonator-ууд болон Lament-ийн нууц.
             </p>
-            <span class="game-link">УДАХГҮЙ →</span>
+
+            <span class="game-link">
+              СУДЛАХ →
+            </span>
+
           </a>
 
-          <a href="#news" class="game-card">
+          <!-- ANANTA -->
+          <a
+            href="#lore"
+            class="game-card searchable"
+            data-search="ananta adventure open world netease">
+
             <span class="game-number">03</span>
-            <span class="game-category">Adventure • Open World</span>
-            <h3>Ananta</h3>
-            <p>
-              Шинэ ертөнц, дүрүүд болон
-              судлах олон боломж.
-            </p>
-            <span class="game-link">УДАХГҮЙ →</span>
-          </a>
 
-        </div>
-      </div>
-    </section>
-
-
-    <!-- LORE -->
-
-    <section class="section lore-section" id="lore">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="eyebrow">STORIES & MYSTERIES</span>
-          <h2>Түүх ба <span class="gold">Lore</span></h2>
-          <p>
-            Тоглоомын ертөнцийн гүн дэх нууц,
-            эртний домог болон үйл явдлууд.
-          </p>
-        </div>
-
-        <div class="lore-grid">
-
-          <article class="lore-card">
-            <div class="lore-art">TEYVAT</div>
-            <div class="lore-body">
-              <span class="lore-tag">GENSHIN IMPACT</span>
-              <h3>Teyvat-ийн нууц</h3>
-              <p>
-                Долоон үндэстэн, Архонууд,
-                Celestia болон Abyss-ийн тухай.
-              </p>
-              <a href="./genshin.html" class="game-link">
-                ДЭЛГЭРЭНГҮЙ →
-              </a>
-            </div>
-          </article>
-
-          <article class="lore-card">
-            <div class="lore-art">SOLARIS-3</div>
-            <div class="lore-body">
-              <span class="lore-tag">WUTHERING WAVES</span>
-              <h3>Solaris-3-ийн түүх</h3>
-              <p>
-                Lament, Tacet Discord болон
-                Resonator-уудын ертөнц.
-              </p>
-              <a href="#news" class="game-link">
-                УДАХГҮЙ →
-              </a>
-            </div>
-          </article>
-
-          <article class="lore-card">
-            <div class="lore-art">ANANTA</div>
-            <div class="lore-body">
-              <span class="lore-tag">ANANTA</span>
-              <h3>Шинэ ертөнцийн нууц</h3>
-              <p>
-                Ananta тоглоомын ертөнц,
-                дүрүүд болон мэдээлэл.
-              </p>
-              <a href="#news" class="game-link">
-                УДАХГҮЙ →
-              </a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- CHARACTERS -->
-
-    <section class="section" id="characters">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="eyebrow">CHARACTER DATABASE</span>
-          <h2>Онцлох <span class="gold">дүрүүд</span></h2>
-          <p>
-            Тоглоомын гол дүрүүд, 
+            <img
+              class="game-logo"
+              src="./assets/images/ananta-logo.png"
+     
