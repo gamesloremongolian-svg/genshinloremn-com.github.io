@@ -1,1 +1,394 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Genshin Impact-ийн ертөнц, дүрүүд, Archon болон Lore түүхийг Монгол хэлээр судлаарай.">
+<title>Genshin Impact Lore | Games Lore Mongolian</title>
+<link rel="stylesheet" href="assets/css/style.css">
 
+<style>
+.genshin-page {
+  --g-bg:#101522;
+  --g-panel:#1a2639;
+  --g-gold:#e9bd68;
+  --g-cyan:#75d9e8;
+  background:var(--g-bg);
+  color:#f4f0e8;
+  min-height:100vh;
+}
+.genshin-page .g-container {
+  width:min(1100px,90%);
+  margin:auto;
+}
+.genshin-page .g-header {
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#101522;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.genshin-page .g-nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  min-height:76px;
+  gap:15px;
+}
+.genshin-page .g-brand {
+  font-size:21px;
+  font-weight:800;
+  color:#f4f0e8;
+}
+.genshin-page .g-brand span {color:var(--g-gold);}
+.genshin-page .g-navlinks {
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+.genshin-page a {
+  color:inherit;
+  text-decoration:none;
+}
+.genshin-page .g-navlinks a {
+  color:#c3cbd8;
+  font-size:13px;
+}
+.genshin-page .g-navlinks a:hover {color:var(--g-gold);}
+.genshin-page .g-menu {
+  display:none;
+  background:transparent;
+  color:white;
+  border:1px solid #39465b;
+  border-radius:8px;
+  padding:9px 14px;
+  font-size:23px;
+}
+.genshin-page .g-hero {
+  padding:90px 0;
+  background:
+  linear-gradient(90deg,rgba(10,17,31,.96),rgba(10,17,31,.58)),
+  url('assets/images/genshin-bg.png') center/cover;
+}
+.genshin-page .g-eyebrow {
+  color:var(--g-cyan);
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:700;
+}
+.genshin-page h1 {
+  font-size:clamp(36px,6vw,65px);
+  line-height:1.12;
+  margin:20px 0;
+}
+.genshin-page h1 span,
+.genshin-page .g-gold {color:var(--g-gold);}
+.genshin-page .g-hero p {
+  color:#c5cedb;
+  max-width:650px;
+  line-height:1.9;
+}
+.genshin-page .g-section {padding:75px 0;}
+.genshin-page .g-section:nth-child(even) {
+  background:#151f30;
+}
+.genshin-page .g-heading {
+  text-align:center;
+  margin-bottom:35px;
+}
+.genshin-page .g-heading h2 {
+  font-size:clamp(26px,4vw,38px);
+  margin:12px 0;
+}
+.genshin-page .g-heading p {
+  color:#aab3c4;
+  font-size:14px;
+}
+.genshin-page .g-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.genshin-page .g-card {
+  background:var(--g-panel);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  padding:23px;
+  transition:.25s;
+}
+.genshin-page .g-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--g-gold);
+}
+.genshin-page .g-card h3 {margin:12px 0;}
+.genshin-page .g-card p {
+  color:#aab3c4;
+  font-size:13px;
+  line-height:1.8;
+}
+.genshin-page .g-tag {
+  color:var(--g-cyan);
+  font-size:10px;
+  letter-spacing:2px;
+}
+.genshin-page .g-symbol {
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(117,217,232,.4);
+  border-radius:50%;
+  color:var(--g-cyan);
+  font-size:22px;
+}
+.genshin-page .g-search {
+  display:flex;
+  max-width:650px;
+  margin:25px auto;
+  gap:10px;
+}
+.genshin-page .g-search input {
+  flex:1;
+  min-width:0;
+  padding:14px;
+  border:1px solid #39465b;
+  background:#1a2639;
+  color:white;
+  border-radius:7px;
+}
+.genshin-page .g-search button {
+  background:var(--g-gold);
+  color:#171b25;
+  border:0;
+  border-radius:7px;
+  padding:0 22px;
+  font-weight:700;
+}
+.genshin-page .g-footer {
+  padding:35px 0;
+  text-align:center;
+  color:#8994a7;
+  font-size:12px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.genshin-page .g-back {
+  display:inline-block;
+  color:var(--g-gold);
+  margin-top:25px;
+}
+@media(max-width:750px) {
+  .genshin-page .g-menu {display:block;}
+  .genshin-page .g-navlinks {
+    display:none;
+    position:absolute;
+    top:76px;
+    left:0;
+    width:100%;
+    padding:22px 5%;
+    background:#111a29;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+  }
+  .genshin-page .g-navlinks.active {display:flex;}
+  .genshin-page .g-grid {grid-template-columns:1fr;}
+  .genshin-page .g-hero {padding:65px 0;}
+  .genshin-page .g-section {padding:55px 0;}
+}
+</style>
+</head>
+
+<body class="genshin-page">
+
+<header class="g-header">
+  <div class="g-container g-nav">
+    <a class="g-brand" href="index.html">
+      GAMES <span>LORE</span>
+      <small style="display:block;font-size:9px;letter-spacing:3px;color:#aab3c4;">
+        MONGOLIAN WIKI
+      </small>
+    </a>
+
+    <button class="g-menu" id="menuToggle" aria-label="Цэс нээх" aria-expanded="false">☰</button>
+
+    <nav class="g-navlinks" id="navMenu">
+      <a href="index.html">Нүүр</a>
+      <a href="#world">Teyvat</a>
+      <a href="#lore">Lore</a>
+      <a href="#characters">Дүрүүд</a>
+      <a href="#search">Хайлт</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="g-hero">
+  <div class="g-container">
+    <div class="g-eyebrow">GENSHIN IMPACT • Teyvat • Lore</div>
+    <h1>Нууцлаг <span>Teyvat</span><br>ертөнцөд тавтай морил</h1>
+    <p>
+      Долоон үндэстэн, Архонууд, Эртний соёл иргэншил,
+      Abyss болон Traveller-ийн аяллын нууцыг
+      Монгол хэлээр хамтдаа судалцгаая.
+    </p>
+    <a href="#lore" class="g-back">Lore судлах →</a>
+  </div>
+</section>
+
+<section class="g-section" id="world">
+  <div class="g-container">
+    <div class="g-heading">
+      <div class="g-eyebrow">THE WORLD OF TEYVAT</div>
+      <h2>Teyvat-ийн <span class="g-gold">ертөнц</span></h2>
+      <p>Долоон үндэстэн, долоон элементийн ертөнц.</p>
+    </div>
+
+    <div class="g-grid">
+      <article class="g-card searchable" data-search="mondstadt mondstadt салхи anemo venti">
+        <div class="g-symbol">風</div>
+        <h3>Mondstadt</h3>
+        <div class="g-tag">ANEMO • FREEDOM</div>
+        <p>Салхины үндэстэн. Эрх чөлөө болон Анемо Архонттой холбоотой түүх.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="liyue liyue geo zhongli гэрээ">
+        <div class="g-symbol">岩</div>
+        <h3>Liyue</h3>
+        <div class="g-tag">GEO • CONTRACTS</div>
+        <p>Гэрээ хэлцэл, Адептус болон Geo Архонтын тухай домог.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="inazuma inazuma electro ei raiden">
+        <div class="g-symbol">雷</div>
+        <h3>Inazuma</h3>
+        <div class="g-tag">ELECTRO • ETERNITY</div>
+        <p>Мөнхийн үзэл санаа болон Electro Архонтын түүх.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="sumeru sumeru dendro nahida wisdom">
+        <div class="g-symbol">草</div>
+        <h3>Sumeru</h3>
+        <div class="g-tag">DENDRO • WISDOM</div>
+        <p>Мэдлэг, Ирминсул болон Dendro Архонтын нууц.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="fontaine fontaine hydro furina justice">
+        <div class="g-symbol">水</div>
+        <h3>Fontaine</h3>
+        <div class="g-tag">HYDRO • JUSTICE</div>
+        <p>Шударга ёс, шүүх ажиллагаа болон Hydro-ийн түүх.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="natlan natlan pyro mavuika war">
+        <div class="g-symbol">火</div>
+        <h3>Natlan</h3>
+        <div class="g-tag">PYRO • WAR</div>
+        <p>Тулаан, овог аймгууд болон Pyro Архонтын тухай.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="g-section" id="lore">
+  <div class="g-container">
+    <div class="g-heading">
+      <div class="g-eyebrow">STORIES & MYSTERIES</div>
+      <h2>Судлах <span class="g-gold">Lore</span></h2>
+      <p>Тоглоомын түүх, нууцлаг үйл явдал болон онолууд.</p>
+    </div>
+
+    <div class="g-grid">
+      <article class="g-card searchable" data-search="archon архон celestia heavenly principles">
+        <div class="g-tag">WORLD HISTORY</div>
+        <h3>Архон ба Celestia</h3>
+        <p>Тэнгэрлэг зарчим, Архонууд болон Celestia-ийн тухай судалгаа.</p>
+        <a class="g-back" href="#search">Судлах →</a>
+      </article>
+
+      <article class="g-card searchable" data-search="khaenriah khaenri'ah abyss харанхуй улс">
+        <div class="g-tag">ANCIENT CIVILIZATION</div>
+        <h3>Khaenri'ah</h3>
+        <p>Бурхадгүй эртний улс болон сүйрлийн нууц.</p>
+        <a class="g-back" href="#search">Судлах →</a>
+      </article>
+
+      <article class="g-card searchable" data-search="traveller abyss sibling lumine aether">
+        <div class="g-tag">MAIN STORY</div>
+        <h3>Traveller-ийн аялал</h3>
+        <p>Алдагдсан ихэр, долоон үндэстэн болон аяллын гол зорилго.</p>
+        <a class="g-back" href="#search">Судлах →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="g-section" id="characters">
+  <div class="g-container">
+    <div class="g-heading">
+      <div class="g-eyebrow">CHARACTER DATABASE</div>
+      <h2>Genshin <span class="g-gold">дүрүүд</span></h2>
+      <p>Дүрүүдийн түүх, гарал үүсэл болон холбоо хамаарал.</p>
+    </div>
+
+    <div class="g-grid">
+      <article class="g-card searchable" data-search="aino aino дүр genshin">
+        <div class="g-symbol">A</div>
+        <h3>Aino</h3>
+        <p>Дүрийн мэдээлэл болон Lore удахгүй нэмэгдэнэ.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="albedo alchemist chalk prince">
+        <div class="g-symbol">A</div>
+        <h3>Albedo</h3>
+        <p>Хиймэл хүн, алхими болон Khaenri'ah-тай холбоотой нууц.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="alhaitham sumeru akademiya">
+        <div class="g-symbol">A</div>
+        <h3>Alhaitham</h3>
+        <p>Sumeru-ийн бичээч, мэдлэг болон Akademiya-тай холбоотой түүх.</p>
+      </article>
+
+      <article class="g-card searchable" data-search="archon venti zhongli raiden nahida furina">
+        <div class="g-symbol">G</div>
+        <h3>Архонууд</h3>
+        <p>Тейватын Архонуудын тухай мэдээллийн сан.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="g-section" id="search">
+  <div class="g-container">
+    <div class="g-heading">
+      <div class="g-eyebrow">SEARCH DATABASE</div>
+      <h2>Мэдээлэл <span class="g-gold">хайх</span></h2>
+      <p>Дүр, үндэстэн, Lore сэдвээр хайлт хийгээрэй.</p>
+    </div>
+
+    <form class="g-search" id="searchForm">
+      <input id="searchInput" type="search" placeholder="Жишээ: Albedo, Celestia, Liyue...">
+      <button type="submit">Хайх</button>
+    </form>
+    <p id="searchMessage" style="text-align:center;color:#aab3c4;"></p>
+    <p id="noResults" hidden style="text-align:center;color:#aab3c4;">
+      Илэрц олдсонгүй.
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="g-footer">
+  <div class="g-container">
+    <p>© 2026 Games Lore Mongolian</p>
+    <p>Genshin Impact Lore — Монгол хэлээр</p>
+    <a href="index.html" class="g-back">← Үндсэн нүүр хуудас</a>
+    <p style="margin-top:20px;font-size:10px;">
+      Fan-made community project. HoYoverse-ийн албан ёсны сайт биш.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
