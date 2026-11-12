@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Genshin Impact-ийн түүх, домог, нууц болон Teyvat ертөнцийн Lore судалгааны архив.">
+  <title>Genshin Lore Archive | Games Lore Mongolian</title>
+
+  <style>
+    :root {
+      --bg: #090e18;
+      --panel: #111a29;
+      --panel2: #172337;
+      --gold: #d9b66d;
+      --cyan: #6edce5;
+      --text: #edf1f7;
+      --muted: #9ba9bd;
+      --border: rgba(217,182,109,.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: rgba(9,14,24,.96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      color: var(--gold);
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      padding: 78px 0 60px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, rgba(67,112,155,.24), transparent 65%),
+        linear-gradient(180deg, #101b2c, var(--bg));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      color: var(--gold);
+      font-size: clamp(32px, 6vw, 54px);
+      margin: 12px 0;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-line {
+      width: 90px;
+      height: 2px;
+      background: var(--gold);
+      margin: 25px auto 0;
+    }
+
+    .main {
+      padding: 48px 0 80px;
+    }
+
+    .section-heading {
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: 24px;
+      color: var(--gold);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .search-box {
+      margin: 25px 0;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 16px 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      color: white;
+      font-size: 15px;
+    }
+
+    .search-box input:focus {
+      border-color: var(--cyan);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--muted);
+      border-radius: 30px;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--gold);
+      color: #111827;
+      border-color: var(--gold);
+    }
+
+    .results-info {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .article {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      transition: .25s;
+    }
+
+    .article:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      background: var(--panel2);
+    }
+
+    .article-category {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .article h3 {
+      color: var(--gold);
+      font-size: 19px;
+      line-height: 1.4;
+      margin: 12px 0;
+    }
+
+    .article p {
+      color: var(--muted);
+      font-size: 13px;
+      flex: 1;
+    }
+
+    .article-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 13px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .read-btn {
+      color: var(--cyan);
+      font-weight: bold;
+      cursor: pointer;
+      background: none;
+      border: 0;
+      font-size: 12px;
+    }
+
+    .read-btn:hover {
+      color: var(--gold);
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      padding: 45px 10px;
+      background: var(--panel);
+      border-radius: 12px;
+    }
+
+    .about {
+      margin-top: 65px;
+      padding: 28px;
+      background: linear-gradient(120deg, #172337, #101a29);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+    }
+
+    .about h2 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .about p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--gold);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      background: rgba(0,0,0,.82);
+      padding: 20px;
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(700px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      padding: 28px;
+      position: relative;
+      margin: auto;
+    }
+
+    .modal-content h2 {
+      color: var(--gold);
+      margin: 10px 35px 15px 0;
+    }
+
+    .modal-content p {
+      color: var(--muted);
+      white-space: pre-line;
+      font-size: 14px;
+    }
+
+    .close {
+      position: absolute;
+      right: 18px;
+      top: 12px;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 800px) {
+      .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 55px 0 45px;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .article {
+        min-height: 200px;
+      }
+
+      .modal-content {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="./index.html">GAMES LORE MN</a>
+
+    <nav class="nav-links">
+      <a href="./index.html">Нүүр</a>
+      <a href="./genshin.html">Genshin</a>
+      <a href="#archive">Lore архив</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Teyvat Historical Records</div>
+    <h1>GENSHIN LORE ARCHIVE</h1>
+    <p>
+      Teyvat ертөнцийн түүх, эртний соёл иргэншил,
+      Архонууд, нууцлаг үйл явдал болон маргаантай онолуудыг
+      нэг дороос судлаарай.
+    </p>
+    <div class="hero-line"></div>
+  </div>
+</section>
+
+<main class="container main" id="archive">
+
+  <div class="section-heading">
+    <h2>Түүхийн архив</h2>
+    <p>Genshin Impact-ийн Lore нийтлэлүүдийг ангиллаар нь хайж уншаарай.</p>
+  </div>
+
+  <div class="search-box">
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="Нийтлэлийн нэр эсвэл түлхүүр үгээр хайх..."
+      aria-label="Lore нийтлэл хайх"
+    >
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-category="all">Бүгд</button>
+    <button class="filter-btn" data-category="main">Үндсэн түүх</button>
+    <button class="filter-btn" data-category="archon">Архонууд</button>
+    <button class="filter-btn" data-category="region">Бүс нутгууд</button>
+    <button class="filter-btn" data-category="history">Эртний түүх</button>
+    <button class="filter-btn" data-category="character">Дүрүүд</button>
+    <button class="filter-btn" data-category="theory">Онол, таамаг</button>
+  </div>
+
+  <div class="results-info" id="resultsInfo"></div>
+
+  <div class="article-grid" id="articleGrid">
+
+    <article class="article" data-category="main"
+      data-search="teyvat ертөнц долоон улс түүх">
+      <span class="article-category">Үндсэн түүх</span>
+      <h3>Teyvat ертөнц гэж юу вэ?</h3>
+      <p>
+        Genshin Impact-ийн үйл явдал өрнөдөг ертөнцийн бүтэц,
+        долоон улс болон түүхийн үндсэн ойлголтууд.
+      </p>
+      <div class="article-bottom">
+        <span>Ерөнхий судалгаа</span>
+        <button class="read-btn" data-article="teyvat">Унших →</button>
+      </div>
+    </article>
+
+    <article class="article" data-category="archon"
+      data-search="archon архон celestia долоон бурхан">
+      <span class="article-category">Архонууд</span>
+      <h3>Долоон Архоны тухай</h3>
+      <p>
+        Архонуудын үүрэг, элементүүд, улс орнуудтай
+        холбоотой түүхэн ойлголтууд.
+      </p>
+      <div class="article-bottom">
+        <span>Домог судлал</span>
+        <button class="read-btn" data-article="archons">Унших →</button>
+      </div>
+    </article>
+
+    <article class="article" data-category="history"
+      data-search="khaenriah khaenri'ah эртний улс сүйрэл">
+      <span class="article-category">Эртний түүх</span>
+      <h3>Khaenri'ah — Алдагдсан улс</h3>
+      <p>
+        Архонгүй эртний соёл иргэншил болон түүний
+        сүйрэлтэй холбоотой түүх.
+      </p>
+      <div class="article-bottom">
+        <span>Эртний соёл иргэншил</span>
+        <button class="read-btn" data-article="khaenriah">Унших →</button>
+      </div>
+    </article>
+
+    <article class="article" data-category="region"
+      data-search="celestia тэнгэрийн арал бурхан">
+      <span class="article-category">Бүс нутгууд</span>
+      <h3>Celestia — Тэнгэрийн арал</h3>
+      <p>
+        Teyvat-ийн тэнгэрт орших Celestia болон
+        бурхадтай холбоотой нууцууд.
+      </p>
+      <div class="article-bottom">
+        <span>Нууцлаг газар</span>
+        <button class="read-btn" data-article="celestia">Унших →</button>
+      </div>
+    </article>
+
+    <article class="article" data-category="character"
+      data-search="traveller аялагч lumine aether">
+      <span class="article-category">Дүрүүд</span>
+      <h3>Traveller — Хоёр ихрийн аялал</h3>
+      <p>
+        Aether болон Lumine-ийн аялал, Teyvat-д ирсэн
+        шалтгааны талаарх тоглоомын өгүүлэмж.
+      </p>
+      <div class="article-bottom">
+        <span>Гол дүр</span>
+        <button class="read-btn" data-article="traveller">Унших →</button>
+      </div>
+    </article>
+
+    <article class="article" data-category="theory"
+      data-search="primordial one primordial бог анхны">
+      <span class="article-category">Онол, таамаг</span>
+      <h3>The Primordial One-ийн тухай</h3>
+      <p>
+        Анхны эзэнтэй холбоотой тоглоомын мэдээлэл
+        болон судлаачдын тайлбар.
+      </p>
+      <div class="article-bottom">
+        <span>Судалгааны сэдэв</span>
+        <button class="read-btn" data-article="primordial">Унших →</button>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="empty" id="emptyMessage">
+    Таны хайлтад тохирох нийтлэл олдсонгүй.
+  </div>
+
+  <section class="about">
+    <h2>Genshin Lore Mongolian</h2>
+    <p>
+      Энэхүү архив нь Genshin Impact-ийн ертөнц, түүх,
+      дүрүүд болон нууцуудыг монгол хэлээр судлах зорилготой.
+      Албан ёсны тоглоомын мэдээлэл, баталгаатай баримт,
+      тайлбар болон таамаглалыг аль болох ялгаж хүргэнэ.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Games Lore Mongolian</p>
+    <p><a href="./index.html">Нүүр хуудас</a> ·
+       <a href="./genshin.html">Genshin Impact</a></p>
+  </div>
+</footer>
+
+<div class="modal" id="articleModal">
+  <div class="modal-content">
+    <button class="close" id="closeModal" aria-label="Хаах">×</button>
+    <span class="article-category" id="modalCategory"></span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+  const articles = {
+    teyvat: {
+      category: "Үндсэн түүх",
+      title: "Teyvat ертөнц гэж юу вэ?",
+      text: `Teyvat бол Genshin Impact-ийн үйл явдал өрнөдөг ертөнц юм.
+
+      Тоглоомын үндсэн өгүүлэмжид долоон элемент болон тэдгээртэй холбоотой улс орнууд чухал байр суурь эзэлдэг.
+
+      Аялагчийн аялалын явцад Teyvat-ийн өнгөрсөн үе, бурхад, эртний соёл иргэншлүүдийн тухай мэдээлэл аажмаар ил болдог.
+
+      Энэ бол архивын эхний танилцуулга юм. Дараагийн хувилбарт эх сурвалж, тоглоомын эшлэл болон дэлгэрэнгүй судалгааг нэмнэ.`
+    },
+
+    archons: {
+      category: "Архонууд",
+      title: "Долоон Архоны тухай",
+      text: `Архонууд нь Teyvat-ийн долоон элементийн систем болон улс орнуудын түүхтэй холбоотой бурхад юм.
+
+      Тоглоомын өгүүлэмжид тэдний эрх мэдэл, Гнозис, улс орнуудын хөгжил болон өнгөрсөн үеийн үйл явдлууд чухал үүрэгтэй.
+
+      Архоны тухай судалгааг хийхдээ тоглоомын баталгаатай мэдээлэл болон таамаглалыг тусад нь авч үзэх шаардлагатай.`
+    },
+
+    khaenriah: {
+      category: "Эртний түүх",
+      title: "Khaenri'ah — Алдагдсан улс",
+      text: `Khaenri'ah бол Teyvat-ийн газрын зурагт ердийн долоон улсын нэг байдлаар дүрслэгддэггүй эртний соёл иргэншил юм.
+
+      Тоглоомын түүхэнд энэ улсын сүйрэл болон таван зуун жилийн өмнөх үйл явдлууд томоохон байр суурь эзэлдэг.
+
+      Abyss Order, Khaenri'ah-ийн оршин суугчид болон түүхэн дүрүүдийн холбоо нь цаашид судлах чухал сэдэв юм.`
+    },
+
+    celestia: {
+      category: "Бүс нутгууд",
+      title: "Celestia — Тэнгэрийн арал",
+      text: `Celestia нь Teyvat-ийн тэнгэрт орших нууцлаг газар юм.
+
+      Тоглоомын өгүүлэмжид Celestia нь бурхад, Vision болон эртний түүхтэй холбоотойгоор дурдагддаг.
+
+      Түүний жинхэнэ зорилго, эрх мэдлийн бүтэц болон хүн төрөлхтөнтэй харилцах харилцааны талаар олон асуулт нээлттэй хэвээр байна.
+
+      Баталгаатай мэдээлэл болон фэнүүдийн онолыг ялгаж судлах нь чухал.`
+    },
+
+    traveller: {
+      category: "Дүрүүд",
+      title: "Traveller — Хоёр ихрийн аялал",
+      text: `Aether болон Lumine бол Genshin Impact-ийн гол дүрүүд юм.
+
+      Тэд Teyvat-д ирэх үедээ үл мэдэгдэх хүчтэй тулгарч, хоёр өөр замаар салдаг.
+
+      Тоглогчийн сонголтоос хамааран Aether эсвэл Lumine гол дүр болж, нөгөө ихрийг олох аялал эхэлдэг.
+
+      Тэдний гарал үүсэл болон Teyvat-ийн түүхтэй холбоо нь гол өгүүлэмжийн чухал хэсэг юм.`
+    },
+
+    primordial: {
+      category: "Онол, таамаг",
+      title: "The Primordial One-ийн тухай",
+      text: `The Primordial One нь Genshin Impact-ийн эртний түүхтэй холбоотой нэр томьёо юм.
+
+      Энэ сэдэв нь Before Sun and Moon зэрэг тоглоом доторх эх сурвалжтай холбогддог.
+
+      Гэхдээ түүний мөн чанар, үйл явдлуудын бүрэн дараалал болон бусад хүчнүүдтэй харилцах харилцааны талаар бүх зүйл бүрэн тайлбарлагдаагүй.
+
+      Иймээс баримт, тайлбар, таамаглалыг тусад нь авч үзэх хэрэгтэй.`
+    }
+  };
+
+  const searchInput = document.getElementById("searchInput");
+  const cards = [...document.querySelectorAll(".article")];
+  const filterButtons = [...document.querySelectorAll(".filter-btn")];
+  const emptyMessage = document.getElementById("emptyMessage");
+  const resultsInfo = document.getElementById("resultsInfo");
+
+  let activeCategory = "all";
+
+  function filterArticles() {
+    const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const category = card.dataset.category;
+      const content = (
+        card.innerText + " " + card.dataset.search
+      ).toLowerCase();
+
+      const categoryMatch =
+        activeCategory === "all" || category === activeCategory;
+
+      const searchMatch = content.includes(query);
+      const visible = categoryMatch && searchMatch;
+
+      card.style.display = visible ? "flex" : "none";
+
+      if (visible) visibleCount++;
+    });
+
+    resultsInfo.textContent = visibleCount + " нийтлэл харагдаж байна";
+    emptyMessage.style.display = visibleCount === 0 ? "block" : "none";
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+
+      activeCategory = button.dataset.category;
+      filterArticles();
+    });
+  });
+
+  searchInput.addEventListener("input", filterArticles);
+
+  const modal = document.getElementById("articleModal");
+
+  document.querySelectorAll(".read-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const article = articles[button.dataset.article];
+      if (!article) return;
+
+      document.getElementById("modalCategory").textContent =
+        article.category;
+
+      document.getElementById("modalTitle").textContent =
+        article.title;
+
+      document.getElementById("modalText").textContent =
+        article.text;
+
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove("show");
+    document.body.style.overflow = "";
+  }
+
+  document.getElementById("closeModal")
+    .addEventListener("click", closeModal);
+
+  modal.addEventListener("click", event => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeModal();
+  });
+
+  filterArticles();
+</script>
+
+</body>
+</html>
