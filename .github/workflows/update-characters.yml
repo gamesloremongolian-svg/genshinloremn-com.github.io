@@ -1,4 +1,3 @@
-
 name: Update Genshin Characters
 
 on:
@@ -44,7 +43,7 @@ jobs:
               try {
                 const response = await fetch(url, {
                   headers: {
-                    'Accept': 'application/json',
+                    Accept: 'application/json',
                     'User-Agent': 'Genshin-Lore-Mongolian'
                   },
                   signal: AbortSignal.timeout(20000)
@@ -59,18 +58,16 @@ jobs:
                 return await response.json();
               } catch (error) {
                 lastError = error;
-                console.log(`Attempt ${i}/${attempts}: ${error.message}`);
+                console.log(`Attempt ${i}: ${error.message}`);
 
-                if (i < attempts) {
-                  await wait(2000 * i);
-                }
+                if (i < attempts) await wait(2000 * i);
               }
             }
 
             throw lastError;
           }
 
-          function normalizeCharacter(id, c) {
+          function normalize(id, c) {
             return {
               id,
               name: c.name || id,
@@ -87,18 +84,29 @@ jobs:
             };
           }
 
+          // Өмнөх мэдээллийн санг хадгалж уншина.
+          let previous = null;
+
+          try {
+            previous = JSON.parse(
+              await fs.readFile('characters-auto.json', 'utf8')
+            );
+          } catch {
+            console.log('No previous database found.');
+          }
+
           let characters = [];
 
-          // Эхлээд бүх дүрийн дэлгэрэнгүй мэдээллийг нэг хүсэлтээр татна.
+          // Эхлээд бүх дүрийн дэлгэрэнгүй мэдээллийг татахыг оролдоно.
           try {
             const data = await getJson(
               `${base}/characters/all?lang=en`
             );
 
             if (Array.isArray(data)) {
-              characters = data.map((c, index) =>
-                normalizeCharacter(
-                  c.id || c.name?.toLowerCase().replaceAll(' ', '-') || String(index),
+              characters = data.map((c, i) =>
+                normalize(
+                  c.id || c.name?.toLowerCase().replaceAll(' ', '-') || String(i),
                   c
                 )
               );
@@ -108,18 +116,16 @@ jobs:
                 : Object.entries(data);
 
               characters = entries
-                .filter(([, value]) =>
-                  value && typeof value === 'object'
-                )
-                .map(([id, c]) => normalizeCharacter(id, c));
+                .filter(([, c]) => c && typeof c === 'object')
+                .map(([id, c]) => normalize(id, c));
             }
 
-            console.log(`Bulk API returned ${characters.length} characters`);
+            console.log(`Bulk API: ${characters.length} characters`);
           } catch (error) {
-            console.log(`Bulk API unavailable: ${error.message}`);
+            console.log(`Bulk API failed: ${error.message}`);
           }
 
-          // Нөөц хувилбар: ID жагсаалт аваад дүр бүрийн мэдээллийг татна.
+          // Нөөц хувилбар: ID жагсаалтаар дүр бүрийг татна.
           if (!characters.length) {
             console.log('Using individual character requests...');
 
@@ -136,7 +142,7 @@ jobs:
                   2
                 );
 
-                characters.push(normalizeCharacter(id, c));
+                characters.push(normalize(id, c));
                 await wait(150);
               } catch (error) {
                 console.log(`Skipped ${id}: ${error.message}`);
@@ -145,15 +151,34 @@ jobs:
           }
 
           if (!characters.length) {
-            throw new Error('No character data received from API');
+            throw new Error('No character data received');
           }
 
           characters.sort((a, b) =>
-            a.name.localeCompare(b.name)
+            a.id.localeCompare(b.id)
           );
 
+          // Өмнөх мэдээллийн сангаас хэт их буурсан эсэхийг шалгана.
+          if (
+            previous &&
+            Number.isFinite(previous.count) &&
+            previous.count > 0 &&
+            characters.length < previous.count * 0.8
+          ) {
+            throw new Error(
+              `Suspicious character drop: ${previous.count} -> ${characters.length}. Previous database preserved.`
+            );
+          }
+
+          // Өөрчлөлт байгаа эсэхийг шалгана.
+          const same = previous &&
+            JSON.stringify(previous.characters) ===
+            JSON.stringify(characters);
+
           const output = {
-            updatedAt: new Date().toISOString(),
+            updatedAt: same
+              ? previous.updatedAt
+              : new Date().toISOString(),
             count: characters.length,
             source: base,
             characters
@@ -164,7 +189,11 @@ jobs:
             JSON.stringify(output, null, 2) + '\n'
           );
 
-          console.log(`Successfully saved ${characters.length} characters`);
+          console.log(
+            same
+              ? `No changes. Kept previous update date.`
+              : `Saved ${characters.length} characters.`
+          );
           NODE
 
       - name: Validate database
@@ -176,11 +205,21 @@ jobs:
             await fs.readFile('characters-auto.json', 'utf8')
           );
 
-          if (!Array.isArray(data.characters) || data.characters.length === 0) {
-            throw new Error('Character database is empty or invalid');
+          if (!Array.isArray(data.characters)) {
+            throw new Error('Characters must be an array');
           }
 
-          console.log(`Validated ${data.count} characters`);
+          if (data.characters.length === 0) {
+            throw new Error('Character database is empty');
+          }
+
+          if (data.count !== data.characters.length) {
+            throw new Error(
+              `Count mismatch: ${data.count} != ${data.characters.length}`
+            );
+          }
+
+          console.log(`Validated ${data.count} characters.`);
           NODE
 
       - name: Commit updated database
@@ -191,7 +230,7 @@ jobs:
           git add characters-auto.json
 
           if git diff --cached --quiet; then
-            echo "No character data changes."
+            echo "No character data changes. No commit needed."
           else
             git commit -m "Update Genshin character database"
             git push
