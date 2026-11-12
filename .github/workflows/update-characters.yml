@@ -1,4 +1,3 @@
-
 name: Update Genshin Characters
 
 'on':
@@ -28,7 +27,7 @@ jobs:
           import fs from 'node:fs/promises';
 
           const base = 'https://genshin.jmp.blue';
-          const response = await fetch(`${base}/characters/all`);
+          const response = await fetch(`${base}/characters`);
 
           if (!response.ok) {
             throw new Error('Character list request failed');
