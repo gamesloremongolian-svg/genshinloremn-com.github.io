@@ -1,654 +1,692 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101827">
-<title>Games Lore Mongolian</title>
-<meta name="description" content="Тоглоомын ертөнц, lore, дүрүүд, домог, гарын авлага Монгол хэлээр.">
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
---bg:#0d1728;
---panel:#17263b;
---gold:#dfc58d;
---text:#f4f0e8;
---muted:#aab8ca;
---line:#dfc58d35;
-}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-
-body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:'Noto Sans',sans-serif;
-}
-
-a{text-decoration:none;color:inherit}
-.container{width:min(1150px,92%);margin:auto}
-
-header{
-position:sticky;
-top:0;
-z-index:20;
-background:#0d1728ed;
-backdrop-filter:blur(15px);
-border-bottom:1px solid var(--line);
-}
-
-.nav{
-height:76px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-
-.logo{
-display:flex;
-align-items:center;
-height:68px;
-}
-
-.logo img{
-width:190px;
-height:65px;
-object-fit:contain;
-display:block;
-}
-
-.links{
-display:flex;
-gap:25px;
-font-size:13px;
-}
-
-.links a:hover{color:var(--gold)}
-
-.menu{
-display:none;
-background:none;
-color:var(--gold);
-border:1px solid var(--line);
-padding:9px 12px;
-border-radius:7px;
-}
-
-.hero{
-min-height:510px;
-display:flex;
-align-items:center;
-position:relative;
-background:
-linear-gradient(90deg,#0d1728 5%,#0d1728db 42%,#0d172840),
-url('./images/hero.jpg') center/cover;
-border-bottom:1px solid var(--line);
-overflow:hidden;
-}
-
-..hero:after{
-content:"";
-position:absolute;
-width:280px;
-height:280px;
-border:1px solid #dfc58d55;
-border-radius:50%;
-right:9%;
-top:50px;
-box-shadow:0 0 0 25px #dfc58d09,
-           0 0 0 50px #dfc58d06;
-}
-content:"";
-position:absolute;
-width:400px;
-height:400px;
-border:1px solid #dfc58d55;
-border-radius:50%;
-right:8%;
-top:50px;
-box-shadow:0 0 0 40px #dfc58d09,0 0 0 80px #dfc58d06;
-}
-
-.hero-content{
-position:relative;
-z-index:1;
-max-width:690px;
-padding:75px 0;
-}
-
-.kicker{
-font-size:11px;
-letter-spacing:4px;
-color:var(--gold);
-}
-
-h1{
-font:700 clamp(36px,6vw,65px) Cinzel,serif;
-line-height:1.2;
-margin:20px 0;
-}
-
-h1 span{color:var(--gold)}
-
-.hero p{
-max-width:560px;
-color:#c4cfdd;
-font-size:14px;
-line-height:1.9;
-}
-
-.actions{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-margin-top:28px;
-}
-
-.btn{
-padding:14px 21px;
-border-radius:6px;
-font-size:13px;
-font-weight:700;
-transition:.25s;
-}
-
-.btn:hover{transform:translateY(-3px)}
-.primary{background:var(--gold);color:#152033}
-.secondary{border:1px solid var(--gold);color:var(--gold)}
-
-.search-area{
-margin-top:-25px;
-position:relative;
-z-index:5;
-}
-
-.search{
-display:flex;
-align-items:center;
-gap:12px;
-background:#1b2c43;
-border:1px solid var(--line);
-padding:12px 18px;
-border-radius:10px;
-box-shadow:0 12px 30px #0005;
-}
-
-.search span{
-font-size:22px;
-color:var(--gold);
-}
-
-.search input{
-width:100%;
-background:none;
-border:0;
-outline:0;
-color:white;
-font-size:14px;
-}
-
-.search input::placeholder{color:#94a3b8}
-
-section{padding:62px 0}
-.heading{margin-bottom:25px}
-
-.heading h2{
-font:600 clamp(24px,4vw,32px) Cinzel,serif;
-margin:9px 0;
-}
-
-.heading p{
-font-size:13px;
-color:var(--muted);
-}
-
-.games{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-.card{
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:12px;
-overflow:hidden;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-7px);
-border-color:var(--gold);
-box-shadow:0 15px 30px #0004;
-}
-
-.art{
-height:225px;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-overflow:hidden;
-}
-
-.art img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.5s;
-}
-
-.card:hover .art img{transform:scale(1.07)}
-
-.genshin{background:linear-gradient(135deg,#587fa5,#b5d1d0)}
-.wuwa{background:radial-gradient(circle,#65529d,#161a33)}
-.ananta{background:radial-gradient(circle,#a94c88,#201b39)}
-
-.art-title{
-font:700 24px Cinzel,serif;
-text-shadow:0 3px 12px #000;
-}
-
-.info{padding:19px}
-
-.info h3{
-font:600 17px Cinzel,serif;
-margin:0 0 9px;
-}
-
-.info p{
-font-size:12px;
-line-height:1.8;
-color:var(--muted);
-min-height:45px;
-}
-
-.info span{
-font-size:12px;
-font-weight:700;
-color:var(--gold);
-}
-
-.categories{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-}
-
-.category{
-background:var(--panel);
-border:1px solid var(--line);
-border-radius:10px;
-padding:24px 12px;
-text-align:center;
-transition:.25s;
-}
-
-.category:hover{
-transform:translateY(-5px);
-background:#253750;
-}
-
-.category .symbol{
-font-size:28px;
-color:var(--gold);
-}
-
-.category h3{
-font-size:14px;
-margin:12px 0 5px;
-}
-
-.category p{
-font-size:11px;
-color:var(--muted);
-margin:0;
-}
-
-.feature{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:28px;
-align-items:center;
-padding:27px;
-background:linear-gradient(120deg,#192a41,#2a4059);
-border:1px solid var(--line);
-border-radius:13px;
-}
-
-.feature-art{
-height:250px;
-background:linear-gradient(135deg,#415e7e,#17263b);
-border-radius:9px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:var(--gold);
-font:600 22px Cinzel,serif;
-}
-
-.feature h2{
-font:600 26px Cinzel,serif;
-}
-
-.feature p{
-font-size:13px;
-color:var(--muted);
-line-height:1.9;
-}
-
-footer{
-background:#09111e;
-border-top:1px solid var(--line);
-padding:38px 0;
-text-align:center;
-}
-
-footer strong{
-font:600 19px Cinzel,serif;
-color:var(--gold);
-}
-
-footer p{
-font-size:11px;
-color:var(--muted);
-line-height:1.9;
-}
-
-.empty{
-display:none;
-text-align:center;
-padding:25px;
-color:var(--muted);
-}
-
-@media(max-width:760px){
-
-.hero:after{right:-230px}
-
-.logo img{
-width:155px;
-height:58px;
-}
-
-.menu{display:block}
-
-.links{
-display:none;
-position:absolute;
-top:68px;
-left:0;
-right:0;
-background:#101d30;
-padding:22px 5%;
-flex-direction:column;
-border-bottom:1px solid var(--line);
-}
-
-.links.show{display:flex}
-
-.hero{min-height:420px}
-.hero:after{right:-230px}
-
-.games{grid-template-columns:1fr}
-.art{height:205px}
-
-.categories{grid-template-columns:repeat(2,1fr)}
-
-.feature{
-grid-template-columns:1fr;
-padding:18px;
-}
-
-section{padding:46px 0}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamics - Create Manage Matches</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload images
+  -->
 </head>
 
-<body>
+<body id="top">
 
-<header>
-<div class="container nav">
+  <!-- 
+    - #HEADER
+  -->
 
-<a class="logo" href="./index.html">
-<img src="./images/1794462250400.jpg"
-alt="GAMES LORE MONGOLIAN">
-</a>
+  <header class="header">
 
-<button class="menu" onclick="toggleMenu()">☰ ЦЭС</button>
+    <div class="header-top">
+      <div class="container">
 
-<nav class="links" id="links">
-<a href="./index.html">Нүүр</a>
-<a href="#games">Тоглоомууд</a>
-<a href="#categories">Ангилал</a>
-<a href="#about">Бидний тухай</a>
-</nav>
+        <div class="countdown-text">
+          Exclusive Black Friday ! Offer <span class="span skewBg">10</span> Days
+        </div>
 
-</div>
-</header>
+        <div class="social-wrapper">
 
-<main>
+          <p class="social-title">Follow us on :</p>
 
-<section class="hero">
-<div class="container">
-<div class="hero-content">
+          <ul class="social-list">
 
-<div class="kicker">THE WORLD OF GAMING LORE</div>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
 
-<h1>DISCOVER<br>THE <span>WORLDS</span></h1>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
 
-<p>
-Тоглоом бүрийн ард нуугдсан түүх, домог,
-дүрүүдийн нууц болон ертөнцийн үнэнийг
-Монгол хэлээр хамтдаа нээцгээе.
-</p>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+            </li>
 
-<div class="actions">
-<a class="btn primary" href="#games">Ертөнцүүдийг нээх →</a>
-<a class="btn secondary" href="#categories">Мэдээлэл судлах</a>
-</div>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
 
-</div>
-</div>
-</section>
+          </ul>
 
-<div class="container search-area">
-<div class="search">
-<span>⌕</span>
-<input id="searchInput"
-type="search"
-placeholder="Тоглоом хайх..."
-oninput="searchGames()">
-</div>
-</div>
+        </div>
 
-<section id="games">
-<div class="container">
+      </div>
+    </div>
 
-<div class="heading">
-<div class="kicker">EXPLORE WORLDS</div>
-<h2>Тоглоомын ертөнцүүд</h2>
-<p>Судлах ертөнцөө сонгоорой.</p>
-</div>
+    <div class="header-bottom skewBg" data-header>
+      <div class="container">
 
-<div class="games" id="gameGrid">
+        <a href="#" class="logo">Gamics</a>
 
-<a class="card" href="./genshin.html"
-data-search="genshin impact teyvat paimon">
+        <nav class="navbar" data-navbar>
+          <ul class="navbar-list">
 
-<div class="art genshin">
-<img src="./images/1794451968913.jpg"
-alt="Genshin Impact"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="art-title" style="display:none">GENSHIN IMPACT</span>
-</div>
+            <li class="navbar-item">
+              <a href="#home" class="navbar-link skewBg" data-nav-link>Home</a>
+            </li>
 
-<div class="info">
-<h3>GENSHIN IMPACT</h3>
-<p>Teyvat-ийн долоон үндэстэн, Archon, дүрүүд болон мартагдсан түүхүүд.</p>
-<span>ЕРТӨНЦӨД НЭВТРЭХ →</span>
-</div>
-</a>
+            <li class="navbar-item">
+              <a href="#live" class="navbar-link skewBg" data-nav-link>Live</a>
+            </li>
 
-<a class="card" href="./wuwa.html"
-data-search="wuthering waves resonator solaris">
+            <li class="navbar-item">
+              <a href="#features" class="navbar-link skewBg" data-nav-link>Features</a>
+            </li>
 
-<div class="art wuwa">
-<span class="art-title">WUTHERING WAVES</span>
-</div>
+            <li class="navbar-item">
+              <a href="#shop" class="navbar-link skewBg" data-nav-link>Shop</a>
+            </li>
 
-<div class="info">
-<h3>WUTHERING WAVES</h3>
-<p>Solaris-3, Resonator-ууд болон сүйрлийн дараах ертөнцийн нууц.</p>
-<span>ЕРТӨНЦӨД НЭВТРЭХ →</span>
-</div>
-</a>
+            <li class="navbar-item">
+              <a href="#blog" class="navbar-link skewBg" data-nav-link>Blog</a>
+            </li>
 
-<a class="card" href="./ananta.html"
-data-search="ananta city characters lore">
+            <li class="navbar-item">
+              <a href="#" class="navbar-link skewBg" data-nav-link>Contact</a>
+            </li>
 
-<div class="art ananta">
-<span class="art-title">ANANTA</span>
-</div>
+          </ul>
+        </nav>
 
-<div class="info">
-<h3>ANANTA</h3>
-<p>Шинэ ертөнц, дүрүүд, хотын амьдрал болон нууцлаг түүхүүд.</p>
-<span>ЕРТӨНЦӨД НЭВТРЭХ →</span>
-</div>
-</a>
+        <div class="header-actions">
 
-</div>
+          <button class="cart-btn" aria-label="cart">
+            <ion-icon name="cart"></ion-icon>
 
-<div class="empty" id="empty">
-Хайлтад тохирох тоглоом олдсонгүй.
-</div>
+            <span class="cart-badge">0</span>
+          </button>
 
-</div>
-</section>
+          <button class="search-btn" aria-label="open search" data-search-toggler>
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
 
-<section id="categories">
-<div class="container">
+          <button class="nav-toggle-btn" aria-label="toggle menu" data-nav-toggler>
+            <ion-icon name="menu-outline" class="menu"></ion-icon>
+            <ion-icon name="close-outline" class="close"></ion-icon>
+          </button>
 
-<div class="heading">
-<div class="kicker">KNOWLEDGE ARCHIVE</div>
-<h2>Мэдээллийн сан</h2>
-<p>Тоглоомын мэдээллийг төрлөөр нь судлаарай.</p>
-</div>
+        </div>
 
-<div class="categories">
+      </div>
+    </div>
 
-<a class="category" href="./characters.html">
-<div class="symbol">♙</div>
-<h3>CHARACTERS</h3>
-<p>Дүрүүдийн мэдээлэл</p>
-</a>
+  </header>
 
-<a class="category" href="./genshin.html">
-<div class="symbol">✧</div>
-<h3>LORE & HISTORY</h3>
-<p>Түүх ба домог</p>
-</a>
 
-<a class="category" href="./genshin.html">
-<div class="symbol">⚔</div>
-<h3>GUIDES</h3>
-<p>Гарын авлага</p>
-</a>
 
-<a class="category" href="#news">
-<div class="symbol">◈</div>
-<h3>NEWS</h3>
-<p>Шинэ мэдээ</p>
-</a>
 
-</div>
-</div>
-</section>
 
-<section id="about">
-<div class="container">
+  <!-- 
+    - #SEARCH BOX
+  -->
 
-<div class="feature">
+  <div class="search-container" data-search-box>
 
-<div class="feature-art">GAMING ARCHIVE</div>
+    <div class="input-wrapper">
+      <input type="search" name="search" aria-label="search" placeholder="Search here..." class="search-field">
 
-<div>
-<div class="kicker">ABOUT OUR PROJECT</div>
-<h2>Тоглоомын ертөнцийг Монгол хэлээр</h2>
+      <button class="search-submit" aria-label="submit search" data-search-toggler>
+        <ion-icon name="search-outline"></ion-icon>
+      </button>
 
-<p>
-Games Lore Mongolian бол тоглоомын дүрүүд,
-ертөнцийн түүх, домог, шинэчлэлт болон
-гарын авлагыг Монгол хэлээр нэгтгэн хүргэх
-зорилготой мэдээллийн төсөл юм.
-</p>
+      <button class="search-close" aria-label="close search" data-search-toggler></button>
+    </div>
 
-<a class="btn secondary" href="#games">
-Судалгаагаа эхлүүлэх →
-</a>
-</div>
+  </div>
 
-</div>
-</div>
-</section>
 
-<section id="news">
-<div class="container">
 
-<div class="heading">
-<div class="kicker">LATEST UPDATES</div>
-<h2>Шинэ мэдээлэл</h2>
-<p>Шинэ нийтлэлүүд удахгүй нэмэгдэнэ.</p>
-</div>
 
-</div>
-</section>
 
-</main>
+  <main>
+    <article>
 
-<footer>
-<div class="container">
-<strong>GAMES LORE MONGOLIAN</strong>
-<p>Тоглоомын ертөнц, нууц түүх, домог.</p>
-<p>© 2026 Games Lore Mongolian. Fan-made informational project.</p>
-</div>
-</footer>
+      <!-- 
+        - #HERO
+      -->
 
-<script>
+      <section class="section hero" id="home" aria-label="home"
+        style="background-image: url('./assets/images/hero-bg.jpg')">
+        <div class="container">
 
-function toggleMenu(){
-document.getElementById('links').classList.toggle('show');
-}
+          <div class="hero-content">
 
-function searchGames(){
+            <p class="hero-subtitle">World Gaming</p>
 
-const q=document.getElementById('searchInput').value.toLowerCase().trim();
+            <h1 class="h1 hero-title">
+              Create <span class="span">Manage</span> Matches
+            </h1>
 
-const cards=document.querySelectorAll('.games .card');
+            <p class="hero-text">
+              Find technology or people for digital projects in public sector and Find an individual specialist develope
+              researcher.
+            </p>
 
-let count=0;
+            <button class="btn skewBg">Read More</button>
 
-cards.forEach(card=>{
+          </div>
 
-const match=(card.dataset.search+' '+card.innerText)
-.toLowerCase().includes(q);
+          <figure class="hero-banner img-holder" style="--width: 700; --height: 700;">
+            <img src="./assets/images/hero-banner.png" width="700" height="700" alt="hero banner" class="w-100">
+          </figure>
 
-card.style.display=match?'':'none';
+        </div>
+      </section>
 
-if(match)count++;
 
-});
 
-document.getElementById('empty').style.display=count?'none':'block';
 
-}
 
-</script>
+      <!-- 
+        - #BRAND
+      -->
 
-</body>
-</html>
+      <section class="section brand" aria-label="brand">
+        <div class="container">
+
+          <ul class="has-scrollbar">
+
+            <li class="brand-item">
+              <img src="./assets/images/brand-1.png" width="90" height="90" loading="lazy" alt="brand logo">
+            </li>
+
+            <li class="brand-item">
+              <img src="./assets/images/brand-2.png" width="90" height="90" loading="lazy" alt="brand logo">
+            </li>
+
+            <li class="brand-item">
+              <img src="./assets/images/brand-3.png" width="90" height="90" loading="lazy" alt="brand logo">
+            </li>
+
+            <li class="brand-item">
+              <img src="./assets/images/brand-4.png" width="90" height="90" loading="lazy" alt="brand logo">
+            </li>
+
+            <li class="brand-item">
+              <img src="./assets/images/brand-5.png" width="90" height="90" loading="lazy" alt="brand logo">
+            </li>
+
+            <li class="brand-item">
+              <img src="./assets/images/brand-6.png" width="90" height="90" loading="lazy" alt="brand logo">
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <div class="section-wrapper">
+
+        <!-- 
+          - #LATEST GAME
+        -->
+
+        <section class="section latest-game" aria-label="latest game">
+          <div class="container">
+
+            <p class="section-subtitle">Latest Releases</p>
+
+            <h2 class="h2 section-title">
+              Create & <span class="span">Manage</span>
+            </h2>
+
+            <ul class="has-scrollbar">
+
+              <li class="scrollbar-item">
+                <div class="latest-game-card">
+
+                  <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
+                    <img src="./assets/images/latest-game-1.jpg" width="400" height="470" loading="lazy"
+                      alt="White Walker Daily" class="img-cover">
+                  </figure>
+
+                  <div class="card-content">
+
+                    <a href="#" class="card-badge skewBg">Zombie</a>
+
+                    <h3 class="h3">
+                      <a href="#" class="card-title">White Walker <span class="span">Daily</span></a>
+                    </h3>
+
+                    <p class="card-price">
+                      Entry Fee : <span class="span">Free</span>
+                    </p>
+
+                  </div>
+
+                </div>
+              </li>
+
+              <li class="scrollbar-item">
+                <div class="latest-game-card">
+
+                  <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
+                    <img src="./assets/images/latest-game-2.jpg" width="400" height="470" loading="lazy"
+                      alt="Hunter Killer II" class="img-cover">
+                  </figure>
+
+                  <div class="card-content">
+
+                    <a href="#" class="card-badge skewBg">Adventure</a>
+
+                    <h3 class="h3">
+                      <a href="#" class="card-title">Hunter Killer <span class="span">II</span></a>
+                    </h3>
+
+                    <p class="card-price">
+                      Entry Fee : <span class="span">$25.00</span>
+                    </p>
+
+                  </div>
+
+                </div>
+              </li>
+
+              <li class="scrollbar-item">
+                <div class="latest-game-card">
+
+                  <figure class="card-banner img-holder" style="--width: 400; --height: 470;">
+                    <img src="./assets/images/latest-game-3.jpg" width="400" height="470" loading="lazy"
+                      alt="Cyberpunk Daily" class="img-cover">
+                  </figure>
+
+                  <div class="card-content">
+
+                    <a href="#" class="card-badge skewBg">Action</a>
+
+                    <h3 class="h3">
+                      <a href="#" class="card-title">Cyberpunk <span class="span">Daily</span></a>
+                    </h3>
+
+                    <p class="card-price">
+                      Entry Fee : <span class="span">$25.00</span>
+                    </p>
+
+                  </div>
+
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+        </section>
+
+
+
+
+
+        <!-- 
+          - #LIVE MATCH
+        -->
+
+        <section class="section live-match" id="live" aria-label="live match">
+          <div class="container">
+
+            <h2 class="h2 section-title">
+              Watch Live <span class="span">Match</span>
+            </h2>
+
+            <figure class="live-match-banner img-holder" style="--width: 800; --height: 470;">
+
+              <img src="./assets/images/live-match-banner.jpg" width="800" height="470" loading="lazy"
+                alt="Live Match Video" class="img-cover">
+
+              <button class="play-btn" aria-label="play video">
+                <ion-icon name="play"></ion-icon>
+              </button>
+
+            </figure>
+
+            <div class="live-match-player">
+
+              <figure class="player player-1 img-holder" style="--width: 406; --height: 277;">
+                <img src="./assets/images/live-match-player-1.png" width="406" height="277" loading="lazy"
+                  alt="tokyo eagle" class="w-100">
+              </figure>
+
+              <div class="live-match-detail">
+
+                <p class="live-match-subtitle">Upcoming Live Matches</p>
+
+                <time class="live-match-time" datetime="08:30">08:30</time>
+
+              </div>
+
+              <figure class="player player-2 img-holder" style="--width: 400; --height: 305;">
+                <img src="./assets/images/live-match-player-2.png" width="400" height="305" loading="lazy"
+                  alt="new york hunter7" class="w-100">
+              </figure>
+
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+
+
+
+
+      <!-- 
+        - #FEATURED GAME
+      -->
+
+      <section class="section featured-game" id="features" aria-label="featured game">
+        <div class="container">
+
+          <h2 class="h2 section-title">
+            All Released <span class="span">Games</span>
+          </h2>
+
+          <ul class="has-scrollbar">
+
+            <li class="scrollbar-item">
+              <div class="featured-game-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 600;">
+                  <img src="./assets/images/featured-game-1.jpg" width="450" height="600" loading="lazy"
+                    alt="Just for Gamers" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title" tabindex="-1">
+                      Just for <span class="span">Gamers</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+                <div class="card-content-overlay">
+
+                  <img src="./assets/images/featured-game-icon.png" width="36" height="61" loading="lazy" alt=""
+                    class="card-icon">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">
+                      Just for <span class="span">Gamers</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="featured-game-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 600;">
+                  <img src="./assets/images/featured-game-2.jpg" width="450" height="600" loading="lazy"
+                    alt="Need for Speed" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title" tabindex="-1">
+                      Need for <span class="span">Speed</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+                <div class="card-content-overlay">
+
+                  <img src="./assets/images/featured-game-icon.png" width="36" height="61" loading="lazy" alt=""
+                    class="card-icon">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">
+                      Need for <span class="span">Speed</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="featured-game-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 600;">
+                  <img src="./assets/images/featured-game-3.jpg" width="450" height="600" loading="lazy"
+                    alt="Egypt Hunting Gamers" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title" tabindex="-1">
+                      Egypt Hunting <span class="span">Gamers</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+                <div class="card-content-overlay">
+
+                  <img src="./assets/images/featured-game-icon.png" width="36" height="61" loading="lazy" alt=""
+                    class="card-icon">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">
+                      Egypt Hunting <span class="span">Gamers</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="featured-game-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 600;">
+                  <img src="./assets/images/featured-game-4.jpg" width="450" height="600" loading="lazy"
+                    alt="Just for Gamers" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title" tabindex="-1">
+                      Just for <span class="span">Gamers</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+                <div class="card-content-overlay">
+
+                  <img src="./assets/images/featured-game-icon.png" width="36" height="61" loading="lazy" alt=""
+                    class="card-icon">
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">
+                      Just for <span class="span">Gamers</span>
+                    </a>
+                  </h3>
+
+                  <span class="card-meta">
+                    <ion-icon name="notifications"></ion-icon>
+
+                    <span class="span">Playstation 5, Xbox</span>
+                  </span>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #SHOP
+      -->
+
+      <section class="section shop" id="shop" aria-label="shop"
+        style="background-image: url('./assets/images/shop-bg.jpg')">
+        <div class="container">
+
+          <h2 class="h2 section-title">
+            Gaming Product <span class="span">Corner</span>
+          </h2>
+
+          <p class="section-text">
+            Compete with 100 players on a remote island for winner takes showdown known issue where certain skin
+            strategic
+          </p>
+
+          <ul class="has-scrollbar">
+
+            <li class="scrollbar-item">
+              <div class="shop-card">
+
+                <figure class="card-banner img-holder" style="--width: 300; --height: 260;">
+                  <img src="./assets/images/shop-img-1.jpg" width="300" height="260" loading="lazy"
+                    alt="Women Black T-Shirt" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <a href="#" class="card-badge skewBg">t-shirt</a>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Women Black T-Shirt</a>
+                  </h3>
+
+                  <div class="card-wrapper">
+                    <p class="card-price">$29.00</p>
+
+                    <button class="card-btn">
+                      <ion-icon name="basket"></ion-icon>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="shop-card">
+
+                <figure class="card-banner img-holder" style="--width: 300; --height: 260;">
+                  <img src="./assets/images/shop-img-2.jpg" width="300" height="260" loading="lazy"
+                    alt="Gears 5 Xbox Controller" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <a href="#" class="card-badge skewBg">x-box</a>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Gears 5 Xbox Controller</a>
+                  </h3>
+
+                  <div class="card-wrapper">
+                    <p class="card-price">$29.00</p>
+
+                    <button class="card-btn">
+                      <ion-icon name="basket"></ion-icon>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="shop-card">
+
+           
