@@ -26,7 +26,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Fetch and validate character database
+      - name: Install genshin-db
+        run: npm install --no-save --no-package-lock genshin-db@latest
+
+      - name: Build character database
         run: node scripts/update-characters.mjs
 
       - name: Commit updated database
