@@ -1,10 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="mn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games Lore Mongolian</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -12,12 +18,55 @@
       color: white;
       text-align: center;
     }
+
     header {
       padding: 35px 15px;
       background: #191d2d;
     }
-    h1 { color: #d8b77a; }
-    main { padding: 40px 15px; }
+
+    h1 {
+      color: #d8b77a;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 330px;
+      padding: 65px 15px;
+      background: linear-gradient(135deg, #202b48, #394c70);
+    }
+
+    .hero h1,
+    .hero p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .character {
+      position: absolute;
+      width: 150px;
+      height: auto;
+      object-fit: contain;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: float 3s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        margin-top: 0;
+      }
+      50% {
+        margin-top: -15px;
+      }
+    }
+
+    main {
+      padding: 40px 15px;
+    }
+
     .card {
       max-width: 500px;
       margin: 20px auto;
@@ -25,35 +74,48 @@
       background: #202538;
       border-radius: 14px;
     }
-    a { color: #d8b77a; }
+
+    a {
+      color: #d8b77a;
+    }
+
+    @media (max-width: 600px) {
+      .character {
+        width: 100px;
+        right: 2%;
+        opacity: 0.85;
+      }
+
+      .hero {
+        min-height: 280px;
+      }
+    }
   </style>
 </head>
-<body><body>
 
-<header>
-    <!-- Сайтын цэс -->
-</header>
+<body>
 
-<section class="hero">
-    <h1>GAMES LORE MONGOLIAN</h1>
-    <p>Тоглоомын ертөнц, нууц түүх, домог</p>
-
-    <img src="images/paimon.png"
-         class="character paimon"
-         alt="Paimon">
-</section>
-
-</body>
   <header>
     <h1>GAMES LORE MONGOLIAN</h1>
     <p>Тоглоомын ертөнц, нууц түүх, домог</p>
   </header>
+
+  <section class="hero">
+    <h1>Тавтай морил!</h1>
+    <p>Тоглоомын ертөнцийн нууцыг хамтдаа нээцгээе.</p>
+
+    <img src="./images/paimon.png"
+         class="character"
+         alt="Paimon">
+  </section>
+
   <main>
     <div class="card">
-      <h2>Тавтай морил!</h2>
+      <h2>Genshin Lore Mongolian</h2>
       <p>Монгол хэл дээрх тоглоомын Lore мэдээллийн сан.</p>
       <p>Удахгүй шинэ нийтлэлүүд...</p>
     </div>
   </main>
+
 </body>
 </html>
