@@ -1087,3 +1087,22 @@ body {
 }
 
 .footer
+/*-----------------------------------*\
+  #GAME CARD LOGOS
+\*-----------------------------------*/
+
+.game-logo {
+  display: block;
+  width: 190px;
+  height: 76px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 600px) {
+  .game-logo {
+    width: 170px;
+    height: 68px;
+  }
+}
