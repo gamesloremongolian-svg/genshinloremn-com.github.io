@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="mn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101522"><title>Genshin Lore Wiki — Бүртгүүлэх</title>
+<style>
+:root{color-scheme:dark;--gold:#e9bd68;--cyan:#75d9e8;--text:#f4f0e8;--muted:#aab3c4}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#263653,#101522 60%);color:var(--text);font-family:Arial,sans-serif;display:grid;place-items:center;padding:22px}
+.card{width:min(100%,440px);padding:30px;border:1px solid #4a5260;border-radius:18px;background:rgba(26,38,57,.96);box-shadow:0 20px 60px #0006}
+.brand{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold}.card h1{font-size:27px;margin:12px 0 6px}.sub{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 22px}
+label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14px;border:1px solid #46536a;border-radius:9px;background:#111a29;color:white;font-size:15px}
+button{width:100%;padding:14px;margin-top:20px;border:0;border-radius:9px;background:var(--gold);color:#171b25;font-weight:bold;font-size:15px}
+#message{min-height:26px;margin:15px 0 0;color:var(--cyan);font-size:13px;line-height:1.5}.back{display:block;margin-top:20px;color:var(--gold);text-align:center;text-decoration:none;font-size:13px}
+</style></head><body><main class="card">
+<div class="brand">GAMES LORE MN · PRIVATE WIKI</div><h1>Бүртгэл үүсгэх</h1><p class="sub">Genshin Lore Wiki-д бүртгүүлж бүх мэдээллийг уншаарай.</p>
+<form id="signupForm"><label for="email">И-мэйл хаяг</label><input id="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+<label for="password">Нууц үг</label><input id="password" type="password" minlength="6" autocomplete="new-password" placeholder="Доод тал нь 6 тэмдэгт" required>
+<button id="submitBtn" type="submit">Бүртгүүлэх</button></form><p id="message" role="status"></p>
+<a class="back" href="auth.html">← Нэвтрэх хуудас руу буцах</a></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const message=document.getElementById("message"),button=document.getElementById("submitBtn");
+const URL="https://zyocifqdpbgwlgwtrgnq.supabase.co",KEY="sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
+document.getElementById("signupForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!window.supabase){message.textContent="Supabase холболтын сан ачаалсангүй. Интернэтээ шалгаад хуудсыг дахин нээнэ үү.";return;}
+ button.disabled=true;button.textContent="Бүртгэж байна…";message.textContent="";
+ try{
+  const client=window.supabase.createClient(URL,KEY);
+  const {data,error}=await client.auth.signUp({email:document.getElementById("email").value.trim(),password:document.getElementById("password").value});
+  if(error) message.textContent="Бүртгэлийн алдаа: "+error.message;
+  else if(data.session) {message.textContent="Амжилттай бүртгэгдлээ. Wiki руу шилжүүлж байна…";location.href="genshin.html";}
+  else message.textContent="Бүртгэл үүслээ. Email confirmation идэвхтэй байвал и-мэйлээ баталгаажуулаарай. Дараа нь нэвтэрнэ үү.";
+ }catch(err){message.textContent="Алдаа: "+(err.message||"Дахин оролдоно уу.");}
+ finally{button.disabled=false;button.textContent="Бүртгүүлэх";}
+});
+</script></body></html>
