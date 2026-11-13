@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Genshin Impact дүрийн дэлгэрэнгүй танилцуулга, түүх, чадвар болон мэдээлэл.">
+<title>Дүрийн мэдээлэл | Games Lore Mongolian</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+:root{--bg:#0c1423;--panel:#18263a;--gold:#e9bd68;--cyan:#9de5eb;--muted:#b6c1d1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#263854 0,#0c1423 60%);color:#f7f2e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(1050px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:5;background:#0b1424eF;border-bottom:1px solid #ffffff20;backdrop-filter:blur(12px)}
+nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.back{color:var(--gold);font-size:14px}
+main{padding:34px 0 70px}.crumb{color:var(--cyan);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.profile{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:28px;align-items:start}
+.portrait{border:1px solid #e9bd6840;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#283a54,#121e31);min-height:300px;display:grid;place-items:center}
+.portrait img{width:100%;height:480px;object-fit:contain;padding:12px}
+.info{background:linear-gradient(145deg,#1d2d45ed,#111d30ed);border:1px solid #ffffff1b;border-radius:18px;padding:clamp(20px,4vw,34px)}
+h1{font-size:clamp(30px,5vw,48px);margin:8px 0 12px}.tag{color:var(--cyan);font-size:12px;letter-spacing:1px}.meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.chip{padding:7px 11px;border-radius:30px;background:#ffffff0d;border:1px solid #ffffff20;color:#e8d7b4;font-size:12px}
+.lead{font-size:16px;line-height:1.85;color:#d0d8e4}.section{margin-top:22px;padding-top:18px;border-top:1px solid #ffffff1a}.section h2{font-size:18px;color:var(--gold);margin:0 0 10px}.section p{line-height:1.85;color:var(--muted);white-space:pre-line}
+.state{padding:32px;text-align:center;color:var(--muted);background:#17263b;border:1px solid #ffffff20;border-radius:14px}
+footer{text-align:center;color:#8795aa;padding:25px 0;border-top:1px solid #ffffff15;font-size:12px}
+@media(max-width:700px){.profile{grid-template-columns:1fr;gap:16px}.portrait{min-height:260px}.portrait img{height:340px}.info{padding:20px}main{padding-top:24px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav><a class="brand" href="index.html">GAMES <span>LORE</span></a><a class="back" href="genshin.html#characters">← Дүрүүдийн жагсаалт</a></nav></div></header>
+<main class="wrap">
+<div class="crumb">Genshin Impact · Дүрийн сан</div>
+<div id="profile" class="state">Дүрийн мэдээлэл ачаалж байна...</div>
+</main>
+<footer>© 2026 Games Lore Mongolian · Фэнүүдийн бүтээсэн төсөл</footer>
+<script>
+(()=> {
+ const root=document.getElementById('profile');
+ const slug=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const params=new URLSearchParams(location.search), wanted=params.get('id');
+ const elMap={Anemo:'Салхи',Geo:'Газар',Electro:'Цахилгаан',Dendro:'Ургамал',Hydro:'Ус',Pyro:'Гал',Cryo:'Мөс'};
+ const wpMap={Sword:'Нэг гар сэлэм',Claymore:'Хоёр гар сэлэм',Polearm:'Жад',Bow:'Нум',Catalyst:'Катализатор'};
+ const api='https://genshin-impact.up.railway.app';
+ fetch(api+'/characters?details=true').then(r=>{if(!r.ok)throw Error('API '+r.status);return r.json()}).then(data=>{
+  const list=Array.isArray(data)?data:(data?.characters||data?.data||Object.values(data||{}));
+  const ch=list.find(x=>slug(x.id||x.key||x.name)===wanted||slug(x.name)===wanted);
+  if(!ch)throw Error('Дүр олдсонгүй');
+  const name=ch.name||ch.id||'Тодорхойгүй', vision=ch.vision||ch.element||'', weapon=ch.weapon||ch.weaponType||'';
+  const image=ch.images?.card||ch.image?.card||ch.img?.card||api+'/characters/'+encodeURIComponent(slug(ch.id||name))+'/card';
+  const sections=[
+   ['Танилцуулга',ch.description||ch.title||'Энэ дүрийн товч танилцуулга одоогоор бүрэн ирээгүй байна.'],
+   ['Түүх ба намтар',ch.bio||ch.story||ch.lore||ch.background||'Дүрийн дэлгэрэнгүй түүхийг редакцын судалгаагаар нэмж оруулна.'],
+   ['Чадвар',ch.skillTalents||ch.talents||ch.skills||'Чадварын мэдээлэл удахгүй нэмэгдэнэ.'],
+   ['Одны орд',ch.constellations||ch.constellation||'Одны ордын мэдээлэл удахгүй нэмэгдэнэ.']
+  ];
+  root.className='';
+  root.innerHTML='<div class="profile"><div class="portrait"><img src="'+esc(image)+'" alt="'+esc(name)+'" onerror="this.style.display=\'none\'"></div><article class="info"><div class="tag">ДҮРИЙН ДЭЛГЭРЭНГҮЙ МЭДЭЭЛЭЛ</div><h1>'+esc(name)+'</h1><div class="meta">'+(vision?'<span class="chip">'+esc(elMap[vision]||vision)+'</span>':'')+(weapon?'<span class="chip">'+esc(wpMap[weapon]||weapon)+'</span>':'')+(ch.nation?'<span class="chip">'+esc(ch.nation)+'</span>':'')+(ch.rarity?'<span class="chip">'+('★'.repeat(Math.min(5,Number(ch.rarity))))+'</span>':'')+'</div><p class="lead">'+esc(ch.title||ch.description||'Тейватын дүрүүдийн сан.')+'</p>'+sections.map(([title,body])=>'<section class="section"><h2>'+esc(title)+'</h2><p>'+esc(typeof body==='string'?body:JSON.stringify(body,null,2))+'</p></section>').join('')+'</article></div>';
+  document.title=name+' | Games Lore Mongolian';
+ }).catch(err=>{root.className='state';root.textContent='Дүрийн мэдээллийг ачаалж чадсангүй. Дүрийн жагсаалт руу буцаж дахин оролдоно уу.';});
+})();
+</script>
+</body></html>
