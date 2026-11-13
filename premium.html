@@ -3,23 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#101827">
-  <title>Premium гишүүнчлэл | Games Lore MN</title>
+  <meta name="theme-color" content="#090e18">
+  <meta name="description" content="Games Lore MN Premium — тоглоомын ертөнц, дүр, домог, нууцын гүнзгий судалгаа.">
+  <title>Games Lore MN Premium | Домогт ертөнцийн гүнзгий судалгаа</title>
   <style>
-    :root{color-scheme:dark;--bg:#0b1220;--panel:#131f32;--line:#293951;--text:#edf3fb;--muted:#a9b8ca;--accent:#8b9cff;--gold:#f2ca78}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1a2b46,var(--bg) 55%);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
-    .wrap{width:min(920px,92%);margin:32px auto 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}
-    a{color:#c8d1ff}.brand{font-weight:800;letter-spacing:.04em}.back{border:1px solid var(--line);padding:8px 13px;border-radius:999px;text-decoration:none}
-    .hero,.panel{background:rgba(19,31,50,.94);border:1px solid var(--line);border-radius:20px;padding:24px;margin:16px 0;box-shadow:0 18px 50px #0003}
-    h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:8px 0 12px}.muted{color:var(--muted)}.price{font-size:38px;font-weight:850;color:var(--gold);margin:8px 0}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.qr{display:block;width:min(100%,280px);margin:14px auto;background:white;padding:10px;border-radius:12px}
-    .pill{display:inline-block;border:1px solid #5968a7;color:#d9ddff;border-radius:999px;padding:4px 10px;font-size:13px}
-    label{display:block;margin:12px 0 6px;color:var(--muted)}input{width:100%;padding:13px;border-radius:10px;border:1px solid var(--line);background:#0b1423;color:var(--text);font:inherit}
-    button{width:100%;border:0;border-radius:10px;padding:13px 16px;background:var(--accent);color:#0b1220;font-weight:800;font:inherit;cursor:pointer;margin-top:12px}
-    button.secondary{background:#263650;color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.55;cursor:not-allowed}
-    .notice{border-left:3px solid var(--gold);padding:10px 14px;background:#2b281e;border-radius:8px;color:#f4e6c5}
-    ul{padding-left:20px}.status{padding:12px;border-radius:10px;background:#0c1727;border:1px solid var(--line);margin-top:12px;min-height:46px}
+    :root{color-scheme:dark;--bg:#090e18;--panel:#111a29;--panel2:#172337;--line:rgba(217,182,109,.22);--text:#edf1f7;--muted:#9ba9bd;--gold:#d9b66d;--cyan:#6edce5;--accent:#d9b66d}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#263c59 0%,#111a29 35%,var(--bg) 72%);color:var(--text);font:15px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(circle at 12% 22%,#d9b66d 0 1px,transparent 2px),radial-gradient(circle at 78% 18%,#6edce5 0 1px,transparent 2px),radial-gradient(circle at 64% 72%,#d9b66d 0 1px,transparent 2px);background-size:190px 170px,240px 220px,310px 270px}
+    .wrap{position:relative;width:min(1040px,92%);margin:28px auto 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+    a{color:var(--cyan)}.brand{font-weight:900;letter-spacing:.12em;color:var(--gold)}.back{border:1px solid var(--line);padding:8px 13px;border-radius:999px;text-decoration:none;background:#111a29}
+    .hero,.panel{position:relative;background:linear-gradient(145deg,rgba(23,35,55,.97),rgba(13,22,36,.97));border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,30px);margin:16px 0;box-shadow:0 18px 50px #0005;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-45px;top:-80px;width:260px;height:260px;border:1px solid rgba(217,182,109,.18);border-radius:50%;box-shadow:0 0 0 28px rgba(110,220,229,.025),0 0 0 58px rgba(217,182,109,.025);pointer-events:none}
+    h1{font-size:clamp(30px,5vw,48px);line-height:1.12;margin:12px 0;color:var(--gold);max-width:720px}.hero h1:before{content:"✦ ";color:var(--cyan);font-size:.62em;vertical-align:middle}
+    .muted{color:var(--muted)}.price{font-size:40px;font-weight:900;color:var(--gold);margin:12px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}.qr{display:block;width:min(100%,280px);margin:14px auto;background:white;padding:10px;border-radius:12px}
+    .pill{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(110,220,229,.45);color:var(--cyan);background:rgba(110,220,229,.07);border-radius:999px;padding:5px 12px;font-size:11px;font-weight:800;letter-spacing:1px}
+    .worlds{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:18px 0 22px}
+    .world{min-height:88px;padding:13px 10px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,#17263b,#0f1827);text-align:center}
+    .world b{display:block;color:var(--text);font-size:12px;margin-top:6px}.world span{font-size:22px;filter:drop-shadow(0 3px 8px #0008)}
+    .section-kicker{color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+    .panel h2{font-size:20px;color:var(--gold);margin:0 0 12px}.panel p{font-size:14px}
+    label{display:block;margin:12px 0 6px;color:var(--muted)}input{width:100%;padding:13px;border-radius:10px;border:1px solid var(--line);background:#090f1a;color:var(--text);font:inherit}
+    button{width:100%;border:1px solid rgba(217,182,109,.35);border-radius:10px;padding:13px 16px;background:linear-gradient(135deg,#e3c27b,#bd9650);color:#101522;font-weight:800;font:inherit;cursor:pointer;margin-top:12px}
+    button.secondary{background:#1b2b42;color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.55;cursor:not-allowed}
+    .notice{border-left:3px solid var(--gold);padding:10px 14px;background:rgba(217,182,109,.10);border-radius:8px;color:#f4e6c5}
+    ul{padding-left:20px}li::marker{color:var(--cyan)}.status{padding:12px;border-radius:10px;background:#0b1422;border:1px solid var(--line);margin-top:12px;min-height:46px}
     footer{text-align:center;color:var(--muted);font-size:13px;margin-top:28px}
+    @media(max-width:650px){.worlds{grid-template-columns:repeat(2,minmax(0,1fr))}.world:last-child{grid-column:span 2}.wrap{margin-top:18px}.hero:after{right:-130px;opacity:.6}}
+
   </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 </head>
@@ -27,15 +38,22 @@
 <main class="wrap">
   <nav class="top"><div class="brand">GAMES LORE MN</div><a class="back" href="./index.html">← Нүүр хуудас</a></nav>
   <section class="hero">
-    <span class="pill">PREMIUM MEMBERSHIP</span>
-    <h1>Судалгааг илүү гүнзгийрүүл</h1>
-    <p class="muted">Premium гишүүнчлэлээр нэмэлт lore судалгаа, дэлгэрэнгүй тайлбар болон тусгай нийтлэлүүдэд нэвтрэх боломжтой.</p>
+    <span class="pill">✦ PREMIUM MEMBERSHIP · LORE EXPEDITION</span>
+    <h1>Тоглоомын ертөнцийн нууцад илүү гүн нэвтэр</h1>
+    <p class="muted">Teyvat-ийн эртний домгоос Solaris-3-ын нууц, Ananta-гийн ертөнц, Aniimo болон Delta Force-ийн түүх хүртэл — тоглоом бүрийн цаадах lore-г баримт, эх сурвалжтайгаар судлаарай.</p>
+    <div class="worlds" aria-label="Судлах тоглоомууд">
+      <div class="world"><span>✧</span><b>Genshin Impact</b></div>
+      <div class="world"><span>◈</span><b>Wuthering Waves</b></div>
+      <div class="world"><span>⚔</span><b>Ananta</b></div>
+      <div class="world"><span>✦</span><b>Aniimo</b></div>
+      <div class="world"><span>⌖</span><b>Delta Force</b></div>
+    </div>
     <div class="price">5,000₮ <span class="muted" style="font-size:16px;font-weight:500">/ 30 хоног</span></div>
     <ul><li>Premium ангиллын нийтлэлүүд</li><li>Дүр, ертөнц, үйл явдлын дэлгэрэнгүй судалгаа</li><li>Эрхийн хугацаа дуусахад сунгах боломж</li></ul>
   </section>
   <div class="grid">
     <section class="panel">
-      <h2>1. Бүртгэл / нэвтрэх</h2>
+      <div class="section-kicker">Player account</div><h2>1. Бүртгэл / нэвтрэх</h2>
       <p class="muted">Premium эрхийг хэрэглэгчийн бүртгэлтэй холбохоор бэлтгэсэн. Supabase тохиргоо холбогдоогүй үед энэ хэсэг туршилтын горимд байна.</p>
       <label for="email">Имэйл хаяг</label><input id="email" type="email" autocomplete="email" placeholder="name@example.com">
       <label for="password">Нууц үг</label><input id="password" type="password" autocomplete="current-password" placeholder="Нууц үг">
@@ -44,7 +62,7 @@
       <div id="authStatus" class="status" role="status">Supabase-ийн Project URL болон anon key холбохыг хүлээж байна.</div>
     </section>
     <section class="panel">
-      <h2>2. QPay төлбөр</h2>
+      <div class="section-kicker">Unlock premium access</div><h2>2. QPay төлбөр</h2>
       <p class="muted">Доорх QR кодыг уншуулж төлбөрөө хийнэ үү. Хэрэв банкны апп дүн асуувал 5,000₮ оруулна.</p>
       <img class="qr" src="./assets/images/qpay-qr.png" alt="Games Lore MN Premium QPay QR код" onerror="this.style.display='none';document.getElementById('qrMissing').hidden=false">
       <p id="qrMissing" class="notice" hidden>QR зургийг assets/images/qpay-qr.png нэрээр байршуулах шаардлагатай.</p>
@@ -55,7 +73,7 @@
     </section>
   </div>
   <section class="panel">
-    <h2>API холболтын төлөв</h2>
+    <div class="section-kicker">System status</div><h2>API холболтын төлөв</h2>
     <p class="muted">Дараагийн шатанд Supabase Auth, төлбөрийн сервер/API, QPay callback болон 30 хоногийн эрхийн шалгалтыг холбоно. QPay-ийн secret key-г энэ HTML/JavaScript файлд хэзээ ч байрлуулахгүй.</p>
     <div class="status">Одоогийн хувилбар: интерфэйсийн суурь бэлэн · бодит төлбөр ба эрхийн хамгаалалт идэвхгүй</div>
   </section>
