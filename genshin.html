@@ -250,6 +250,23 @@
 @media(max-width:430px){.genshin-page .g-grid{grid-template-columns:1fr}.genshin-page .g-character-image{height:320px}}
 @media(prefers-reduced-motion:reduce){.genshin-page *, .genshin-page *:before,.genshin-page *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
+
+/* CINEMATIC GENSHIN HERO — Games Lore MN */
+.genshin-page .g-hero{
+  min-height:clamp(340px,54vw,620px);
+  padding:0!important;
+  display:flex;
+  align-items:stretch;
+  background:
+    linear-gradient(180deg,rgba(8,16,31,.04),rgba(8,16,31,.12)),
+    url('assets/images/file_00000000c64481fa873694b99dc8e3cd.png') center 38%/cover no-repeat!important;
+  border-bottom:1px solid rgba(233,189,104,.45);
+}
+.genshin-page .g-hero>.g-container{display:none!important}
+@media(max-width:650px){
+ .genshin-page .g-hero{min-height:360px;background-position:53% 38%!important}
+}
+
 </style>
 </head>
 
