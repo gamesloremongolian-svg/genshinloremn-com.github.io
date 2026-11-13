@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Premium гишүүнчлэл | Games Lore MN</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#131f32;--line:#293951;--text:#edf3fb;--muted:#a9b8ca;--accent:#8b9cff;--gold:#f2ca78}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1a2b46,var(--bg) 55%);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+    .wrap{width:min(920px,92%);margin:32px auto 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+    a{color:#c8d1ff}.brand{font-weight:800;letter-spacing:.04em}.back{border:1px solid var(--line);padding:8px 13px;border-radius:999px;text-decoration:none}
+    .hero,.panel{background:rgba(19,31,50,.94);border:1px solid var(--line);border-radius:20px;padding:24px;margin:16px 0;box-shadow:0 18px 50px #0003}
+    h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:8px 0 12px}.muted{color:var(--muted)}.price{font-size:38px;font-weight:850;color:var(--gold);margin:8px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.qr{display:block;width:min(100%,280px);margin:14px auto;background:white;padding:10px;border-radius:12px}
+    .pill{display:inline-block;border:1px solid #5968a7;color:#d9ddff;border-radius:999px;padding:4px 10px;font-size:13px}
+    label{display:block;margin:12px 0 6px;color:var(--muted)}input{width:100%;padding:13px;border-radius:10px;border:1px solid var(--line);background:#0b1423;color:var(--text);font:inherit}
+    button{width:100%;border:0;border-radius:10px;padding:13px 16px;background:var(--accent);color:#0b1220;font-weight:800;font:inherit;cursor:pointer;margin-top:12px}
+    button.secondary{background:#263650;color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.55;cursor:not-allowed}
+    .notice{border-left:3px solid var(--gold);padding:10px 14px;background:#2b281e;border-radius:8px;color:#f4e6c5}
+    ul{padding-left:20px}.status{padding:12px;border-radius:10px;background:#0c1727;border:1px solid var(--line);margin-top:12px;min-height:46px}
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:28px}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="top"><div class="brand">GAMES LORE MN</div><a class="back" href="./index.html">← Нүүр хуудас</a></nav>
+  <section class="hero">
+    <span class="pill">PREMIUM MEMBERSHIP</span>
+    <h1>Судалгааг илүү гүнзгийрүүл</h1>
+    <p class="muted">Premium гишүүнчлэлээр нэмэлт lore судалгаа, дэлгэрэнгүй тайлбар болон тусгай нийтлэлүүдэд нэвтрэх боломжтой.</p>
+    <div class="price">5,000₮ <span class="muted" style="font-size:16px;font-weight:500">/ 30 хоног</span></div>
+    <ul><li>Premium ангиллын нийтлэлүүд</li><li>Дүр, ертөнц, үйл явдлын дэлгэрэнгүй судалгаа</li><li>Эрхийн хугацаа дуусахад сунгах боломж</li></ul>
+  </section>
+  <div class="grid">
+    <section class="panel">
+      <h2>1. Бүртгэл / нэвтрэх</h2>
+      <p class="muted">Premium эрхийг хэрэглэгчийн бүртгэлтэй холбохоор бэлтгэсэн. Supabase тохиргоо холбогдоогүй үед энэ хэсэг туршилтын горимд байна.</p>
+      <label for="email">Имэйл хаяг</label><input id="email" type="email" autocomplete="email" placeholder="name@example.com">
+      <label for="password">Нууц үг</label><input id="password" type="password" autocomplete="current-password" placeholder="Нууц үг">
+      <button id="signup" type="button">Бүртгүүлэх</button>
+      <button id="login" class="secondary" type="button">Нэвтрэх</button>
+      <div id="authStatus" class="status" role="status">Supabase-ийн Project URL болон anon key холбохыг хүлээж байна.</div>
+    </section>
+    <section class="panel">
+      <h2>2. QPay төлбөр</h2>
+      <p class="muted">Доорх QR кодыг уншуулж төлбөрөө хийнэ үү. Хэрэв банкны апп дүн асуувал 5,000₮ оруулна.</p>
+      <img class="qr" src="./assets/images/qpay-qr.png" alt="Games Lore MN Premium QPay QR код" onerror="this.style.display='none';document.getElementById('qrMissing').hidden=false">
+      <p id="qrMissing" class="notice" hidden>QR зургийг assets/images/qpay-qr.png нэрээр байршуулах шаардлагатай.</p>
+      <div class="notice">Төлбөр хийсний дараа гүйлгээний баримтаа админд илгээнэ үү. API холбогдох хүртэл төлбөр автоматаар баталгаажихгүй.</div>
+      <label for="reference">Гүйлгээний утга / баримтын дугаар</label><input id="reference" type="text" placeholder="Гүйлгээний утга эсвэл баримтын дугаар">
+      <button id="submitProof" type="button">Төлбөрийн мэдээлэл илгээх</button>
+      <div id="paymentStatus" class="status" role="status">Төлбөр баталгаажуулах API хараахан холбогдоогүй.</div>
+    </section>
+  </div>
+  <section class="panel">
+    <h2>API холболтын төлөв</h2>
+    <p class="muted">Дараагийн шатанд Supabase Auth, төлбөрийн сервер/API, QPay callback болон 30 хоногийн эрхийн шалгалтыг холбоно. QPay-ийн secret key-г энэ HTML/JavaScript файлд хэзээ ч байрлуулахгүй.</p>
+    <div class="status">Одоогийн хувилбар: интерфэйсийн суурь бэлэн · бодит төлбөр ба эрхийн хамгаалалт идэвхгүй</div>
+  </section>
+  <footer>© Games Lore MN · Premium access</footer>
+</main>
+<script>
+  // API integration placeholders.
+  // Keep QPay client secret and payment signing credentials on a trusted server only.
+  // Supabase setup will be added after the project anon key and auth configuration are confirmed.
+  const byId = id => document.getElementById(id);
+  byId('signup').addEventListener('click', () => {
+    byId('authStatus').textContent = 'Бүртгэлийн API хараахан холбогдоогүй. Supabase тохиргоог дараагийн шатанд холбоно.';
+  });
+  byId('login').addEventListener('click', () => {
+    byId('authStatus').textContent = 'Нэвтрэлтийн API хараахан холбогдоогүй. Supabase тохиргоог дараагийн шатанд холбоно.';
+  });
+  byId('submitProof').addEventListener('click', () => {
+    const value = byId('reference').value.trim();
+    byId('paymentStatus').textContent = value
+      ? 'Мэдээлэл орууллаа. Илгээх/баталгаажуулах API холбогдоогүй тул админд одоогоор автоматаар хүрэхгүй.'
+      : 'Эхлээд гүйлгээний утга эсвэл баримтын дугаараа оруулна уу.';
+  });
+</script>
+</body>
+</html>
