@@ -210,6 +210,46 @@
   .genshin-page .g-hero {padding:65px 0;}
   .genshin-page .g-section {padding:55px 0;}
 }
+
+/* GENSHIN-INSPIRED MOTION DESIGN */
+.genshin-page{background:radial-gradient(ellipse at 50% 0%,#263653 0%,#101522 48%,#0b1120 100%);}
+.genshin-page .g-header{background:rgba(10,17,31,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,203,145,.22)}
+.genshin-page .g-brand{letter-spacing:1.5px;text-shadow:0 0 18px rgba(233,189,104,.22)}
+.genshin-page .g-navlinks a{transition:color .25s ease,text-shadow .25s ease}
+.genshin-page .g-navlinks a:hover{color:#f5d99b;text-shadow:0 0 12px rgba(233,189,104,.65)}
+.genshin-page .g-hero{position:relative;isolation:isolate;min-height:570px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(8,15,29,.94),rgba(8,15,29,.5)),url('assets/images/genshin-bg.png') center/cover no-repeat}
+.genshin-page .g-hero:before,.genshin-page .g-hero:after{content:'';position:absolute;z-index:-1;border:1px solid rgba(233,189,104,.23);border-radius:50%;width:430px;height:430px;right:-90px;top:55px;box-shadow:0 0 70px rgba(117,217,232,.1),inset 0 0 55px rgba(233,189,104,.08);animation:g-orbit 22s linear infinite}
+.genshin-page .g-hero:after{width:320px;height:320px;right:-35px;top:110px;border-color:rgba(117,217,232,.24);animation-direction:reverse;animation-duration:17s}
+.genshin-page .g-hero .g-container{position:relative;z-index:2}
+.genshin-page .g-eyebrow{letter-spacing:4px;text-shadow:0 0 14px rgba(117,217,232,.45)}
+.genshin-page h1{text-shadow:0 5px 25px rgba(0,0,0,.45)}
+.genshin-page .g-back{transition:color .25s,letter-spacing .25s;text-shadow:0 0 14px rgba(233,189,104,.22)}
+.genshin-page .g-back:hover{color:#ffe5ae;letter-spacing:1px}
+.genshin-page .g-section{position:relative}
+.genshin-page .g-section:nth-child(even){background:linear-gradient(135deg,rgba(28,42,64,.78),rgba(13,23,39,.86))}
+.genshin-page .g-heading h2{text-shadow:0 4px 20px rgba(0,0,0,.35)}
+.genshin-page .g-card{position:relative;background:linear-gradient(145deg,rgba(34,51,76,.92),rgba(18,29,47,.96));border:1px solid rgba(225,205,164,.17);box-shadow:0 12px 32px rgba(0,0,0,.16);overflow:hidden}
+.genshin-page .g-card:before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.055) 45%,transparent 70%);transform:translateX(-120%);transition:transform .8s ease}
+.genshin-page .g-card:hover:before{transform:translateX(120%)}
+.genshin-page .g-character-card{padding:0;transform:translateZ(0)}
+.genshin-page .g-character-image{height:300px;aspect-ratio:auto;object-fit:contain;padding:10px 8px 0;background:radial-gradient(ellipse at 50% 40%,rgba(117,217,232,.15),transparent 68%),linear-gradient(180deg,#243650,#121d30);transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .55s;animation:g-float 5s ease-in-out infinite;filter:drop-shadow(0 12px 14px rgba(0,0,0,.24))}
+.genshin-page .g-character-card:nth-child(2) .g-character-image{animation-delay:-1.6s;background:radial-gradient(ellipse at 50% 40%,rgba(233,189,104,.18),transparent 68%),linear-gradient(180deg,#3b3540,#172033)}
+.genshin-page .g-character-card:nth-child(3) .g-character-image{animation-delay:-3.1s;background:radial-gradient(ellipse at 50% 40%,rgba(117,217,170,.17),transparent 68%),linear-gradient(180deg,#263e3d,#142331)}
+.genshin-page .g-character-card:hover .g-character-image{transform:scale(1.055) translateY(-5px);filter:drop-shadow(0 15px 22px rgba(117,217,232,.22))}
+.genshin-page .g-character-info{position:relative;z-index:1;background:linear-gradient(180deg,rgba(22,34,53,.92),rgba(15,25,42,.98));border-top:1px solid rgba(233,189,104,.16)}
+.genshin-page .g-character-info h3{font-family:Georgia,serif;letter-spacing:.4px}
+.genshin-page .g-tag{color:#a9e8ef}
+.genshin-page .g-symbol{box-shadow:0 0 20px rgba(117,217,232,.12);background:rgba(117,217,232,.04)}
+.genshin-page .g-search input{background:rgba(26,38,57,.82);border-color:rgba(233,189,104,.24)}
+.genshin-page .g-search input:focus{outline:none;border-color:#e9bd68;box-shadow:0 0 0 3px rgba(233,189,104,.12)}
+.genshin-page .g-search button{box-shadow:0 5px 18px rgba(233,189,104,.18);transition:transform .2s,box-shadow .2s}
+.genshin-page .g-search button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(233,189,104,.28)}
+@keyframes g-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes g-orbit{to{transform:rotate(360deg)}}
+@media(max-width:750px){.genshin-page .g-hero{min-height:470px}.genshin-page .g-hero:before{width:250px;height:250px;right:-120px;top:90px}.genshin-page .g-hero:after{width:190px;height:190px;right:-90px;top:120px}.genshin-page .g-character-image{height:270px}.genshin-page .g-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.genshin-page .g-character-info{padding:14px}.genshin-page .g-card p{font-size:12px}}
+@media(max-width:430px){.genshin-page .g-grid{grid-template-columns:1fr}.genshin-page .g-character-image{height:320px}}
+@media(prefers-reduced-motion:reduce){.genshin-page *, .genshin-page *:before,.genshin-page *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
 </style>
 </head>
 
@@ -347,7 +387,7 @@
 
     <div class="g-grid">
       <article class="g-card g-character-card searchable" data-search="aino aino дүр genshin">
-        <img class="g-character-image" src="https://genshin.jmp.blue/characters/aino/card" alt="Aino дүрийн зураг" loading="lazy" onerror="this.onerror=null;this.src='https://genshin.jmp.blue/characters/aino/icon';">
+        <img class="g-character-image" src="assets/images/characters/aino.webp" alt="Aino дүрийн зураг" loading="lazy">
         <div class="g-character-info">
           <div class="g-tag">HYDRO • CLAYMORE</div>
           <h3>Aino</h3>
@@ -356,7 +396,7 @@
       </article>
 
       <article class="g-card g-character-card searchable" data-search="albedo alchemist chalk prince">
-        <img class="g-character-image" src="https://genshin.jmp.blue/characters/albedo/card" alt="Albedo дүрийн зураг" loading="lazy" onerror="this.onerror=null;this.src='https://genshin.jmp.blue/characters/albedo/icon';">
+        <img class="g-character-image" src="assets/images/characters/albedo.jpg" alt="Albedo дүрийн зураг" loading="lazy">
         <div class="g-character-info">
           <div class="g-tag">GEO • SWORD</div>
           <h3>Albedo</h3>
@@ -365,7 +405,7 @@
       </article>
 
       <article class="g-card g-character-card searchable" data-search="alhaitham sumeru akademiya">
-        <img class="g-character-image" src="https://genshin.jmp.blue/characters/alhaitham/card" alt="Alhaitham дүрийн зураг" loading="lazy" onerror="this.onerror=null;this.src='https://genshin.jmp.blue/characters/alhaitham/icon';">
+        <img class="g-character-image" src="assets/images/characters/alhaitham.jpg" alt="Alhaitham дүрийн зураг" loading="lazy">
         <div class="g-character-info">
           <div class="g-tag">DENDRO • SWORD</div>
           <h3>Alhaitham</h3>
