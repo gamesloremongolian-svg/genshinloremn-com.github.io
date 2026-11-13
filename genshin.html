@@ -267,6 +267,18 @@
  .genshin-page .g-hero{min-height:360px;background-position:53% 38%!important}
 }
 
+
+/* ARCHON ARCHIVE */
+.g-archon-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.g-archon-card{position:relative;overflow:hidden;min-height:190px;background:linear-gradient(145deg,#26364c,#121d30);border:1px solid rgba(233,189,104,.28);border-radius:14px;padding:22px}
+.g-archon-card:after{content:"✦";position:absolute;right:16px;top:8px;font-size:42px;color:rgba(233,189,104,.16)}
+.g-archon-card .g-tag{color:var(--g-cyan);font-size:10px;letter-spacing:2px}
+.g-archon-card h3{font-size:21px;margin:12px 0 7px;color:#f6e6c4}
+.g-archon-card p{color:#b8c4d5;font-size:13px;line-height:1.75;max-width:95%}
+.g-archon-card .g-archon-note{display:inline-block;margin-top:8px;color:#e9bd68;font-size:11px;border:1px solid #e9bd6844;border-radius:999px;padding:4px 9px}
+@media(max-width:760px){.g-archon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:440px){.g-archon-grid{grid-template-columns:1fr}.g-archon-card{min-height:150px}}
+
 </style>
 </head>
 
@@ -287,6 +299,7 @@
       <a href="index.html">Нүүр</a>
       <a href="#world">Teyvat</a>
       <a href="#lore">Lore</a>
+      <a href="#archons">Архонууд</a>
       <a href="#characters">Дүрүүд</a>
       <a href="#search">Хайлт</a>
     </nav>
@@ -399,6 +412,54 @@
       </article>
     </div>
   </div>
+</section>
+
+
+<section class="g-section" id="archons">
+ <div class="g-container">
+  <div class="g-heading">
+   <div class="g-eyebrow">THE SEVEN · ARCHON ARCHIVE</div>
+   <h2>Тейватын <span class="g-gold">Архонууд</span></h2>
+   <p>Долоон элементийн эрх мэдэл, Гнозис болон үндэстэн бүрийн түүхийг судлах архив.</p>
+  </div>
+  <div class="g-archon-grid">
+   <article class="g-archon-card searchable" data-search="venti barbatos anemo mondstadt салхи">
+    <div class="g-tag">ANEMO · MONDSTADT</div><h3>Barbatos — Venti</h3>
+    <p>Эрх чөлөөний Архонт. Mondstadt-ийн түүх, Decarabian-ы үе болон Андриусын домогтой холбоотой.</p>
+    <span class="g-archon-note">Одоогийн дүр: Venti</span>
+   </article>
+   <article class="g-archon-card searchable" data-search="zhongli morax rex lapis geo liyue гэрээ">
+    <div class="g-tag">GEO · LIYUE</div><h3>Morax — Zhongli</h3>
+    <p>Гэрээний Архонт. Liyue-ийн үүсэл, Адептус, Архоны дайн болон Гнозисоо шилжүүлсэн үйл явдал.</p>
+    <span class="g-archon-note">Одоогийн дүр: Zhongli</span>
+   </article>
+   <article class="g-archon-card searchable" data-search="raiden ei beelzebul baal electro inazuma">
+    <div class="g-tag">ELECTRO · INAZUMA</div><h3>Beelzebul — Raiden Ei</h3>
+    <p>Мөнхийн үзэл санааг баримталдаг Архонт. Makoto, Shogun puppet болон Inazuma-гийн түүхийг хамарна.</p>
+    <span class="g-archon-note">Архонт: Ei</span>
+   </article>
+   <article class="g-archon-card searchable" data-search="nahida buer lesser lord kusanali dendro sumeru">
+    <div class="g-tag">DENDRO · SUMERU</div><h3>Buer — Nahida</h3>
+    <p>Мэргэн ухааны Архонт. Ирминсул, Greater Lord Rukkhadevata болон Sumeru-ийн дурсамжийн нууц.</p>
+    <span class="g-archon-note">Одоогийн дүр: Nahida</span>
+   </article>
+   <article class="g-archon-card searchable" data-search="furina focalors hydro fontaine hydro archon">
+    <div class="g-tag">HYDRO · FONTAINE</div><h3>Focalors — Furina</h3>
+    <p>Hydro Архонтын түүх. Focalors-ийн төлөвлөгөө, Furina-гийн үүрэг болон Fontaine-ийн шүүхийн нууц.</p>
+    <span class="g-archon-note">Түүхэн Архонт: Focalors</span>
+   </article>
+   <article class="g-archon-card searchable" data-search="mavuika pyro natlan pyro archon war">
+    <div class="g-tag">PYRO · NATLAN</div><h3>Mavuika</h3>
+    <p>Natlan-ийн Pyro Архонт. Дайны сорилт, овог аймгууд болон тус улсын хувь заяатай холбоотой.</p>
+    <span class="g-archon-note">Одоогийн дүр: Mavuika</span>
+   </article>
+   <article class="g-archon-card searchable" data-search="tsaritsa cryo snezhnaya fatui">
+    <div class="g-tag">CRYO · SNEZHNAYA</div><h3>Tsaritsa</h3>
+    <p>Snezhnaya-ийн Cryo Архонт. Fatui, Harbingers болон Гнозис цуглуулах зорилгын цаадах нууц.</p>
+    <span class="g-archon-note">Дэлгэрэнгүй түүх нууцлаг хэвээр</span>
+   </article>
+  </div>
+ </div>
 </section>
 
 <section class="g-section" id="characters">
