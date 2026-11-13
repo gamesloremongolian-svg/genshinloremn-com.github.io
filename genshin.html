@@ -267,6 +267,25 @@
  .genshin-page .g-hero{min-height:360px;background-position:53% 38%!important}
 }
 
+/* Make the artwork's illustrated banner buttons genuinely clickable */
+.genshin-page .g-hero{position:relative}
+.genshin-page .g-hero-hotspot{
+  position:absolute;z-index:8;display:block;
+  top:64%;height:11%;border-radius:10px;
+  background:transparent;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.genshin-page .g-hero-world{left:35%;width:19%}
+.genshin-page .g-hero-lore{left:55%;width:23%}
+.genshin-page .g-hero-hotspot:focus-visible{
+  outline:3px solid #f5d99b;outline-offset:3px;
+}
+@media(max-width:650px){
+ .genshin-page .g-hero-hotspot{top:64%;height:12%}
+ .genshin-page .g-hero-world{left:34%;width:20%}
+ .genshin-page .g-hero-lore{left:55%;width:25%}
+}
+
 
 /* ARCHON ARCHIVE */
 .g-archon-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -433,6 +452,8 @@
 
 <main>
 <section class="g-hero">
+  <a class="g-hero-hotspot g-hero-world" href="#world" aria-label="Teyvat-ийн ертөнц рүү очих"></a>
+  <a class="g-hero-hotspot g-hero-lore" href="#lore" aria-label="Lore түүхүүд рүү очих"></a>
   <div class="g-container">
     <div class="g-eyebrow">GENSHIN IMPACT • TEYVAT • ТҮҮХ</div>
     <h1>Нууцлаг <span>Teyvat</span><br>ертөнцөд тавтай морил</h1>
