@@ -22,19 +22,24 @@ const statusEl=document.getElementById("status");
   if(!window.supabase?.createClient)throw new Error("Supabase сан ачаалагдсангүй. Хуудсыг дахин ачаална уу.");
   const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{flowType:"pkce",detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});
   const url=new URL(location.href);
+  const params=new URLSearchParams(url.hash.replace(/^#/,""));
+  const oauthError=url.searchParams.get("error_description")||url.searchParams.get("error")||params.get("error_description")||params.get("error");
+  if(oauthError)throw new Error(decodeURIComponent(oauthError.replace(/\\+/g," ")));
   const code=url.searchParams.get("code");
   if(code){
    const {error}=await client.auth.exchangeCodeForSession(code);
    if(error)throw error;
+  }else if(params.get("access_token")&&params.get("refresh_token")){
+   const {error}=await client.auth.setSession({access_token:params.get("access_token"),refresh_token:params.get("refresh_token")});
+   if(error)throw error;
   }
   const {data,error}=await client.auth.getSession();
   if(error)throw error;
-  if(!data.session)throw new Error("Google-ээс буцсан боловч нэвтрэх session олдсонгүй. Дахин нэвтэрч үзнэ үү.");
+  if(!data.session)throw new Error("Session үүссэнгүй. Энэ нь ихэвчлэн PKCE code verifier буцаах үед хадгалагдаагүйг илтгэнэ. Нэвтрэлтийг эхлүүлсэн ижил Chrome таб дээр дахин оролдоно уу.");
   statusEl.textContent="Амжилттай нэвтэрлээ. Wiki руу шилжүүлж байна…";
   location.replace("wiki.html");
  }catch(e){
   statusEl.textContent="Нэвтрэлтийн алдаа: "+(e.message||"Дахин оролдоно уу.")+" ";
   const a=document.createElement("a");a.href="auth.html";a.textContent="Нэвтрэх хуудас руу буцах";statusEl.appendChild(a);
  }
-})();
-</script></body></html>
+})();</script></body></html>
