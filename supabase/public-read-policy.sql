@@ -1,6 +1,11 @@
--- Games Lore MN: allow anonymous visitors to read only published Wiki articles.
--- Run this in Supabase Dashboard > SQL Editor > New query.
--- Admin write permissions remain governed by the existing wiki_admins policies.
+-- Games Lore MN: prepare Wiki article fields and enable public reading for published articles.
+-- Run this entire file in Supabase Dashboard > SQL Editor > New query.
+-- Existing admin write policies are not changed.
+
+alter table public.wiki_articles
+  add column if not exists published_at date,
+  add column if not exists image_url text,
+  add column if not exists sources text[] not null default '{}';
 
 alter table public.wiki_articles enable row level security;
 
