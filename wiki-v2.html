@@ -22,6 +22,15 @@ textarea{min-height:180px;resize:vertical}label{display:block;font-size:13px;col
 <section class="intro"><div class="tag">PRIVATE KNOWLEDGE ARCHIVE</div><h1>Genshin Lore Wiki</h1><p class="muted">Нэвтэрсэн хэрэглэгчид нийтлэлийг уншина. Админ шинэ нийтлэл нэмэх, засах, устгах эрхтэй.</p></section>
 <section id="adminPanel" class="panel hidden">
 <h2 style="margin-top:0;color:var(--gold)">Админ · Нийтлэл удирдах</h2>
+<div class="notice" style="border-left:3px solid var(--gold);padding:12px;margin:12px 0;background:rgba(217,182,109,.08);border-radius:8px">
+<strong>Шинэ нийтлэлийн ангилал үүсгэх</strong>
+<p class="muted">Тоглоом ба төрлөө сонгоод бөглөх товчийг дар. Ингэснээр Lore төв зөв тоглоом, ангилалд автоматаар оруулна.</p>
+<div class="formgrid">
+<div><label for="presetGame">Тоглоом</label><select id="presetGame"><option value="genshin">Genshin Impact</option><option value="wuwa">Wuthering Waves</option><option value="ananta">Ananta</option><option value="aniimo">Aniimo</option><option value="delta-force">Delta Force</option></select></div>
+<div><label for="presetType">Нийтлэлийн төрөл</label><select id="presetType"><option value="character">Дүрүүд</option><option value="world">Ертөнц ба бүс</option><option value="faction">Фракц, бүлэглэл</option><option value="timeline">Түүхийн цагийн шугам</option><option value="weapon">Зэвсэг, тоноглол</option><option value="collection">Echo / Цуглуулга</option><option value="theory">Онол, таамаг</option><option value="guide">Хөтөч, механик</option></select></div>
+</div>
+<button type="button" id="applyPreset" class="secondary">Ангиллын талбар бөглөх</button>
+</div>
 <form id="articleForm">
 <input type="hidden" id="editId">
 <div class="formgrid">
@@ -91,6 +100,14 @@ document.getElementById("articleForm").addEventListener("submit",async e=>{
  catch(err){msg.textContent="Хадгалах алдаа: "+err.message;}finally{btn.disabled=false;}
 });
 function resetForm(){document.getElementById("articleForm").reset();document.getElementById("editId").value="";document.getElementById("saveBtn").textContent="Нийтлэх";document.getElementById("cancelEdit").classList.add("hidden");}
+document.getElementById("applyPreset").addEventListener("click",()=>{
+ const games={genshin:"Genshin Impact",wuwa:"Wuthering Waves",ananta:"Ananta",aniimo:"Aniimo","delta-force":"Delta Force"};
+ const types={character:"Дүрүүд",world:"Ертөнц ба бүс",faction:"Фракц, бүлэглэл",timeline:"Түүхийн цагийн шугам",weapon:"Зэвсэг, тоноглол",collection:"Echo / Цуглуулга",theory:"Онол, таамаг",guide:"Хөтөч, механик"};
+ const g=document.getElementById("presetGame").value,t=document.getElementById("presetType").value;
+ document.getElementById("category").value=g+"_"+t;
+ document.getElementById("categoryLabel").value=games[g]+" · "+types[t];
+ document.getElementById("adminStatus").textContent="Ангилал бөглөгдлөө. Одоо нийтлэлийн гарчиг, тайлбар, түлхүүр үг, эх сурвалж, агуулгаа оруулна уу.";
+});
 document.getElementById("cancelEdit").addEventListener("click",resetForm);
 list.addEventListener("click",async e=>{
  const edit=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");
