@@ -251,6 +251,7 @@
 @media(prefers-reduced-motion:reduce){.genshin-page *, .genshin-page *:before,.genshin-page *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 </style>
+<style id="GLMN_AUTH_GUARD">body{visibility:hidden}</style>
 </head>
 
 <body class="genshin-page">
@@ -456,5 +457,20 @@
 </footer>
 
 <script src="assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async()=>{
+ const client=window.supabase.createClient("https://zyocifqdpbgwlgwtrgnq.supabase.co","sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf");
+ const {data,error}=await client.auth.getSession();
+ if(error||!data.session){location.replace("auth.html");return;}
+ document.body.style.visibility="visible";
+ const nav=document.getElementById("navMenu");
+ if(nav&&!document.getElementById("wikiSignOut")){
+  const link=document.createElement("a");link.id="wikiSignOut";link.href="#";link.textContent="Гарах";
+  link.addEventListener("click",async e=>{e.preventDefault();await client.auth.signOut();location.replace("auth.html");});
+  nav.appendChild(link);
+ }
+})();
+</script>
 </body>
 </html>
