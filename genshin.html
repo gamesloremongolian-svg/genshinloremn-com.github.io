@@ -382,6 +382,25 @@
  .genshin-page .g-archon-grid{grid-template-columns:1fr}
 }
 
+
+/* LORE SECTION — CLEARER INFORMATION HIERARCHY */
+.genshin-page #lore{padding-top:64px;padding-bottom:76px}
+.genshin-page #lore>.g-container{display:flex;flex-direction:column;gap:0}
+.genshin-page #lore>.g-container>.g-heading:first-child{margin-bottom:30px}
+.genshin-page .g-character-lore-subsection{margin-bottom:42px}
+.genshin-page .g-lore-subheading{margin:0 auto 22px;padding-top:4px}
+.genshin-page .g-lore-subheading h2{font-size:clamp(23px,3vw,30px)}
+.genshin-page .g-grid.g-lore-topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:900px;width:100%;margin:0 auto}
+.genshin-page .g-lore-topics>.g-card{min-height:180px;padding:22px;display:flex;flex-direction:column;align-items:flex-start}
+.genshin-page .g-lore-topics>.g-card p{flex:1}
+.genshin-page .g-lore-topics>.g-card .g-back{margin-top:14px}
+@media(max-width:560px){
+ .genshin-page #lore{padding-top:48px}
+ .genshin-page .g-character-lore-subsection{margin-bottom:32px;padding:16px}
+ .genshin-page .g-grid.g-lore-topics{grid-template-columns:1fr;gap:12px}
+ .genshin-page .g-lore-topics>.g-card{min-height:unset;padding:18px}
+}
+
 </style>
 </head>
 
@@ -496,6 +515,11 @@
     </div>
     </div>
 
+    <div class="g-heading g-lore-subheading">
+      <div class="g-eyebrow">EXPLORE THE LORE</div>
+      <h2>Lore <span class="g-gold">сэдвүүд</span></h2>
+      <p>Тейватын түүхийг бүлэг, сэдвээр нь сонгон судлаарай.</p>
+    </div>
     <div class="g-grid g-lore-topics">
       <article class="g-card searchable" data-search="archon архон celestia heavenly principles">
         <div class="g-tag">WORLD HISTORY</div>
