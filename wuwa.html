@@ -64,6 +64,30 @@ header{background:rgba(13,8,25,.94);border-bottom-color:rgba(191,139,255,.35)}
 .character-feature{background:radial-gradient(ellipse at 65% 30%,rgba(170,119,255,.42),transparent 42%),linear-gradient(145deg,#29204b,#101426 70%)}
 .character-orb{background:radial-gradient(circle at 35% 25%,#f0dcff,#9569db 48%,#25183d 78%)}
 
+
+/* Cinematic hero refresh */
+.hero{isolation:isolate;min-height:500px;padding:76px clamp(22px,5vw,58px) 54px!important;background:
+linear-gradient(90deg,rgba(12,7,27,.97) 0%,rgba(17,10,39,.88) 42%,rgba(20,13,47,.18) 100%),
+radial-gradient(ellipse at 78% 28%,rgba(193,132,255,.56),transparent 31%),
+radial-gradient(ellipse at 88% 75%,rgba(105,94,230,.38),transparent 38%),
+linear-gradient(135deg,#10091d,#28144a 60%,#080d1c)!important;
+box-shadow:inset 0 -70px 90px rgba(13,8,28,.48),0 18px 55px #08051088}
+.hero:before{width:min(430px,58vw);height:min(430px,58vw);right:4%;top:4%;border:1px solid #e5caff66;box-shadow:0 0 0 20px #c59aff12,0 0 0 54px #c59aff0b,0 0 90px #a56bff66,inset 0 0 100px #a66dff33;background:radial-gradient(circle at 50% 38%,#d6c4ff55,transparent 58%)}
+.hero:after{right:14%;top:13%;width:210px;height:310px;border-radius:48% 48% 12% 12%;background:linear-gradient(155deg,transparent 8%,#e6d6ff44 35%,#8c6ce733 58%,transparent 85%);filter:blur(15px);transform:rotate(22deg)}
+.hero h1{font-family:Georgia,serif;text-transform:uppercase;letter-spacing:1px;font-size:clamp(46px,8vw,82px);max-width:620px;text-shadow:0 5px 35px #a46aff99}
+.hero .kicker{letter-spacing:3px}
+.hero p{font-size:clamp(15px,2vw,19px);max-width:570px;color:#e0d8f0}
+.hero .btn{box-shadow:0 0 25px #bd8aff66}
+.topics{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.topic{min-height:112px;position:relative;overflow:hidden;padding:20px;background:linear-gradient(145deg,#2b1c47dd,#151329f2);box-shadow:inset 0 1px #e9d6ff22,0 12px 25px #05030d55}
+.topic:after{content:"✧";position:absolute;right:14px;top:8px;font-size:36px;color:#d4aaff35}
+.topic strong{font-size:16px;color:#f1e5ff}
+.topic small{font-size:12px}
+.topic:hover{transform:translateY(-4px);box-shadow:0 0 24px #b47aff33;border-color:#d8b5ff}
+.head h2{font-size:clamp(24px,4vw,32px);text-shadow:0 0 22px #b78aff55}
+.panel{box-shadow:0 16px 45px #05030d66,inset 0 1px #fff1}
+@media(max-width:650px){.hero{min-height:390px;padding:52px 20px 36px!important}.hero:before{width:260px;height:260px;right:-9%;top:14%}.hero:after{right:7%;width:130px;height:220px}.topics{grid-template-columns:repeat(2,minmax(0,1fr))}.topic{min-height:100px;padding:14px}}
+
 </style></head><body>
 <header><nav><a class="brand" href="./index.html">GAMES LORE MN</a><div class="navlinks"><a href="./index.html">Нүүр</a><a href="./wiki-v2.html">Нэгдсэн Wiki</a><a href="./auth.html">Нэвтрэх</a></div></nav></header>
 <main class="wrap"><section class="hero"><div class="kicker">MONGOLIAN GAME LORE ARCHIVE · WW</div><h1>Wuthering Waves</h1><div class="kicker">SOLARIS-3 · RESONATORS · SONOR</div><p>Solaris-3 ертөнц, Resonator-ууд, фракцууд, Tacet Discord болон гол үйл явдлын түүхийг Монгол хэлээр судлах архив.</p><div class="actions"><a class="btn" href="./wiki-v2.html">Админ нийтлэл нэмэх ↗</a><a class="btn alt" href="./index.html">← Нүүр хуудас</a></div></section>
