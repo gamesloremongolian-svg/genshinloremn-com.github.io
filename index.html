@@ -767,33 +767,14 @@
     "use strict";
 
     // Гар утасны цэс: товчоор нээж/хаах, холбоос сонгоход автоматаар хаана.
-    const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
+    // Нэвтрэлтийн нэг цэг: одоогоор зөвхөн имэйл/нууц үгийн нэвтрэлт дэмжинэ.
     const googleLoginButton = document.getElementById("googleLoginBtn");
-
     if (googleLoginButton) {
-      googleLoginButton.addEventListener("click", async () => {
-        const originalText = googleLoginButton.innerHTML;
-        googleLoginButton.disabled = true;
-        googleLoginButton.textContent = "Google нэвтрэлтийг нээж байна…";
-        try {
-          if (!window.supabase || typeof window.supabase.createClient !== "function") {
-            throw new Error("Нэвтрэлтийн сан ачаалагдсангүй. Хуудсыг дахин ачаална уу.");
-          }
-          const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-          const { error } = await supabaseClient.auth.signInWithOAuth({
-            provider: "google",
-            options: {
-              redirectTo: new URL("./auth-callback.html", window.location.href).href
-            }
-          });
-          if (error) throw error;
-        } catch (error) {
-          googleLoginButton.disabled = false;
-          googleLoginButton.innerHTML = originalText;
-          window.alert("Google нэвтрэлтийн алдаа: " + (error.message || "Дахин оролдоно уу."));
-        }
+      googleLoginButton.addEventListener("click", () => {
+        window.location.href = "./auth.html";
       });
+      googleLoginButton.textContent = "Имэйлээр нэвтрэх";
+      googleLoginButton.setAttribute("aria-label", "Имэйл болон нууц үгээр нэвтрэх");
     }
 
     const menuToggle = document.getElementById("menuToggle");
