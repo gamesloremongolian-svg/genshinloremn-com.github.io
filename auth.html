@@ -70,7 +70,7 @@ googleBtn.addEventListener("click",async()=>{
  if(!client&&!initSupabase()) return;
  googleBtn.disabled=true;message.textContent="Google нэвтрэлтийг нээж байна…";
  try{
-  const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname.replace(/auth\\.html$/,"wiki.html")}});
+  const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:new URL("wiki.html",window.location.href).href}});
   if(error) message.textContent="Google нэвтрэлтийн алдаа: "+error.message;
  }catch(err){message.textContent="Алдаа: "+(err.message||"Дахин оролдоно уу.");}
  finally{googleBtn.disabled=false;}
