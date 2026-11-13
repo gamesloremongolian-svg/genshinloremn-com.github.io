@@ -434,6 +434,7 @@
 .genshin-page .g-topic-body .g-topic-note{color:#e9bd68;font-size:11px}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
+<link rel="stylesheet" href="assets/css/cinematic-motion.css">
 </head>
 
 <body class="genshin-page">
@@ -463,8 +464,6 @@
 
 <main>
 <section class="g-hero">
-  <a class="g-hero-hotspot g-hero-world" href="#world" aria-label="Teyvat-ийн ертөнц рүү очих"></a>
-  <a class="g-hero-hotspot g-hero-lore" href="#lore" aria-label="Lore түүхүүд рүү очих"></a>
   <div class="g-container">
     <div class="g-eyebrow">GENSHIN IMPACT • TEYVAT • ТҮҮХ</div>
     <h1>Нууцлаг <span>Teyvat</span><br>ертөнцөд тавтай морил</h1>
@@ -473,7 +472,7 @@
       Abyss болон Traveller-ийн аяллын нууцыг
       Монгол хэлээр хамтдаа судалцгаая.
     </p>
-    <a href="#lore" class="g-back">Түүх судлах →</a>
+    <div class="g-hero-actions"><a href="#world" class="g-hero-button">Teyvat ертөнц →</a><a href="#lore" class="g-hero-button g-hero-button-alt">Түүх судлах →</a></div>
   </div>
 </section>
 
@@ -738,6 +737,7 @@
   note.textContent='Үндсэн дүрийн санг нөөц мэдээллээр харуулж байна. Бусад дүрүүдийг үе шаттай нэмнэ.';
   rail.appendChild(note);
  };
+ renderFallback();
  const controller=new AbortController();
  const timeout=setTimeout(()=>controller.abort(),7000);
  fetch(API+'/characters?details=true',{headers:{Accept:'application/json'},signal:controller.signal})
@@ -786,5 +786,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<nav class="glm-bottom-nav" aria-label="Доод навигаци"><a href="#world"><span>✦</span><span>Teyvat</span></a><a href="#lore"><span>▤</span><span>Түүх</span></a><a href="#characters"><span>♙</span><span>Дүрүүд</span></a><a href="./lore-center.html"><span>⌕</span><span>Lore сан</span></a></nav>
 </body>
 </html>
