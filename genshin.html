@@ -401,6 +401,7 @@
  .genshin-page .g-lore-topics>.g-card{min-height:unset;padding:18px}
 }
 
+.g-character-card{display:block;color:inherit;text-decoration:none;cursor:pointer}.g-character-open{display:inline-block;margin-top:10px;color:#e9bd68;font-size:12px;font-weight:700}.g-character-card:hover .g-character-open{letter-spacing:.3px}
 </style>
 </head>
 
@@ -678,7 +679,7 @@
    const nation=ch.nation||ch.region||'';
    const desc=ch.description||ch.title||'Дүрийн дэлгэрэнгүй түүх удахгүй нэмэгдэнэ.';
    const image=ch.images?.card||ch.image?.card||ch.img?.card||imageFor(slugify(id));
-   return '<article class="g-card g-character-card searchable" data-search="'+esc([name,element,weapon,nation].join(' ')).toLowerCase()+'"><img class="g-character-image" src="'+esc(image)+'" alt="'+esc(name)+'" loading="lazy" onerror="this.style.display=\'none\'"><div class="g-character-info"><div class="g-tag">'+esc(element)+' · '+esc(weapon)+'</div><h3>'+esc(name)+'</h3><p>'+esc(desc)+'</p><p class="g-character-meta">'+esc([rarity,nation].filter(Boolean).join(' · '))+'</p></div></article>';
+   return '<a class="g-card g-character-card searchable" href="character.html?id='+encodeURIComponent(slugify(id))+'" data-search="'+esc([name,element,weapon,nation].join(' ')).toLowerCase()+'" aria-label="'+esc(name)+' дэлгэрэнгүй үзэх"><img class="g-character-image" src="'+esc(image)+'" alt="'+esc(name)+'" loading="lazy" onerror="this.style.display=\\'none\\'"><div class="g-character-info"><div class="g-tag">'+esc(element)+' · '+esc(weapon)+'</div><h3>'+esc(name)+'</h3><p>'+esc(desc)+'</p><p class="g-character-meta">'+esc([rarity,nation].filter(Boolean).join(' · '))+'</p><span class="g-character-open">Дэлгэрэнгүй үзэх →</span></div></a>';
   }).join('');
   rail.dataset.loaded='1';
  };
