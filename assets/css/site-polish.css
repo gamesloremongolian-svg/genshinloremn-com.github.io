@@ -1,0 +1,50 @@
+/* Games Lore MN — shared visual polish layer
+   Shared gold / midnight / cyan design language.
+   Intentionally additive: preserves each page's existing layout and functionality. */
+:root{
+  --glm-bg:#090e18;
+  --glm-panel:#111a29;
+  --glm-panel-2:#172337;
+  --glm-gold:#d9b66d;
+  --glm-cyan:#6edce5;
+  --glm-text:#edf1f7;
+  --glm-muted:#9ba9bd;
+  --glm-line:rgba(217,182,109,.20);
+  --glm-shadow:0 16px 42px rgba(0,0,0,.22);
+}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+a,button,input,select,textarea{ -webkit-tap-highlight-color:transparent; }
+a{ text-underline-offset:3px; }
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--glm-cyan,#6edce5);outline-offset:3px;border-radius:7px;
+}
+button,[role="button"],.btn{
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+button:hover,.btn:hover,[role="button"]:hover{filter:brightness(1.08);transform:translateY(-1px)}
+input,select,textarea{
+  max-width:100%;color:var(--glm-text,#edf1f7);
+  accent-color:var(--glm-gold,#d9b66d);
+}
+img,video{max-width:100%;height:auto}
+header{
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+footer{color:var(--glm-muted,#9ba9bd)}
+.panel,.card,.hero,.article-card,.game-card,.wiki-card,.character-card,.feature-card{
+  box-shadow:var(--glm-shadow,0 16px 42px rgba(0,0,0,.22));
+  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.card:hover,.article-card:hover,.game-card:hover,.wiki-card:hover,.character-card:hover,.feature-card:hover{
+  border-color:rgba(217,182,109,.48);
+}
+::selection{background:rgba(110,220,229,.25);color:var(--glm-text,#edf1f7)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+@media(max-width:640px){
+  button,.btn{max-width:100%}
+  input,select,textarea{font-size:16px}
+}
