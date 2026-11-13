@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101522">
+<title>Genshin Lore Wiki — Нэвтрэх</title>
+<style>
+:root{color-scheme:dark;--bg:#101522;--panel:#1a2639;--gold:#e9bd68;--cyan:#75d9e8;--text:#f4f0e8;--muted:#aab3c4}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#263653,#101522 60%);color:var(--text);font-family:Arial,sans-serif;display:grid;place-items:center;padding:22px}
+.card{width:min(100%,440px);padding:30px;border:1px solid #4a5260;border-radius:18px;background:rgba(26,38,57,.94);box-shadow:0 20px 60px #0006}
+.brand{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold}.card h1{font-size:27px;margin:12px 0 6px}.sub{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 22px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}.tabs button{padding:12px;border-radius:9px;border:1px solid #46536a;background:#121c2d;color:var(--muted);font-weight:bold}.tabs button.active{background:var(--gold);color:#171b25;border-color:var(--gold)}
+label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14px;border:1px solid #46536a;border-radius:9px;background:#111a29;color:white;font-size:15px}input:focus{outline:2px solid #75d9e888;border-color:var(--cyan)}
+.submit{width:100%;padding:14px;margin-top:20px;border:0;border-radius:9px;background:var(--gold);color:#171b25;font-weight:bold;font-size:15px}
+#message{min-height:24px;margin:15px 0 0;color:var(--cyan);font-size:13px;line-height:1.5}.back{display:block;margin-top:20px;color:var(--gold);text-align:center;text-decoration:none;font-size:13px}
+</style>
+</head>
+<body>
+<main class="card">
+<div class="brand">GAMES LORE MN · PRIVATE WIKI</div>
+<h1>Genshin Lore Wiki</h1>
+<p class="sub">Wiki-ийн мэдээллийг уншихын тулд бүртгүүлэх эсвэл нэвтэрнэ үү.</p>
+<div class="tabs">
+<button type="button" id="loginTab" class="active">Нэвтрэх</button>
+<button type="button" id="signupTab">Бүртгүүлэх</button>
+</div>
+<form id="authForm">
+<label for="email">И-мэйл хаяг</label>
+<input id="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+<label for="password">Нууц үг</label>
+<input id="password" type="password" minlength="6" autocomplete="current-password" placeholder="Доод тал нь 6 тэмдэгт" required>
+<button class="submit" id="submitBtn" type="submit">Нэвтрэх</button>
+</form>
+<p id="message" role="status"></p>
+<a class="back" href="index.html">← Games Lore MN нүүр хуудас</a>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const form=document.getElementById("authForm"), message=document.getElementById("message");
+const loginTab=document.getElementById("loginTab"), signupTab=document.getElementById("signupTab"), submitBtn=document.getElementById("submitBtn");
+let mode="login";
+function setMode(next){mode=next;loginTab.classList.toggle("active",mode==="login");signupTab.classList.toggle("active",mode==="signup");submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";document.getElementById("password").autocomplete=mode==="login"?"current-password":"new-password";message.textContent="";}
+loginTab.addEventListener("click",()=>setMode("login"));signupTab.addEventListener("click",()=>setMode("signup"));
+(async()=>{const {data:{session}}=await supabase.auth.getSession();if(session)location.replace("genshin.html");})();
+form.addEventListener("submit",async e=>{
+ e.preventDefault();submitBtn.disabled=true;submitBtn.textContent="Түр хүлээнэ үү…";message.textContent="";
+ const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
+ let result;
+ if(mode==="signup") result=await supabase.auth.signUp({email,password});
+ else result=await supabase.auth.signInWithPassword({email,password});
+ if(result.error){message.textContent=result.error.message;}
+ else if(mode==="signup"&&!result.data.session){message.textContent="Бүртгэл үүслээ. И-мэйлээ баталгаажуулаад нэвтэрнэ үү.";}
+ else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("genshin.html");}
+ submitBtn.disabled=false;submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";
+});
+</script>
+</body>
+</html>
