@@ -1,0 +1,39 @@
+/* Games Lore MN — cinematic motion + mobile bottom navigation */
+@keyframes glm-hero-drift {
+  0% { background-position: 50% 38%; }
+  50% { background-position: 53% 42%; }
+  100% { background-position: 50% 38%; }
+}
+@keyframes glm-glow-pulse {
+  0%,100% { opacity:.28; transform:scale(.96); }
+  50% { opacity:.58; transform:scale(1.04); }
+}
+body:not(.character-directory) .hero,
+.genshin-page .g-hero {
+  animation: glm-hero-drift 26s ease-in-out infinite;
+}
+body:not(.character-directory) .hero::after {
+  animation: glm-glow-pulse 9s ease-in-out infinite;
+}
+.glm-bottom-nav { display:none; }
+@media (max-width:760px) {
+  body { padding-bottom:76px; }
+  .glm-bottom-nav {
+    position:fixed; z-index:999; left:12px; right:12px; bottom:max(10px,env(safe-area-inset-bottom));
+    display:flex; align-items:stretch; justify-content:space-around; gap:4px;
+    padding:8px 7px; border:1px solid rgba(217,182,109,.28); border-radius:17px;
+    background:rgba(8,14,25,.94); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+    box-shadow:0 12px 35px rgba(0,0,0,.42);
+  }
+  .glm-bottom-nav a {
+    flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:2px; padding:5px 2px; border-radius:10px; color:#b8c6d8; text-decoration:none;
+    font:700 10px/1.25 Arial,sans-serif; text-align:center;
+  }
+  .glm-bottom-nav a span:first-child { font-size:17px; line-height:1.1; }
+  .glm-bottom-nav a:active,.glm-bottom-nav a:focus-visible { color:#f0cc82; background:rgba(217,182,109,.12); }
+}
+@media (prefers-reduced-motion:reduce) {
+  body:not(.character-directory) .hero,.genshin-page .g-hero,
+  body:not(.character-directory) .hero::after { animation:none!important; }
+}
