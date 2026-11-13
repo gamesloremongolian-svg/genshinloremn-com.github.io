@@ -39,24 +39,46 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 <script>
 const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const form=document.getElementById("authForm"), message=document.getElementById("message");
 const loginTab=document.getElementById("loginTab"), signupTab=document.getElementById("signupTab"), submitBtn=document.getElementById("submitBtn");
-let mode="login";
-function setMode(next){mode=next;loginTab.classList.toggle("active",mode==="login");signupTab.classList.toggle("active",mode==="signup");submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";document.getElementById("password").autocomplete=mode==="login"?"current-password":"new-password";message.textContent="";}
-loginTab.addEventListener("click",()=>setMode("login"));signupTab.addEventListener("click",()=>setMode("signup"));
-(async()=>{const {data:{session}}=await supabase.auth.getSession();if(session)location.replace("genshin.html");})();
+let mode="login", client=null;
+function setMode(next){
+ mode=next;
+ loginTab.classList.toggle("active",mode==="login");
+ signupTab.classList.toggle("active",mode==="signup");
+ submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";
+ document.getElementById("password").autocomplete=mode==="login"?"current-password":"new-password";
+ message.textContent=mode==="signup"?"Шинэ хэрэглэгчийн бүртгэл үүсгэнэ.":"Бүртгэлтэй бол нэвтэрнэ үү.";
+}
+loginTab.addEventListener("click",()=>setMode("login"));
+signupTab.addEventListener("click",()=>setMode("signup"));
+function initSupabase(){
+ if(!window.supabase || typeof window.supabase.createClient!=="function"){
+  message.textContent="Supabase сан ачаалагдсангүй. Хуудсыг дахин ачаална уу.";
+  return false;
+ }
+ client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+ return true;
+}
+(async()=>{
+ if(!initSupabase()) return;
+ try {const {data:{session}}=await client.auth.getSession();if(session)location.replace("genshin.html");}
+ catch(err){message.textContent="Холболтын алдаа: "+(err.message||"Дахин оролдоно уу.");}
+})();
 form.addEventListener("submit",async e=>{
- e.preventDefault();submitBtn.disabled=true;submitBtn.textContent="Түр хүлээнэ үү…";message.textContent="";
+ e.preventDefault();
+ if(!client&&!initSupabase()) return;
+ submitBtn.disabled=true;submitBtn.textContent="Түр хүлээнэ үү…";message.textContent="";
  const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
- let result;
- if(mode==="signup") result=await supabase.auth.signUp({email,password});
- else result=await supabase.auth.signInWithPassword({email,password});
- if(result.error){message.textContent=result.error.message;}
- else if(mode==="signup"&&!result.data.session){message.textContent="Бүртгэл үүслээ. И-мэйлээ баталгаажуулаад нэвтэрнэ үү.";}
- else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("genshin.html");}
- submitBtn.disabled=false;submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";
-});
-</script>
+ try{
+  const result=mode==="signup"
+   ? await client.auth.signUp({email,password})
+   : await client.auth.signInWithPassword({email,password});
+  if(result.error) message.textContent=result.error.message;
+  else if(mode==="signup"&&!result.data.session) message.textContent="Бүртгэл үүслээ. И-мэйлээ баталгаажуулаад нэвтэрнэ үү.";
+  else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("genshin.html");}
+ }catch(err){message.textContent="Алдаа: "+(err.message||"Интернэтээ шалгаад дахин оролдоно уу.");}
+ finally{submitBtn.disabled=false;submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";}
+});</script>
 </body>
 </html>
