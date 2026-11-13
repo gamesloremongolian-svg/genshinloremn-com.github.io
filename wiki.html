@@ -31,7 +31,7 @@ textarea{min-height:180px;resize:vertical}label{display:block;font-size:13px;col
 <label for="title">Гарчиг</label><input id="title" required>
 <label for="description">Товч тайлбар</label><input id="description">
 <label for="keywords">Түлхүүр үгс (таслалаар тусгаарлана)</label><input id="keywords" placeholder="Celestia, Archon, Teyvat">
-<div class="formgrid"><div><label for="imageUrl">Зургийн холбоос (URL)</label><input id="imageUrl" type="url" placeholder="https://..."></div><div><label for="publishedAt">Нийтэлсэн огноо</label><input id="publishedAt" type="date"></div></div>
+<div class="formgrid"><div><label for="imageFile">Утсаас зураг сонгох</label><input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small class="muted">JPG, PNG, WebP, GIF · 5 MB хүртэл</small></div><div><label for="publishedAt">Нийтэлсэн огноо</label><input id="publishedAt" type="date"></div></div><label for="imageUrl">Эсвэл зургийн холбоос (URL)</label><input id="imageUrl" type="url" placeholder="https://...">
 <label for="sources">Эх сурвалжийн холбоосууд (мөр бүрд нэг URL)</label><textarea id="sources" style="min-height:90px" placeholder="https://..."></textarea>
 <label for="body">Нийтлэлийн үндсэн агуулга</label><textarea id="body" required></textarea>
 <div class="actions"><button id="saveBtn" type="submit">Нийтлэх</button><button id="cancelEdit" type="button" class="secondary hidden">Болих</button></div>
@@ -48,7 +48,7 @@ const SUPABASE_KEY="sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
 const statusEl=document.getElementById("status"),list=document.getElementById("articles");
 function loadSdk(src){return new Promise((resolve,reject)=>{const s=document.createElement("script");s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error("SDK татаж чадсангүй"));document.head.appendChild(s);});}
 async function sdk(){if(window.supabase?.createClient)return window.supabase;try{await loadSdk("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2")}catch(e){}if(window.supabase?.createClient)return window.supabase;await loadSdk("https://unpkg.com/@supabase/supabase-js@2");return window.supabase;}
-let db, articles=[], isAdmin=false;
+let db, articles=[], isAdmin=false, currentUser=null;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 async function start(){
  try{
@@ -56,7 +56,7 @@ async function start(){
   const {data:{session},error:sessionError}=await db.auth.getSession();
   if(sessionError)throw sessionError;
   if(!session){location.replace("auth.html");return;}
-  document.getElementById("userEmail").textContent=session.user.email||"Нэвтэрсэн";
+  currentUser=session.user;document.getElementById("userEmail").textContent=session.user.email||"Нэвтэрсэн";
   const {data:adminRow,error:adminError}=await db.from("wiki_admins").select("user_id").eq("user_id",session.user.id).maybeSingle();
   if(adminError)throw adminError;
   isAdmin=!!adminRow;
@@ -85,7 +85,7 @@ document.getElementById("search").addEventListener("input",render);document.getE
 document.getElementById("logout").addEventListener("click",async()=>{await db?.auth.signOut();location.replace("auth.html");});
 document.getElementById("articleForm").addEventListener("submit",async e=>{
  e.preventDefault();const msg=document.getElementById("adminStatus"),id=document.getElementById("editId").value;
- const record={category:document.getElementById("category").value.trim(),category_label:document.getElementById("categoryLabel").value.trim(),title:document.getElementById("title").value.trim(),description:document.getElementById("description").value.trim(),keywords:document.getElementById("keywords").value.split(",").map(x=>x.trim()).filter(Boolean),body:document.getElementById("body").value.trim(),image_url:document.getElementById("imageUrl").value.trim()||null,sources:document.getElementById("sources").value.split("\n").map(x=>x.trim()).filter(Boolean),published_at:document.getElementById("publishedAt").value||null,updated_at:new Date().toISOString()};
+ let imageUrl=document.getElementById("imageUrl").value.trim()||null;const imageFile=document.getElementById("imageFile").files[0];if(imageFile){if(!imageFile.type.startsWith("image/")){msg.textContent="Зөвхөн зураг сонгоно уу.";return;}if(imageFile.size>5*1024*1024){msg.textContent="Зургийн хэмжээ 5 MB-аас бага байх ёстой.";return;}const ext=(imageFile.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";const imagePath=currentUser.id+"/"+crypto.randomUUID()+"."+ext;const {error:uploadError}=await db.storage.from("wiki-images").upload(imagePath,imageFile,{cacheControl:"3600",upsert:false,contentType:imageFile.type});if(uploadError)throw uploadError;const {data:publicData}=db.storage.from("wiki-images").getPublicUrl(imagePath);imageUrl=publicData.publicUrl;document.getElementById("imageUrl").value=imageUrl;}const record={category:document.getElementById("category").value.trim(),category_label:document.getElementById("categoryLabel").value.trim(),title:document.getElementById("title").value.trim(),description:document.getElementById("description").value.trim(),keywords:document.getElementById("keywords").value.split(",").map(x=>x.trim()).filter(Boolean),body:document.getElementById("body").value.trim(),image_url:imageUrl,sources:document.getElementById("sources").value.split("\n").map(x=>x.trim()).filter(Boolean),published_at:document.getElementById("publishedAt").value||null,updated_at:new Date().toISOString()};
  const btn=document.getElementById("saveBtn");btn.disabled=true;msg.textContent="Хадгалж байна…";
  try{const result=id?await db.from("wiki_articles").update(record).eq("id",id):await db.from("wiki_articles").insert({...record,id:"glmn-"+crypto.randomUUID()});if(result.error)throw result.error;msg.textContent="Амжилттай хадгаллаа.";resetForm();await loadArticles();}
  catch(err){msg.textContent="Хадгалах алдаа: "+err.message;}finally{btn.disabled=false;}
