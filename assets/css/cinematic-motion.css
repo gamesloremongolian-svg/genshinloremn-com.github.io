@@ -37,3 +37,21 @@ body:not(.character-directory) .hero::after {
   body:not(.character-directory) .hero,.genshin-page .g-hero,
   body:not(.character-directory) .hero::after { animation:none!important; }
 }
+
+/* Bottom navigation: gentle entrance and tactile feedback */
+@media (max-width:760px) {
+  .glm-bottom-nav { animation: glm-nav-enter .55s cubic-bezier(.2,.8,.2,1) both; }
+  .glm-bottom-nav a { transition: color .22s ease, background .22s ease, transform .22s ease, box-shadow .22s ease; }
+  .glm-bottom-nav a:active { transform: translateY(-2px) scale(.97); }
+  .glm-bottom-nav a:focus-visible { outline:2px solid #f0cc82; outline-offset:2px; }
+  .glm-bottom-nav a span:first-child { transition: transform .22s ease, text-shadow .22s ease; }
+  .glm-bottom-nav a:active span:first-child { transform:scale(1.14); text-shadow:0 0 12px rgba(240,204,130,.8); }
+}
+@keyframes glm-nav-enter {
+  from { opacity:0; transform:translateY(18px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .glm-bottom-nav { animation:none!important; }
+  .glm-bottom-nav a,.glm-bottom-nav a span:first-child { transition:none!important; }
+}
