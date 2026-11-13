@@ -20,11 +20,8 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 <main class="card">
 <div class="brand">GAMES LORE MN · PRIVATE WIKI</div>
 <h1>Genshin Lore Wiki</h1>
-<p class="sub">Wiki-ийн мэдээллийг уншихын тулд бүртгүүлэх эсвэл нэвтэрнэ үү.</p>
-<div class="tabs">
-<button type="button" id="loginTab" class="active">Нэвтрэх</button>
-<a id="signupTab" href="signup.html" style="display:grid;place-items:center;padding:12px;border-radius:9px;border:1px solid #46536a;background:#121c2d;color:#f4f0e8;font-weight:bold;text-decoration:none">Бүртгүүлэх</a>
-</div>
+<p class="sub">Wiki-д нэвтрэхийн тулд бүртгэлтэй и-мэйл болон нууц үгээ ашиглана уу.</p>
+<div class="tabs"><button type="button" id="loginTab" class="active">Нэвтрэх</button></div>
 <form id="authForm">
 <label for="email">И-мэйл хаяг</label>
 <input id="email" type="email" autocomplete="email" placeholder="name@example.com" required>
@@ -41,18 +38,8 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
 const form=document.getElementById("authForm"), message=document.getElementById("message"), googleBtn=document.getElementById("googleBtn");
-const loginTab=document.getElementById("loginTab"), submitBtn=document.getElementById("submitBtn");
-let mode="login", client=null;
-function setMode(next){
- mode=next;
- loginTab.classList.toggle("active",mode==="login");
- signupTab.classList.toggle("active",mode==="signup");
- submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";
- document.getElementById("password").autocomplete=mode==="login"?"current-password":"new-password";
- message.textContent=mode==="signup"?"Шинэ хэрэглэгчийн бүртгэл үүсгэнэ.":"Бүртгэлтэй бол нэвтэрнэ үү.";
-}
-loginTab.addEventListener("click",()=>setMode("login"));
-signupTab.addEventListener("click",()=>setMode("signup"));
+const submitBtn=document.getElementById("submitBtn");
+let client=null;
 function initSupabase(){
  if(!window.supabase || typeof window.supabase.createClient!=="function"){
   message.textContent="Supabase сан ачаалагдсангүй. Хуудсыг дахин ачаална уу.";
@@ -81,14 +68,11 @@ form.addEventListener("submit",async e=>{
  submitBtn.disabled=true;submitBtn.textContent="Түр хүлээнэ үү…";message.textContent="";
  const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
  try{
-  const result=mode==="signup"
-   ? await client.auth.signUp({email,password})
-   : await client.auth.signInWithPassword({email,password});
+  const result=await client.auth.signInWithPassword({email,password});
   if(result.error) message.textContent=result.error.message;
-  else if(mode==="signup"&&!result.data.session) message.textContent="Бүртгэл үүслээ. И-мэйлээ баталгаажуулаад нэвтэрнэ үү.";
   else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("wiki.html");}
  }catch(err){message.textContent="Алдаа: "+(err.message||"Интернэтээ шалгаад дахин оролдоно уу.");}
- finally{submitBtn.disabled=false;submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";}
+ finally{submitBtn.disabled=false;submitBtn.textContent="Нэвтрэх";}
 });</script>
 </body>
 </html>
