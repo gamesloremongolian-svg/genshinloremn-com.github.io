@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090e18">
+  <meta name="description" content="Games Lore MN нийтлэл.">
+  <title>Нийтлэл | Games Lore MN</title>
+  <link rel="stylesheet" href="./assets/css/archive.css">
+</head>
+<body>
+<header><div class="container nav">
+  <a class="brand" href="./index.html">GAMES LORE MN</a>
+  <nav class="navlinks" aria-label="Үндсэн цэс"><a href="./index.html">Нүүр</a><a href="./articles.html">Нийтлэлүүд</a></nav>
+</div></header>
+<main class="container">
+  <a class="back" href="./articles.html">← Нийтлэлийн архив руу буцах</a>
+  <article class="article" id="article"><p class="lead">Нийтлэл ачаалж байна…</p></article>
+</main>
+<footer><div class="container">© <span id="year"></span> Games Lore MN</div></footer>
+<script src="./assets/js/posts.js"></script>
+<script>
+"use strict";
+const params=new URLSearchParams(location.search);
+const slug=params.get("slug");
+const post=(window.GAMES_LORE_POSTS||[]).find(p=>p.slug===slug);
+const root=document.getElementById("article");
+document.getElementById("year").textContent=new Date().getFullYear();
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+if(!post){
+ document.title="Нийтлэл олдсонгүй | Games Lore MN";
+ root.innerHTML='<h1>Нийтлэл олдсонгүй</h1><p class="lead">Холбоос буруу эсвэл нийтлэл устгагдсан байна.</p><p style="margin-top:20px"><a class="back" href="./articles.html">Архив руу буцах →</a></p>';
+}else{
+ document.title=post.title+" | Games Lore MN";
+ const paragraphs=String(post.body||"").split(/\n\s*\n/).map(p=>`<p>${esc(p).replace(/\n/g,"<br>")}</p>`).join("");
+ const sources=(post.sources||[]).map(url=>`<li><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a></li>`).join("");
+ root.innerHTML=`<div class="eyebrow">${esc(post.game)} · ${esc(post.category)}</div><h1>${esc(post.title)}</h1><p class="lead">${esc(post.excerpt)}</p><div class="meta">${esc(post.date||"")}</div><div class="body">${paragraphs}</div>${sources?`<hr style="border:0;border-top:1px solid var(--border);margin:28px 0"><h2 style="color:var(--gold);font-size:18px">Эх сурвалж</h2><ul style="padding-left:20px;margin-top:10px">${sources}</ul>`:""}`;
+}
+</script>
+</body></html>
