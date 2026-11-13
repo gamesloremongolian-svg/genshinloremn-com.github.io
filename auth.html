@@ -4,85 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101522">
-<title>Genshin Lore Wiki — Нэвтрэх</title>
+<meta name="description" content="Games Lore MN Wiki нэвтрэх хуудас.">
+<title>Wiki-д нэвтрэх — Games Lore MN</title>
 <style>
-:root{color-scheme:dark;--bg:#101522;--panel:#1a2639;--gold:#e9bd68;--cyan:#75d9e8;--text:#f4f0e8;--muted:#aab3c4}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#263653,#101522 60%);color:var(--text);font-family:Arial,sans-serif;display:grid;place-items:center;padding:22px}
-.card{width:min(100%,440px);padding:30px;border:1px solid #4a5260;border-radius:18px;background:rgba(26,38,57,.94);box-shadow:0 20px 60px #0006}
-.brand{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold}.card h1{font-size:27px;margin:12px 0 6px}.sub{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 22px}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}.tabs button{padding:12px;border-radius:9px;border:1px solid #46536a;background:#121c2d;color:var(--muted);font-weight:bold}.tabs button.active{background:var(--gold);color:#171b25;border-color:var(--gold)}
-label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14px;border:1px solid #46536a;border-radius:9px;background:#111a29;color:white;font-size:15px}input:focus{outline:2px solid #75d9e888;border-color:var(--cyan)}
-.google{width:100%;padding:13px;margin-top:14px;border:1px solid #dadce0;border-radius:9px;background:#fff;color:#202124;font-weight:bold;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px}.google:disabled{opacity:.6}.google-mark{font-size:20px;font-weight:900;color:#4285f4}.facebook{width:100%;padding:13px;margin-top:14px;border:1px solid #1877f2;border-radius:9px;background:#1877f2;color:#fff;font-weight:bold;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px}.facebook:disabled{opacity:.6}.facebook-mark{font-weight:900;color:#fff;font-size:22px;font-family:Arial,sans-serif}.submit{width:100%;padding:14px;margin-top:20px;border:0;border-radius:9px;background:var(--gold);color:#171b25;font-weight:bold;font-size:15px}
-#message{min-height:24px;margin:15px 0 0;color:var(--cyan);font-size:13px;line-height:1.5}.back{display:block;margin-top:20px;color:var(--gold);text-align:center;text-decoration:none;font-size:13px}
+:root{color-scheme:dark;--panel:#1a2639;--gold:#e9bd68;--cyan:#75d9e8;--text:#f4f0e8;--muted:#aab3c4;--line:#46536a}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:22px;display:grid;place-items:center;background:radial-gradient(ellipse at top,#263653,#101522 60%);color:var(--text);font-family:Arial,sans-serif}
+.card{width:min(100%,440px);padding:30px;border:1px solid #4a5260;border-radius:18px;background:rgba(26,38,57,.96);box-shadow:0 20px 60px #0006}
+.brand{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold}
+h1{font-size:27px;margin:12px 0 6px}
+.sub{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 22px}
+label{display:block;font-size:13px;margin:14px 0 7px}
+input{width:100%;padding:14px;border:1px solid var(--line);border-radius:9px;background:#111a29;color:white;font-size:15px}
+input:focus{outline:2px solid #75d9e888;border-color:var(--cyan)}
+button{width:100%;padding:14px;margin-top:20px;border:0;border-radius:9px;background:var(--gold);color:#171b25;font-weight:bold;font-size:15px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+#message{min-height:24px;margin:15px 0 0;color:var(--cyan);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.back{display:block;margin-top:20px;color:var(--gold);text-align:center;text-decoration:none;font-size:13px}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 </head>
 <body>
 <main class="card">
 <div class="brand">GAMES LORE MN · PRIVATE WIKI</div>
-<h1>Genshin Lore Wiki</h1>
-<p class="sub">Wiki-д нэвтрэхийн тулд бүртгэлтэй и-мэйл болон нууц үгээ ашиглана уу.</p>
-<div class="tabs"><button type="button" id="loginTab" class="active">Нэвтрэх</button></div>
+<h1>Wiki-д нэвтрэх</h1>
+<p class="sub">Бүртгэлтэй и-мэйл хаяг болон нууц үгээ ашиглан нэвтэрнэ үү.</p>
 <form id="authForm">
 <label for="email">И-мэйл хаяг</label>
-<input id="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+<input id="email" type="email" autocomplete="username" placeholder="name@example.com" required>
 <label for="password">Нууц үг</label>
-<input id="password" type="password" minlength="6" autocomplete="current-password" placeholder="Доод тал нь 6 тэмдэгт" required>
-<button class="submit" id="submitBtn" type="submit">Нэвтрэх</button>
+<input id="password" type="password" autocomplete="current-password" placeholder="Нууц үгээ оруулна уу" required>
+<button id="submitBtn" type="submit">Нэвтрэх</button>
 </form>
-<button class="google" id="googleBtn" type="button"><span class="google-mark" aria-hidden="true">G</span> Google-ээр нэвтрэх</button>
-<button class="facebook" id="facebookBtn" type="button"><span class="facebook-mark" aria-hidden="true">f</span> Facebook-ээр үргэлжлүүлэх</button>
-<p id="message" role="status"></p>
+<p id="message" role="status" aria-live="polite"></p>
 <a class="back" href="index.html">← Games Lore MN нүүр хуудас</a>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
-const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
-const form=document.getElementById("authForm"), message=document.getElementById("message"), facebookBtn=document.getElementById("facebookBtn"), googleBtn=document.getElementById("googleBtn");
-const submitBtn=document.getElementById("submitBtn");
+'use strict';
+const SUPABASE_URL='https://zyocifqdpbgwlgwtrgnq.supabase.co';
+const SUPABASE_KEY='sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf';
+const form=document.getElementById('authForm');
+const message=document.getElementById('message');
+const submitBtn=document.getElementById('submitBtn');
 let client=null;
+
 function initSupabase(){
- if(!window.supabase || typeof window.supabase.createClient!=="function"){
-  message.textContent="Supabase сан ачаалагдсангүй. Хуудсыг дахин ачаална уу.";
-  return false;
- }
- client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
- return true;
+  if(!window.supabase||typeof window.supabase.createClient!=='function'){
+    message.textContent='Supabase сан ачаалагдсангүй. Интернэт холболтоо шалгаад хуудсыг дахин ачаална уу.';
+    return false;
+  }
+  client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  return true;
 }
+
 (async()=>{
- if(!initSupabase()) return;
- try {const {data:{session}}=await client.auth.getSession();if(session)location.replace("wiki.html");}
- catch(err){message.textContent="Холболтын алдаа: "+(err.message||"Дахин оролдоно уу.");}
+  if(!initSupabase()) return;
+  try{
+    const {data,error}=await client.auth.getSession();
+    if(error) throw error;
+    if(data.session) window.location.replace('wiki.html');
+  }catch(error){
+    message.textContent='Холболтын алдаа: '+(error.message||'Дахин оролдоно уу.');
+  }
 })();
-googleBtn.addEventListener("click",async()=>{
- if(!client&&!initSupabase()) return;
- googleBtn.disabled=true;message.textContent="Google нэвтрэлтийг нээж байна…";
- try{
-  const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:new URL("auth-callback.html",window.location.href).href}});
-  if(error) throw error;
- }catch(err){message.textContent="Google нэвтрэлтийн алдаа: "+(err.message||"Дахин оролдоно уу.");googleBtn.disabled=false;}
+
+form.addEventListener('submit',async(event)=>{
+  event.preventDefault();
+  if(!client&&!initSupabase()) return;
+  submitBtn.disabled=true;
+  submitBtn.textContent='Нэвтэрч байна…';
+  message.textContent='';
+  const email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value;
+  try{
+    const {data,error}=await client.auth.signInWithPassword({email,password});
+    if(error) throw error;
+    if(!data.session) throw new Error('Нэвтрэх session үүссэнгүй.');
+    message.textContent='Амжилттай нэвтэрлээ. Wiki руу шилжүүлж байна…';
+    window.location.replace('wiki.html');
+  }catch(error){
+    message.textContent='Нэвтрэхэд алдаа гарлаа: '+(error.message||'И-мэйл болон нууц үгээ шалгана уу.');
+  }finally{
+    submitBtn.disabled=false;
+    submitBtn.textContent='Нэвтрэх';
+  }
 });
-facebookBtn.addEventListener("click",async()=>{
- if(!client&&!initSupabase()) return;
- facebookBtn.disabled=true;message.textContent="Facebook нэвтрэлтийг нээж байна…";
- try{
-  const {error}=await client.auth.signInWithOAuth({provider:"facebook",options:{redirectTo:new URL("auth-callback.html",window.location.href).href}});
-  if(error) message.textContent="Facebook нэвтрэлтийн алдаа: "+error.message;
- }catch(err){message.textContent="Алдаа: "+(err.message||"Дахин оролдоно уу.");}
- finally{facebookBtn.disabled=false;}
-});
-form.addEventListener("submit",async e=>{
- e.preventDefault();
- if(!client&&!initSupabase()) return;
- submitBtn.disabled=true;submitBtn.textContent="Түр хүлээнэ үү…";message.textContent="";
- const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
- try{
-  const result=await client.auth.signInWithPassword({email,password});
-  if(result.error) message.textContent=result.error.message;
-  else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("wiki.html");}
- }catch(err){message.textContent="Алдаа: "+(err.message||"Интернэтээ шалгаад дахин оролдоно уу.");}
- finally{submitBtn.disabled=false;submitBtn.textContent="Нэвтрэх";}
-});</script>
+</script>
 </body>
 </html>
