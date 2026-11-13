@@ -31,6 +31,8 @@ textarea{min-height:180px;resize:vertical}label{display:block;font-size:13px;col
 <label for="title">Гарчиг</label><input id="title" required>
 <label for="description">Товч тайлбар</label><input id="description">
 <label for="keywords">Түлхүүр үгс (таслалаар тусгаарлана)</label><input id="keywords" placeholder="Celestia, Archon, Teyvat">
+<div class="formgrid"><div><label for="imageUrl">Зургийн холбоос (URL)</label><input id="imageUrl" type="url" placeholder="https://..."></div><div><label for="publishedAt">Нийтэлсэн огноо</label><input id="publishedAt" type="date"></div></div>
+<label for="sources">Эх сурвалжийн холбоосууд (мөр бүрд нэг URL)</label><textarea id="sources" style="min-height:90px" placeholder="https://..."></textarea>
 <label for="body">Нийтлэлийн үндсэн агуулга</label><textarea id="body" required></textarea>
 <div class="actions"><button id="saveBtn" type="submit">Нийтлэх</button><button id="cancelEdit" type="button" class="secondary hidden">Болих</button></div>
 </form><p id="adminStatus" class="status" role="status"></p>
@@ -77,13 +79,13 @@ function fillCategories(){
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim(),cat=document.getElementById("categoryFilter").value;
  const rows=articles.filter(a=>(!cat||a.category===cat)&&(!q||[a.title,a.description,a.body,a.category_label,...(a.keywords||[])].join(" ").toLowerCase().includes(q)));
- list.innerHTML=rows.length?rows.map(a=>'<article class="article"><div class="tag">'+esc(a.category_label)+'</div><h2>'+esc(a.title)+'</h2><div class="muted">'+esc(a.description)+'</div><div class="body">'+esc(a.body)+'</div>'+(isAdmin?'<div class="actions"><button class="secondary" data-edit="'+esc(a.id)+'">Засах</button><button class="danger" data-delete="'+esc(a.id)+'">Устгах</button></div>':'')+'</article>').join(""):'<p class="muted">Тохирох нийтлэл олдсонгүй.</p>';
+ list.innerHTML=rows.length?rows.map(a=>'<article class="article"><div class="tag">'+esc(a.category_label)+'</div><h2>'+esc(a.title)+'</h2><div class="muted">'+esc(a.description)+'</div>'+(a.image_url?'<img src="'+esc(a.image_url)+'" alt="" loading="lazy" style="display:block;max-width:100%;max-height:360px;object-fit:contain;border-radius:10px;margin:14px 0" onerror="this.style.display=\'none\'">':'')+'<div class="body">'+esc(a.body)+'</div>'+(a.sources&&a.sources.length?'<div class="muted" style="margin-top:14px"><strong>Эх сурвалж:</strong><ul>'+a.sources.map(u=>'<li><a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(u)+'</a></li>').join('')+'</ul></div>':'')+(a.published_at?'<div class="tag">Нийтэлсэн: '+esc(a.published_at)+'</div>':'')+(isAdmin?'<div class="actions"><button class="secondary" data-edit="'+esc(a.id)+'">Засах</button><button class="danger" data-delete="'+esc(a.id)+'">Устгах</button></div>':'')+'</article>').join(""):'<p class="muted">Тохирох нийтлэл олдсонгүй.</p>';
 }
 document.getElementById("search").addEventListener("input",render);document.getElementById("categoryFilter").addEventListener("change",render);
 document.getElementById("logout").addEventListener("click",async()=>{await db?.auth.signOut();location.replace("auth.html");});
 document.getElementById("articleForm").addEventListener("submit",async e=>{
  e.preventDefault();const msg=document.getElementById("adminStatus"),id=document.getElementById("editId").value;
- const record={category:document.getElementById("category").value.trim(),category_label:document.getElementById("categoryLabel").value.trim(),title:document.getElementById("title").value.trim(),description:document.getElementById("description").value.trim(),keywords:document.getElementById("keywords").value.split(",").map(x=>x.trim()).filter(Boolean),body:document.getElementById("body").value.trim(),updated_at:new Date().toISOString()};
+ const record={category:document.getElementById("category").value.trim(),category_label:document.getElementById("categoryLabel").value.trim(),title:document.getElementById("title").value.trim(),description:document.getElementById("description").value.trim(),keywords:document.getElementById("keywords").value.split(",").map(x=>x.trim()).filter(Boolean),body:document.getElementById("body").value.trim(),image_url:document.getElementById("imageUrl").value.trim()||null,sources:document.getElementById("sources").value.split("\n").map(x=>x.trim()).filter(Boolean),published_at:document.getElementById("publishedAt").value||null,updated_at:new Date().toISOString()};
  const btn=document.getElementById("saveBtn");btn.disabled=true;msg.textContent="Хадгалж байна…";
  try{const result=id?await db.from("wiki_articles").update(record).eq("id",id):await db.from("wiki_articles").insert({...record,id:"glmn-"+crypto.randomUUID()});if(result.error)throw result.error;msg.textContent="Амжилттай хадгаллаа.";resetForm();await loadArticles();}
  catch(err){msg.textContent="Хадгалах алдаа: "+err.message;}finally{btn.disabled=false;}
@@ -92,7 +94,7 @@ function resetForm(){document.getElementById("articleForm").reset();document.get
 document.getElementById("cancelEdit").addEventListener("click",resetForm);
 list.addEventListener("click",async e=>{
  const edit=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");
- if(edit){const a=articles.find(x=>x.id===edit.dataset.edit);if(!a)return;document.getElementById("editId").value=a.id;for(const [id,val] of Object.entries({category:a.category,categoryLabel:a.category_label,title:a.title,description:a.description,keywords:(a.keywords||[]).join(", "),body:a.body}))document.getElementById(id).value=val;document.getElementById("saveBtn").textContent="Өөрчлөлт хадгалах";document.getElementById("cancelEdit").classList.remove("hidden");document.getElementById("adminStatus").textContent="Нийтлэлийг засварлаж байна.";}
+ if(edit){const a=articles.find(x=>x.id===edit.dataset.edit);if(!a)return;document.getElementById("editId").value=a.id;for(const [id,val] of Object.entries({category:a.category,categoryLabel:a.category_label,title:a.title,description:a.description,keywords:(a.keywords||[]).join(", "),body:a.body,imageUrl:a.image_url||"",sources:(a.sources||[]).join("\n"),publishedAt:a.published_at||""}))document.getElementById(id).value=val;document.getElementById("saveBtn").textContent="Өөрчлөлт хадгалах";document.getElementById("cancelEdit").classList.remove("hidden");document.getElementById("adminStatus").textContent="Нийтлэлийг засварлаж байна.";}
  if(del&&confirm("Энэ нийтлэлийг устгах уу?")){const {error}=await db.from("wiki_articles").delete().eq("id",del.dataset.delete);if(error){alert("Устгах алдаа: "+error.message);return;}await loadArticles();}
 });
 start();
