@@ -605,7 +605,7 @@
  const status=document.getElementById('genshinCharacterStatus');
  if(!rail || rail.dataset.dynamicReady==='1') return;
  rail.dataset.dynamicReady='1';
- const API='https://genshin.jmp.blue';
+ const API='https://genshin-impact.up.railway.app';
  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
  const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
  const imageFor=id=>API+'/characters/'+encodeURIComponent(id)+'/card';
@@ -627,10 +627,10 @@
   let list=Array.isArray(data)?data:(data?.characters||data?.data||Object.values(data||{}));
   return list.map((item,i)=>typeof item==='string'?{id:item,name:item.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase())}:{...item,id:item.id||item.key||item.name||String(i)}).filter(x=>x.name||x.id).sort((a,b)=>(a.name||a.id).localeCompare(b.name||b.id));
  };
- fetch(API+'/characters/all?lang=en',{headers:{Accept:'application/json'}})
+ fetch(API+'/characters?details=true',{headers:{Accept:'application/json'}})
   .then(r=>{if(!r.ok) throw new Error('HTTP '+r.status);return r.json()})
   .then(data=>{const list=normalize(data);if(!list.length) throw new Error('Empty roster');render(list);})
-  .catch(()=>fetch(API+'/characters').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(data=>{const list=normalize(data);if(!list.length)throw new Error('Empty roster');render(list);}))
+  .catch(()=>Promise.reject(new Error('Primary character API failed')))
   .catch(()=>{rail.innerHTML='<p class="g-character-loading">Дүрийн санг ачаалж чадсангүй. Интернэт холболтоо шалгаад хуудсыг дахин нээнэ үү.</p>';});
 })();
 </script>
