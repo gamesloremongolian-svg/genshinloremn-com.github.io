@@ -324,6 +324,15 @@
  #characters .g-grid>.g-character-card{flex-basis:78%;max-width:290px}
 }
 
+
+/* AUTO-SLIDING CHARACTER RAIL */
+.g-character-track{display:flex!important;flex-wrap:nowrap;gap:18px;overflow-x:auto;overflow-y:hidden;padding:8px 3px 22px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#d6b66e #1a2639;scroll-behavior:smooth}
+.g-character-track>.g-character-card{flex:0 0 clamp(230px,29%,310px);min-width:0;scroll-snap-align:start}
+.g-character-track::-webkit-scrollbar{height:6px}
+.g-character-track::-webkit-scrollbar-thumb{background:#d6b66e;border-radius:20px}
+@media(max-width:750px){.g-character-track>.g-character-card{flex-basis:76vw;max-width:310px}}
+@media(prefers-reduced-motion:reduce){.g-character-track{scroll-behavior:auto}}
+
 </style>
 </head>
 
@@ -530,7 +539,7 @@
       <p>Дүрүүдийн түүх, гарал үүсэл болон холбоо хамаарал.</p>
     </div>
 
-    <div class="g-grid">
+    <div class="g-grid g-character-track" id="genshinCharacterTrack">
       <article class="g-card g-character-card searchable" data-search="aino aino дүр genshin">
         <img class="g-character-image" src="assets/images/characters/aino.png" alt="Aino дүрийн зураг" loading="lazy">
         <div class="g-character-info">
@@ -594,6 +603,35 @@
 </footer>
 
 <script src="assets/js/script.js"></script>
+
+<script>
+(()=> {
+ const rail=document.getElementById('genshinCharacterTrack');
+ if(!rail || rail.dataset.autoReady==='1') return;
+ rail.dataset.autoReady='1';
+ let timer=null, paused=false;
+ const step=()=> {
+   if(paused || !rail.isConnected) return;
+   const card=rail.querySelector('.g-character-card');
+   if(!card) return;
+   const gap=parseFloat(getComputedStyle(rail).gap)||18;
+   const max=rail.scrollWidth-rail.clientWidth;
+   if(rail.scrollLeft>=max-8) rail.scrollTo({left:0,behavior:'smooth'});
+   else rail.scrollBy({left:card.getBoundingClientRect().width+gap,behavior:'smooth'});
+ };
+ const start=()=>{if(timer) clearInterval(timer);timer=setInterval(step,3200)};
+ const stop=()=>{paused=true};
+ const resume=()=>{paused=false};
+ rail.addEventListener('mouseenter',stop);
+ rail.addEventListener('mouseleave',resume);
+ rail.addEventListener('touchstart',stop,{passive:true});
+ rail.addEventListener('touchend',()=>{setTimeout(resume,4500)},{passive:true});
+ rail.addEventListener('focusin',stop);
+ rail.addEventListener('focusout',resume);
+ start();
+})();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 </body>
