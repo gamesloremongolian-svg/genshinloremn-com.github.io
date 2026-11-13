@@ -34,37 +34,51 @@
   var noResults = document.getElementById('noResults');
   var items = Array.prototype.slice.call(document.querySelectorAll('.searchable'));
 
-  function runSearch() {
-    var q = input.value.trim().toLowerCase();
+  function runSearch(shouldScroll) {
+    var q = input.value.trim().toLocaleLowerCase('mn');
     var found = 0;
+    var firstMatch = null;
 
     items.forEach(function (el) {
-      var text = ((el.getAttribute('data-search') || '') + ' ' + el.textContent).toLowerCase();
+      var text = ((el.getAttribute('data-search') || '') + ' ' + el.textContent)
+        .toLocaleLowerCase('mn');
       var match = !q || text.indexOf(q) !== -1;
       el.hidden = !match;
-      if (match) found++;
+      if (match) {
+        found++;
+        if (!firstMatch) firstMatch = el;
+      }
     });
 
     if (!q) {
       message.textContent = '';
       noResults.hidden = true;
     } else if (found === 0) {
-      message.textContent = '';
+      message.textContent = '0 илэрц олдлоо';
       noResults.hidden = false;
     } else {
       message.textContent = found + ' илэрц олдлоо';
       noResults.hidden = true;
+    }
+
+    if (shouldScroll && q) {
+      var target = firstMatch || noResults;
+      if (target) {
+        window.setTimeout(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+      }
     }
   }
 
   if (form && input) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      runSearch();
-      var games = document.getElementById('games');
-      if (games && input.value.trim()) games.scrollIntoView({ behavior: 'smooth' });
+      runSearch(true);
     });
-    input.addEventListener('input', runSearch);
+    input.addEventListener('input', function () {
+      runSearch(false);
+    });
   }
 
   // ---- Footer year ----
