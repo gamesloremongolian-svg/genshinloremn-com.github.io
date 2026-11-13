@@ -710,11 +710,37 @@
   let list=Array.isArray(data)?data:(data?.characters||data?.data||Object.values(data||{}));
   return list.map((item,i)=>typeof item==='string'?{id:item,name:item.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase())}:{...item,id:item.id||item.key||item.name||String(i)}).filter(x=>x.name||x.id).sort((a,b)=>(a.name||a.id).localeCompare(b.name||b.id));
  };
- fetch(API+'/characters?details=true',{headers:{Accept:'application/json'}})
+ const fallback=[
+  {id:'aino',name:'Aino',vision:'Hydro',weapon:'Claymore',nation:'Nod-Krai',rarity:4,description:'Nod-Krai-тай холбоотой дүр. Дэлгэрэнгүй намтар редакцын судалгаагаар нэмэгдэнэ.'},
+  {id:'albedo',name:'Albedo',vision:'Geo',weapon:'Sword',nation:'Mondstadt',rarity:5,description:'Mondstadt-ийн Алхимич, Knights of Favonius-ийн судалгааны ахлагч. Хиймэл хүний гарал үүсэлтэй холбоотой нууцтай.'},
+  {id:'alhaitham',name:'Alhaitham',vision:'Dendro',weapon:'Sword',nation:'Sumeru',rarity:5,description:'Sumeru Akademiya-ийн бичээч. Мэдлэг, логик болон өөрийн бие даасан үзэлтэй.'},
+  {id:'arlecchino',name:'Arlecchino',vision:'Pyro',weapon:'Polearm',nation:'Fontaine',rarity:5,description:'Fatui Harbingers-ийн дөрөвдүгээр байр. House of the Hearth-ийн удирдагч.'},
+  {id:'furina',name:'Furina',vision:'Hydro',weapon:'Sword',nation:'Fontaine',rarity:5,description:'Fontaine-ийн шүүх, зөгнөл болон Focalors-ийн төлөвлөгөөтэй салшгүй холбоотой.'},
+  {id:'nahida',name:'Nahida',vision:'Dendro',weapon:'Catalyst',nation:'Sumeru',rarity:5,description:'Lesser Lord Kusanali хэмээн танигдсан Dendro Архонт. Irminsul-ийн түүхтэй холбоотой.'},
+  {id:'neuvillette',name:'Neuvillette',vision:'Hydro',weapon:'Catalyst',nation:'Fontaine',rarity:5,description:'Fontaine-ийн Ерөнхий шүүгч. Hydro Sovereign-ийн гарал үүсэлтэй.'},
+  {id:'zhongli',name:'Zhongli',vision:'Geo',weapon:'Polearm',nation:'Liyue',rarity:5,description:'Wangsheng Funeral Parlor-ийн зөвлөх. Өмнө нь Morax буюу Geo Архонт байсан.'}
+ ];
+ const renderFallback=()=>{
+  render(fallback);
+  const note=document.createElement('p');
+  note.className='g-character-loading';
+  note.textContent='Үндсэн дүрийн санг нөөц мэдээллээр харуулж байна. Бусад дүрүүдийг үе шаттай нэмнэ.';
+  rail.appendChild(note);
+ };
+ const controller=new AbortController();
+ const timeout=setTimeout(()=>controller.abort(),7000);
+ fetch(API+'/characters?details=true',{headers:{Accept:'application/json'},signal:controller.signal})
   .then(r=>{if(!r.ok) throw new Error('HTTP '+r.status);return r.json()})
-  .then(data=>{const list=normalize(data);if(!list.length) throw new Error('Empty roster');render(list);})
-  .catch(()=>Promise.reject(new Error('Primary character API failed')))
-  .catch(()=>{rail.innerHTML='<p class="g-character-loading">Дүрийн санг ачаалж чадсангүй. Интернэт холболтоо шалгаад хуудсыг дахин нээнэ үү.</p>';});
+  .then(data=>{
+   clearTimeout(timeout);
+   const list=normalize(data);
+   if(!list.length) throw new Error('Empty roster');
+   render(list);
+  })
+  .catch(()=>{
+   clearTimeout(timeout);
+   if(!rail.dataset.loaded) renderFallback();
+  });
 })();
 </script>
 
