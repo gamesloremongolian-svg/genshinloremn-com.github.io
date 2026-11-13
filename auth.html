@@ -30,7 +30,7 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 <input id="password" type="password" minlength="6" autocomplete="current-password" placeholder="Доод тал нь 6 тэмдэгт" required>
 <button class="submit" id="submitBtn" type="submit">Нэвтрэх</button>
 </form>
-<button class="google" id="facebookBtn" type="button"><span class="facebook-mark" aria-hidden="true">f</span> Facebook-ээр үргэлжлүүлэх</button>
+<button class="facebook" id="facebookBtn" type="button"><span class="facebook-mark" aria-hidden="true">f</span> Facebook-ээр үргэлжлүүлэх</button>
 <p id="message" role="status"></p>
 <a class="back" href="index.html">← Games Lore MN нүүр хуудас</a>
 </main>
@@ -38,7 +38,7 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 <script>
 const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
-const form=document.getElementById("authForm"), message=document.getElementById("message"), facebookBtn=document.getElementById("googleBtn");
+const form=document.getElementById("authForm"), message=document.getElementById("message"), facebookBtn=document.getElementById("facebookBtn");
 const submitBtn=document.getElementById("submitBtn");
 let client=null;
 function initSupabase(){
@@ -54,14 +54,14 @@ function initSupabase(){
  try {const {data:{session}}=await client.auth.getSession();if(session)location.replace("wiki.html");}
  catch(err){message.textContent="Холболтын алдаа: "+(err.message||"Дахин оролдоно уу.");}
 })();
-googleBtn.addEventListener("click",async()=>{
+facebookBtn.addEventListener("click",async()=>{
  if(!client&&!initSupabase()) return;
- googleBtn.disabled=true;message.textContent="Facebook нэвтрэлтийг нээж байна…";
+ facebookBtn.disabled=true;message.textContent="Facebook нэвтрэлтийг нээж байна…";
  try{
   const {error}=await client.auth.signInWithOAuth({provider:"facebook",options:{redirectTo:new URL("auth-callback.html",window.location.href).href}});
   if(error) message.textContent="Facebook нэвтрэлтийн алдаа: "+error.message;
  }catch(err){message.textContent="Алдаа: "+(err.message||"Дахин оролдоно уу.");}
- finally{googleBtn.disabled=false;}
+ finally{facebookBtn.disabled=false;}
 });
 form.addEventListener("submit",async e=>{
  e.preventDefault();
