@@ -20,7 +20,7 @@ const statusEl=document.getElementById("status");
 (async()=>{
  try{
   if(!window.supabase?.createClient)throw new Error("Supabase сан ачаалагдсангүй. Хуудсыг дахин ачаална уу.");
-  const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{flowType:"pkce",detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});
+  const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{flowType:"pkce",detectSessionInUrl:false,persistSession:true,autoRefreshToken:true}});
   const url=new URL(location.href);
   const params=new URLSearchParams(url.hash.replace(/^#/,""));
   const oauthError=url.searchParams.get("error_description")||url.searchParams.get("error")||params.get("error_description")||params.get("error");
