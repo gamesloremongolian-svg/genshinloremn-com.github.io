@@ -421,6 +421,17 @@
 }
 
 .g-character-card{display:block;color:inherit;text-decoration:none;cursor:pointer}.g-character-open{display:inline-block;margin-top:10px;color:#e9bd68;font-size:12px;font-weight:700}.g-character-card:hover .g-character-open{letter-spacing:.3px}
+
+/* Expandable lore topic reading panels */
+.genshin-page .g-topic-details{position:relative;z-index:2;margin-top:14px;padding-top:10px;border-top:1px solid rgba(233,189,104,.2)}
+.genshin-page .g-topic-details summary{cursor:pointer;list-style:none;color:#f2cc82;font-size:12px;font-weight:700;padding:8px 0}
+.genshin-page .g-topic-details summary::-webkit-details-marker{display:none}
+.genshin-page .g-topic-details summary:after{content:"＋";float:right;color:#e9bd68}
+.genshin-page .g-topic-details[open] summary:after{content:"−"}
+.genshin-page .g-topic-body{padding:8px 0 3px}
+.genshin-page .g-topic-body h4{color:#f6e6c4;font-size:16px;margin:5px 0 9px}
+.genshin-page .g-topic-body p{font-size:12px;line-height:1.85;color:#c2ccda}
+.genshin-page .g-topic-body .g-topic-note{color:#e9bd68;font-size:11px}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 </head>
@@ -549,28 +560,28 @@
         <div class="g-tag">ЕРТӨНЦИЙН ТҮҮХ</div>
         <h3>Архон ба Celestia</h3>
         <p>Тэнгэрлэг зарчим, Архонууд болон Celestia-ийн тухай судалгаа.</p>
-        <a class="g-back" href="#search">Судлах →</a>
+        <details class="g-topic-details"><summary>Дэлгэрэнгүй судлах</summary><div class="g-topic-body"><h4>Архон ба Celestia</h4><p>Тейватын долоон үндэстэн тус бүр өөрийн элементтэй холбоотой Архонтой. Архоны дайн дууссаны дараа долоон Архон улс орнуудаа захирах тогтолцоо бүрэлдсэн. Гэхдээ Архонуудын эрх мэдэл, Гнозисын үүрэг, Celestia-гийн оролцоо нь ижил зүйл биш.</p><p>Судлах гол асуултууд: Архоны дайн яагаад эхэлсэн бэ? Гнозис ямар үүрэгтэй вэ? Celestia болон Heavenly Principles-ийн харилцаа юу вэ?</p><p class="g-topic-note">Түлхүүр ойлголт: Архоны дайн · Гнозис · Celestia · Heavenly Principles</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="khaenriah khaenri'ah abyss харанхуй улс">
         <div class="g-tag">ЭРТНИЙ СОЁЛ ИРГЭНШИЛ</div>
         <h3>Khaenri'ah</h3>
         <p>Бурхадгүй эртний улс болон сүйрлийн нууц.</p>
-        <a class="g-back" href="#search">Судлах →</a>
+        <details class="g-topic-details"><summary>Дэлгэрэнгүй судлах</summary><div class="g-topic-body"><h4>Khaenri'ah ба Cataclysm</h4><p>Khaenri'ah бол Тейватын газрын зураг дээрх долоон Архоны үндэстний нэг биш, бурхадын шууд захиргаанаас ангид байсан эртний улс юм. Таван зууны өмнөх Cataclysm-ийн үеэр тус улс сүйрч, түүний үр дагавар Тейватын олон бүс нутагт нөлөөлсөн.</p><p>Khaenri'ah-ийн алхимич Gold, Abyss Order, хилийн харуулууд болон хараалд өртсөн хүмүүсийн түүх энэ сүйрэлтэй холбогдоно. Гэхдээ сүйрлийн бүх шалтгаан, Heavenly Principles-ийн оролцоо бүрэн тайлагдаагүй.</p><p class="g-topic-note">Түлхүүр ойлголт: Cataclysm · Gold · Abyss Order · Хараал</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="traveller abyss sibling lumine aether">
         <div class="g-tag">ҮНДСЭН ҮЙЛ ЯВДАЛ</div>
         <h3>Traveller-ийн аялал</h3>
         <p>Алдагдсан ихэр, долоон үндэстэн болон аяллын гол зорилго.</p>
-        <a class="g-back" href="#search">Судлах →</a>
+        <details class="g-topic-details"><summary>Дэлгэрэнгүй судлах</summary><div class="g-topic-body"><h4>Traveller-ийн аялал</h4><p>Traveller болон түүний ихэр Тейватад ирэхээс өмнө олон ертөнцөөр аялж байсан. Тэднийг энэ ертөнцөөс явах гэж байхад үл мэдэгдэх бурхан замыг нь хааж, хоёр ихрийг салгасан.</p><p>Тоглоомын үндсэн аялалд Traveller долоон үндэстнээр явж, тухайн орны Архонт болон оршин суугчдаас ихрийнхээ тухай мэдээлэл хайдаг. Харин нөгөө ихэр Abyss Order-той холбоотой замаар явж байгаа нь гол үйл явдлын зөрчлийг үүсгэдэг.</p><p class="g-topic-note">Түлхүүр ойлголт: Traveller · Алдагдсан ихэр · Unknown God · Abyss Order</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="archon venti zhongli raiden shogun nahida furina focalors mavuika">
         <div class="g-tag">АРХОНЫ САН</div>
         <h3>Архонууд</h3>
         <p>Тейватын долоон элементийн Архонууд, тэдний түүх болон эрх мэдлийн тухай.</p>
-        <a class="g-back" href="#search">Судлах →</a>
+        <details class="g-topic-details"><summary>Дэлгэрэнгүй судлах</summary><div class="g-topic-body"><h4>Abyss Order ба Fatui</h4><p>Abyss Order нь Тейватын одоогийн тогтолцоог эсэргүүцдэг байгууллага бөгөөд Khaenri'ah-ийн хараалд өртсөн хүмүүстэй холбоотой. Харин Fatui бол Snezhnaya-гийн улс төр, цэргийн хүчийг төлөөлдөг байгууллага бөгөөд Harbingers нь түүний дээд удирдлагын бүлэг юм.</p><p>Хоёр байгууллага хоёулаа Архонууд болон Тейватын түүхэнд нөлөөлдөг ч зорилго, бүтэц, арга барил нь өөр. Тэднийг нэг байгууллага мэт ойлгож болохгүй.</p><p class="g-topic-note">Түлхүүр ойлголт: Abyss Order · Fatui · Harbingers · Snezhnaya</p></div></details>
       </article>
 
 
