@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101522"><title>Genshin Lore Wiki | Games Lore MN</title>
+<style>
+:root{color-scheme:dark;--bg:#101522;--panel:#1a2639;--gold:#e9bd68;--cyan:#75d9e8;--text:#f4f0e8;--muted:#aab3c4;--line:#39465b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#263653,#101522 60%);color:var(--text);font-family:Arial,sans-serif;line-height:1.65}
+header{position:sticky;top:0;background:#101522ed;border-bottom:1px solid #ffffff20;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;z-index:5;gap:12px}
+.brand{font-weight:bold;letter-spacing:2px;color:var(--gold)}a{color:var(--cyan)}button{cursor:pointer;border:0;border-radius:8px;padding:11px 15px;font-weight:bold;background:var(--gold);color:#171b25}
+button.secondary{background:#26364c;color:var(--text);border:1px solid var(--line)}button.danger{background:#8f3944;color:white}
+main{width:min(1000px,92%);margin:34px auto 70px}.intro{margin-bottom:25px}.intro h1{color:var(--gold);font-size:clamp(28px,5vw,42px);margin:0}.muted{color:var(--muted)}.panel{background:#1a2639eF;border:1px solid #ffffff20;border-radius:14px;padding:20px;margin:18px 0}
+.toolbar{display:grid;grid-template-columns:1fr 220px;gap:10px}input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:#111a29;color:white;font:inherit;margin:5px 0 12px}
+textarea{min-height:180px;resize:vertical}label{display:block;font-size:13px;color:var(--muted)}
+.article{padding:18px 0;border-bottom:1px solid #ffffff20}.article:last-child{border:0}.article h2{color:var(--gold);margin:3px 0}.tag{color:var(--cyan);font-size:12px}.body{white-space:pre-wrap;line-height:1.85;margin-top:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.hidden{display:none!important}.status{min-height:24px;color:var(--cyan);font-size:13px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){header{padding:12px 4%}main{width:92%;margin-top:22px}.toolbar,.formgrid{grid-template-columns:1fr}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="brand">GAMES LORE MN · WIKI</div><div><span id="userEmail" class="muted"></span> <button id="logout" class="secondary">Гарах</button></div></header>
+<main>
+<section class="intro"><div class="tag">PRIVATE KNOWLEDGE ARCHIVE</div><h1>Genshin Lore Wiki</h1><p class="muted">Нэвтэрсэн хэрэглэгчид нийтлэлийг уншина. Админ шинэ нийтлэл нэмэх, засах, устгах эрхтэй.</p></section>
+<section id="adminPanel" class="panel hidden">
+<h2 style="margin-top:0;color:var(--gold)">Админ · Нийтлэл удирдах</h2>
+<form id="articleForm">
+<input type="hidden" id="editId">
+<div class="formgrid">
+<div><label for="category">Ангиллын код</label><input id="category" placeholder="archon, character, world" required></div>
+<div><label for="categoryLabel">Ангиллын нэр</label><input id="categoryLabel" placeholder="Архонууд" required></div>
+</div>
+<label for="title">Гарчиг</label><input id="title" required>
+<label for="description">Товч тайлбар</label><input id="description">
+<label for="keywords">Түлхүүр үгс (таслалаар тусгаарлана)</label><input id="keywords" placeholder="Celestia, Archon, Teyvat">
+<label for="body">Нийтлэлийн үндсэн агуулга</label><textarea id="body" required></textarea>
+<div class="actions"><button id="saveBtn" type="submit">Нийтлэх</button><button id="cancelEdit" type="button" class="secondary hidden">Болих</button></div>
+</form><p id="adminStatus" class="status" role="status"></p>
+</section>
+<section class="panel">
+<div class="toolbar"><input id="search" placeholder="Нийтлэл хайх..."><select id="categoryFilter"><option value="">Бүх ангилал</option></select></div>
+<p id="status" class="status">Wiki ачаалж байна…</p><div id="articles"></div>
+</section>
+</main>
+<script>
+const SUPABASE_URL="https://zyocifqdpbgwlgwtrgnq.supabase.co";
+const SUPABASE_KEY="sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
+const statusEl=document.getElementById("status"),list=document.getElementById("articles");
+function loadSdk(src){return new Promise((resolve,reject)=>{const s=document.createElement("script");s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error("SDK татаж чадсангүй"));document.head.appendChild(s);});}
+async function sdk(){if(window.supabase?.createClient)return window.supabase;try{await loadSdk("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2")}catch(e){}if(window.supabase?.createClient)return window.supabase;await loadSdk("https://unpkg.com/@supabase/supabase-js@2");return window.supabase;}
+let db, articles=[], isAdmin=false;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function start(){
+ try{
+  const sdkLib=await sdk();db=sdkLib.createClient(SUPABASE_URL,SUPABASE_KEY);
+  const {data:{session},error:sessionError}=await db.auth.getSession();
+  if(sessionError)throw sessionError;
+  if(!session){location.replace("auth.html");return;}
+  document.getElementById("userEmail").textContent=session.user.email||"Нэвтэрсэн";
+  const {data:adminRow,error:adminError}=await db.from("wiki_admins").select("user_id").eq("user_id",session.user.id).maybeSingle();
+  if(adminError)throw adminError;
+  isAdmin=!!adminRow;
+  if(isAdmin)document.getElementById("adminPanel").classList.remove("hidden");
+  await loadArticles();
+ }catch(e){statusEl.textContent="Алдаа: "+(e.message||"Холболтыг шалгана уу.");}
+}
+async function loadArticles(){
+ statusEl.textContent="Нийтлэлүүдийг ачаалж байна…";
+ const {data,error}=await db.from("wiki_articles").select("*").order("updated_at",{ascending:false});
+ if(error)throw error;articles=data||[];fillCategories();render();
+ statusEl.textContent=articles.length?articles.length+" нийтлэл олдлоо.":"Одоогоор Wiki-д нийтлэл алга. Админ эхний нийтлэлээ нэмнэ үү.";
+}
+function fillCategories(){
+ const sel=document.getElementById("categoryFilter"),current=sel.value;
+ const cats=[...new Map(articles.map(a=>[a.category,a.category_label])).entries()];
+ sel.innerHTML='<option value="">Бүх ангилал</option>'+cats.map(([v,l])=>'<option value="'+esc(v)+'">'+esc(l)+'</option>').join("");
+ sel.value=current;
+}
+function render(){
+ const q=document.getElementById("search").value.toLowerCase().trim(),cat=document.getElementById("categoryFilter").value;
+ const rows=articles.filter(a=>(!cat||a.category===cat)&&(!q||[a.title,a.description,a.body,a.category_label,...(a.keywords||[])].join(" ").toLowerCase().includes(q)));
+ list.innerHTML=rows.length?rows.map(a=>'<article class="article"><div class="tag">'+esc(a.category_label)+'</div><h2>'+esc(a.title)+'</h2><div class="muted">'+esc(a.description)+'</div><div class="body">'+esc(a.body)+'</div>'+(isAdmin?'<div class="actions"><button class="secondary" data-edit="'+esc(a.id)+'">Засах</button><button class="danger" data-delete="'+esc(a.id)+'">Устгах</button></div>':'')+'</article>').join(""):'<p class="muted">Тохирох нийтлэл олдсонгүй.</p>';
+}
+document.getElementById("search").addEventListener("input",render);document.getElementById("categoryFilter").addEventListener("change",render);
+document.getElementById("logout").addEventListener("click",async()=>{await db?.auth.signOut();location.replace("auth.html");});
+document.getElementById("articleForm").addEventListener("submit",async e=>{
+ e.preventDefault();const msg=document.getElementById("adminStatus"),id=document.getElementById("editId").value;
+ const record={category:document.getElementById("category").value.trim(),category_label:document.getElementById("categoryLabel").value.trim(),title:document.getElementById("title").value.trim(),description:document.getElementById("description").value.trim(),keywords:document.getElementById("keywords").value.split(",").map(x=>x.trim()).filter(Boolean),body:document.getElementById("body").value.trim(),updated_at:new Date().toISOString()};
+ const btn=document.getElementById("saveBtn");btn.disabled=true;msg.textContent="Хадгалж байна…";
+ try{const result=id?await db.from("wiki_articles").update(record).eq("id",id):await db.from("wiki_articles").insert({...record,id:"glmn-"+crypto.randomUUID()});if(result.error)throw result.error;msg.textContent="Амжилттай хадгаллаа.";resetForm();await loadArticles();}
+ catch(err){msg.textContent="Хадгалах алдаа: "+err.message;}finally{btn.disabled=false;}
+});
+function resetForm(){document.getElementById("articleForm").reset();document.getElementById("editId").value="";document.getElementById("saveBtn").textContent="Нийтлэх";document.getElementById("cancelEdit").classList.add("hidden");}
+document.getElementById("cancelEdit").addEventListener("click",resetForm);
+list.addEventListener("click",async e=>{
+ const edit=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");
+ if(edit){const a=articles.find(x=>x.id===edit.dataset.edit);if(!a)return;document.getElementById("editId").value=a.id;for(const [id,val] of Object.entries({category:a.category,categoryLabel:a.category_label,title:a.title,description:a.description,keywords:(a.keywords||[]).join(", "),body:a.body}))document.getElementById(id).value=val;document.getElementById("saveBtn").textContent="Өөрчлөлт хадгалах";document.getElementById("cancelEdit").classList.remove("hidden");document.getElementById("adminStatus").textContent="Нийтлэлийг засварлаж байна.";}
+ if(del&&confirm("Энэ нийтлэлийг устгах уу?")){const {error}=await db.from("wiki_articles").delete().eq("id",del.dataset.delete);if(error){alert("Устгах алдаа: "+error.message);return;}await loadArticles();}
+});
+start();
+</script>
+</body></html>
