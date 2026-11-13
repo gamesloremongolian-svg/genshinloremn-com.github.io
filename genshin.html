@@ -343,6 +343,45 @@
 .g-character-loading{color:#c2ccda;padding:24px;text-align:center;min-width:100%}
 .g-character-meta{color:#e9bd68!important;font-size:11px!important}
 
+
+/* CLEAN LAYOUT REFINEMENT */
+.genshin-page .g-container{width:min(1120px,calc(100% - 40px))}
+.genshin-page .g-section{padding:clamp(48px,6vw,76px) 0}
+.genshin-page .g-heading{margin-bottom:30px}
+.g-character-lore-subsection{width:100%;margin:0 0 34px;padding:clamp(18px,3vw,30px);border:1px solid rgba(233,189,104,.22);border-radius:18px;background:linear-gradient(145deg,rgba(29,44,66,.72),rgba(15,25,42,.78));}
+.g-character-lore-subsection .g-heading{margin-bottom:22px}
+.genshin-page .g-grid.g-character-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+.g-character-track .g-character-card{min-width:0;height:100%;display:flex;flex-direction:column}
+.genshin-page .g-character-image{width:100%;height:250px;aspect-ratio:4/5;object-fit:contain;padding:8px}
+.genshin-page .g-character-info{flex:1;padding:16px}
+.genshin-page .g-character-info h3{font-size:17px;margin:9px 0}
+.genshin-page .g-character-info p{margin:7px 0}
+.genshin-page .g-lore-topics{margin-top:24px}
+.genshin-page .g-lore-topics>.g-card{min-height:190px}
+.genshin-page .g-archon-grid{gap:18px}
+.genshin-page .g-archon-card{border-radius:14px}
+.g-character-loading{grid-column:1/-1;margin:0 auto}
+@media(max-width:900px){
+ .genshin-page .g-grid.g-character-track{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ .genshin-page .g-container{width:calc(100% - 28px)}
+ .genshin-page .g-grid.g-character-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .genshin-page .g-character-image{height:210px}
+ .genshin-page .g-character-info{padding:12px}
+ .genshin-page .g-character-info h3{font-size:15px}
+ .genshin-page .g-lore-topics{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .genshin-page .g-lore-topics>.g-card{padding:16px;min-height:170px}
+ .genshin-page .g-archon-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .genshin-page .g-archon-card{padding:16px;min-height:175px}
+}
+@media(max-width:390px){
+ .genshin-page .g-grid.g-character-track{grid-template-columns:1fr}
+ .genshin-page .g-character-image{height:290px}
+ .genshin-page .g-lore-topics{grid-template-columns:1fr}
+ .genshin-page .g-archon-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 
@@ -446,8 +485,7 @@
       <p>Тоглоомын түүх, нууцлаг үйл явдал болон онолууд.</p>
     </div>
 
-  <div class="g-container">
-<div class="g-character-lore-subsection" id="characters">
+    <div class="g-character-lore-subsection" id="characters">
     <div class="g-heading">
       <div class="g-eyebrow">CHARACTER DATABASE</div>
       <h2>Genshin <span class="g-gold">дүрүүд</span></h2>
@@ -456,11 +494,9 @@
     <div class="g-grid g-character-track" id="genshinCharacterTrack" aria-live="polite">
       <p class="g-character-loading" id="genshinCharacterStatus">Дүрүүдийн сан ачаалж байна...</p>
     </div>
-  </div>
-  </div>
+    </div>
 
-
-    <div class="g-grid">
+    <div class="g-grid g-lore-topics">
       <article class="g-card searchable" data-search="archon архон celestia heavenly principles">
         <div class="g-tag">WORLD HISTORY</div>
         <h3>Архон ба Celestia</h3>
@@ -488,12 +524,7 @@
         <p>Тейватын долоон элементийн Архонууд, тэдний түүх болон эрх мэдлийн тухай.</p>
         <a class="g-back" href="#search">Судлах →</a>
       </article>
-      <article class="g-card searchable" data-search="genshin дүрүүд character archive playable characters">
-        <div class="g-tag">CHARACTER DATABASE</div>
-        <h3>Genshin дүрүүд</h3>
-        <p>Бүх дүрийн гарал үүсэл, элемент, зэвсэг болон Lore мэдээллийг судлах архив.</p>
-        <a class="g-back" href="#characters">Дүрүүдийг үзэх →</a>
-      </article>
+
 
   
 
