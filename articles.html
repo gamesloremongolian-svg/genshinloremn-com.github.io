@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Games Lore MN — Монгол хэл дээрх тоглоомын lore нийтлэлийн архив.">
+  <meta name="theme-color" content="#090e18">
+  <title>Нийтлэлийн архив | Games Lore MN</title>
+  <link rel="stylesheet" href="./assets/css/archive.css">
+</head>
+<body>
+<header><div class="container nav">
+  <a class="brand" href="./index.html">GAMES LORE MN</a>
+  <nav class="navlinks" aria-label="Үндсэн цэс"><a href="./index.html">Нүүр</a><a href="./articles.html">Нийтлэлүүд</a></nav>
+</div></header>
+<main class="container">
+  <div class="eyebrow">Lore library</div>
+  <h1>Нийтлэлийн архив</h1>
+  <p class="lead">Тоглоом, сэдэв, ангиллаар нийтлэлүүдийг шүүж уншаарай.</p>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Нийтлэл хайх..." aria-label="Нийтлэл хайх">
+    <select id="gameFilter" aria-label="Тоглоомоор шүүх"><option value="">Бүх тоглоом</option></select>
+    <select id="categoryFilter" aria-label="Ангиллаар шүүх"><option value="">Бүх ангилал</option></select>
+  </div>
+  <section class="grid" id="postGrid" aria-live="polite"></section>
+</main>
+<footer><div class="container">© <span id="year"></span> Games Lore MN · Game Worlds. Deep Stories.</div></footer>
+<script src="./assets/js/posts.js"></script>
+<script>
+"use strict";
+const posts = Array.isArray(window.GAMES_LORE_POSTS) ? window.GAMES_LORE_POSTS : [];
+const grid = document.getElementById("postGrid");
+const search = document.getElementById("search");
+const gameFilter = document.getElementById("gameFilter");
+const categoryFilter = document.getElementById("categoryFilter");
+document.getElementById("year").textContent = new Date().getFullYear();
+const unique = values => [...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,"mn"));
+unique(posts.map(p=>p.game)).forEach(v=>gameFilter.add(new Option(v,v)));
+unique(posts.map(p=>p.category)).forEach(v=>categoryFilter.add(new Option(v,v)));
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+ const q=search.value.trim().toLocaleLowerCase("mn-MN");
+ const filtered=posts.filter(p=>(!q||[p.title,p.game,p.category,p.excerpt].join(" ").toLocaleLowerCase("mn-MN").includes(q))&&(!gameFilter.value||p.game===gameFilter.value)&&(!categoryFilter.value||p.category===categoryFilter.value));
+ grid.innerHTML=filtered.length?filtered.map(p=>`<article class="card"><div class="cardbody"><span class="tag">${esc(p.game)} · ${esc(p.category)}</span><h2><a href="./article.html?slug=${encodeURIComponent(p.slug)}">${esc(p.title)}</a></h2><p>${esc(p.excerpt)}</p><div class="meta">${esc(p.date||"Огноо тодорхойгүй")} · <a href="./article.html?slug=${encodeURIComponent(p.slug)}">Дэлгэрэнгүй унших →</a></div></div></article>`).join(""):`<div class="empty">Одоогоор тохирох нийтлэл алга байна.</div>`;
+}
+[search,gameFilter,categoryFilter].forEach(el=>el.addEventListener("input",render));
+render();
+</script>
+</body></html>
