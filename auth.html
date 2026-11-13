@@ -23,7 +23,7 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 <p class="sub">Wiki-ийн мэдээллийг уншихын тулд бүртгүүлэх эсвэл нэвтэрнэ үү.</p>
 <div class="tabs">
 <button type="button" id="loginTab" class="active">Нэвтрэх</button>
-<button type="button" id="signupTab">Бүртгүүлэх</button>
+<a id="signupTab" href="signup.html" style="display:grid;place-items:center;padding:12px;border-radius:9px;border:1px solid #46536a;background:#121c2d;color:#f4f0e8;font-weight:bold;text-decoration:none">Бүртгүүлэх</a>
 </div>
 <form id="authForm">
 <label for="email">И-мэйл хаяг</label>
@@ -40,7 +40,7 @@ label{display:block;font-size:13px;margin:14px 0 7px}input{width:100%;padding:14
 const SUPABASE_URL = "https://zyocifqdpbgwlgwtrgnq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
 const form=document.getElementById("authForm"), message=document.getElementById("message");
-const loginTab=document.getElementById("loginTab"), signupTab=document.getElementById("signupTab"), submitBtn=document.getElementById("submitBtn");
+const loginTab=document.getElementById("loginTab"), submitBtn=document.getElementById("submitBtn");
 let mode="login", client=null;
 function setMode(next){
  mode=next;
