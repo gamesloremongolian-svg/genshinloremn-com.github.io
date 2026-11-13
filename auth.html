@@ -62,7 +62,7 @@ function initSupabase(){
 }
 (async()=>{
  if(!initSupabase()) return;
- try {const {data:{session}}=await client.auth.getSession();if(session)location.replace("genshin.html");}
+ try {const {data:{session}}=await client.auth.getSession();if(session)location.replace("wiki.html");}
  catch(err){message.textContent="Холболтын алдаа: "+(err.message||"Дахин оролдоно уу.");}
 })();
 form.addEventListener("submit",async e=>{
@@ -76,7 +76,7 @@ form.addEventListener("submit",async e=>{
    : await client.auth.signInWithPassword({email,password});
   if(result.error) message.textContent=result.error.message;
   else if(mode==="signup"&&!result.data.session) message.textContent="Бүртгэл үүслээ. И-мэйлээ баталгаажуулаад нэвтэрнэ үү.";
-  else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("genshin.html");}
+  else {message.textContent="Амжилттай. Wiki руу шилжүүлж байна…";location.replace("wiki.html");}
  }catch(err){message.textContent="Алдаа: "+(err.message||"Интернэтээ шалгаад дахин оролдоно уу.");}
  finally{submitBtn.disabled=false;submitBtn.textContent=mode==="login"?"Нэвтрэх":"Бүртгүүлэх";}
 });</script>
