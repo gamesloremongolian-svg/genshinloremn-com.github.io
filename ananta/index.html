@@ -16,9 +16,22 @@ header{background:rgba(6,15,29,.95);border-bottom-color:rgba(99,231,242,.28)}
 .topic:hover{border-color:#ff9a35;transform:translateY(-2px)}
 input:focus,select:focus{outline:1px solid #63e7f2;border-color:#63e7f2}
 
-</style></head><body>
+</style><style>
+/* ANANTA dedicated neon-city theme */
+:root{--bg:#090e1b;--panel:#111b2b;--panel2:#1b2a3e;--gold:#ff9a45;--cyan:#64e8f0;--text:#f2f5ff;--muted:#b0bfd0;--line:rgba(100,232,240,.28)}
+body{background:radial-gradient(ellipse at 80% 12%,#174d65aa,transparent 38%),radial-gradient(ellipse at 12% 38%,#8c3b1e55,transparent 42%),linear-gradient(155deg,#080d19,#101f31 60%,#090e18)}
+header{background:#07111deb;border-color:#64e8f044}
+.hero{background:linear-gradient(105deg,#081626f5,#0c2948aa),radial-gradient(circle at 85% 20%,#ff8d3c66,transparent 38%),repeating-linear-gradient(135deg,#64e8f011 0 1px,transparent 1px 12px);border:1px solid #64e8f044;border-top:0;border-radius:0 0 20px 20px}
+.hero:before{content:"NOVA CITY  /  NEON DISTRICT";display:block;color:#64e8f077;font-size:clamp(10px,2vw,16px);font-weight:900;letter-spacing:4px;margin-bottom:12px}
+.hero h1,.head h2,.article h3{color:#ffad62;text-shadow:0 0 22px #ff813544}
+.btn{background:linear-gradient(135deg,#ffb45e,#ff762f);color:#211407}.btn.alt{border-color:#64e8f055}
+.topic,.panel{background:linear-gradient(135deg,#1b3449f5,#0e1d30f5);border-color:#64e8f044}
+.topic:hover{border-color:#ff9a45;transform:translateY(-3px)}
+input:focus,select:focus{outline:1px solid #64e8f0;border-color:#64e8f0}
+</style>
+</head><body>
 <header><nav><a class="brand" href="../index.html">GAMES LORE MN</a><div class="navlinks"><a href="../index.html">Нүүр</a><a href="../lore-center.html">Нэгдсэн сан</a><a href="../wiki-v2.html">Нэгдсэн Wiki</a><a href="../auth.html">Нэвтрэх</a></div></nav></header>
-<main class="wrap"><section class="hero"><div class="kicker">MONGOLIAN GAME LORE ARCHIVE · A</div><h1>ANANTA</h1><div class="kicker">NOVA CITY · CHARACTERS · MYSTERIES</div><p>Nova City-ийн орчин, дүрүүд, бүлэглэлүүд, үйл явдал болон тоглоомын нууцыг цэгцтэй хадгалах судалгааны архив.</p><div class="actions"><a class="btn" href="../wiki-v2.html">Админ нийтлэл нэмэх ↗</a><a class="btn alt" href="./index.html">← Нүүр хуудас</a></div></section>
+<main class="wrap"><section class="hero"><div class="kicker">MONGOLIAN GAME LORE ARCHIVE · A</div><h1>ANANTA</h1><div class="kicker">NOVA CITY · CHARACTERS · MYSTERIES</div><p>Nova City-ийн орчин, дүрүүд, бүлэглэлүүд, үйл явдал болон тоглоомын нууцыг цэгцтэй хадгалах судалгааны архив.</p><div class="actions"><a class="btn" href="../wiki-v2.html">Админ нийтлэл нэмэх ↗</a><a class="btn alt" href="../index.html">← Нүүр хуудас</a></div></section>
 <section><div class="head"><h2>Судалгааны ангиллууд</h2><p>Энэ тоглоомын мэдээллийг дараах сэдвээр ангилан хадгална.</p></div><div class="topics"><div class="topic"><strong>01 · Nova City</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>02 · Дүрүүд</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>03 · Бүлэглэлүүд</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>04 · Хотын бүсүүд</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>05 · Үйл явдал</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>06 · Нууц ба онол</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div></div></section>
 <section><div class="head"><h2>ANANTA — Lore нийтлэлүүд</h2><p>Нэвтэрсэн хэрэглэгчид энэ тоглоомын нийтлэлүүдийг унших боломжтой.</p></div><div class="panel"><div class="toolbar"><input id="search" type="search" placeholder="Нийтлэл хайх..."><select id="filter"><option value="">Бүх ангилал</option></select></div><p id="status" class="status">Ачаалж байна…</p><div id="articles"></div></div></section></main>
 <footer><div class="wrap">© 2026 Games Lore MN · Fan-made community archive. Албан ёсны тоглоомын сайт биш.</div></footer>
