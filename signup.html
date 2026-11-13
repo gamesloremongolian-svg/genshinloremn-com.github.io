@@ -14,21 +14,35 @@ button{width:100%;padding:14px;margin-top:20px;border:0;border-radius:9px;backgr
 <label for="password">Нууц үг</label><input id="password" type="password" minlength="6" autocomplete="new-password" placeholder="Доод тал нь 6 тэмдэгт" required>
 <button id="submitBtn" type="submit">Бүртгүүлэх</button></form><p id="message" role="status"></p>
 <a class="back" href="auth.html">← Нэвтрэх хуудас руу буцах</a></main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const message=document.getElementById("message"),button=document.getElementById("submitBtn");
-const URL="https://zyocifqdpbgwlgwtrgnq.supabase.co",KEY="sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
+const SUPABASE_URL="https://zyocifqdpbgwlgwtrgnq.supabase.co";
+const SUPABASE_KEY="sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf";
+function loadSupabase(src){return new Promise((resolve,reject)=>{const s=document.createElement("script");s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error("CDN ачаалсангүй"));document.head.appendChild(s);});}
+async function getSupabase(){
+ if(window.supabase?.createClient)return window.supabase;
+ try{await loadSupabase("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2");}catch(e){}
+ if(window.supabase?.createClient)return window.supabase;
+ try{await loadSupabase("https://unpkg.com/@supabase/supabase-js@2");}catch(e){}
+ if(window.supabase?.createClient)return window.supabase;
+ throw new Error("Supabase сан ачаалсангүй. Интернэт эсвэл browser-ийн хамгаалалтыг шалгана уу.");
+}
 document.getElementById("signupForm").addEventListener("submit",async e=>{
  e.preventDefault();
- if(!window.supabase){message.textContent="Supabase холболтын сан ачаалсангүй. Интернэтээ шалгаад хуудсыг дахин нээнэ үү.";return;}
- button.disabled=true;button.textContent="Бүртгэж байна…";message.textContent="";
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ if(!email||!password){message.textContent="И-мэйл болон нууц үгээ бүрэн оруулна уу.";return;}
+ if(password.length<6){message.textContent="Нууц үг хамгийн багадаа 6 тэмдэгт байна.";return;}
+ button.disabled=true;button.textContent="Холбогдож байна…";message.textContent="Supabase-тэй холбогдож байна…";
  try{
-  const client=window.supabase.createClient(URL,KEY);
-  const {data,error}=await client.auth.signUp({email:document.getElementById("email").value.trim(),password:document.getElementById("password").value});
-  if(error) message.textContent="Бүртгэлийн алдаа: "+error.message;
-  else if(data.session) {message.textContent="Амжилттай бүртгэгдлээ. Wiki руу шилжүүлж байна…";location.href="genshin.html";}
-  else message.textContent="Бүртгэл үүслээ. Email confirmation идэвхтэй байвал и-мэйлээ баталгаажуулаарай. Дараа нь нэвтэрнэ үү.";
- }catch(err){message.textContent="Алдаа: "+(err.message||"Дахин оролдоно уу.");}
- finally{button.disabled=false;button.textContent="Бүртгүүлэх";}
+  const sdk=await getSupabase();
+  const client=sdk.createClient(SUPABASE_URL,SUPABASE_KEY);
+  const {data,error}=await client.auth.signUp({email,password});
+  if(error)throw error;
+  if(data.session){message.textContent="Бүртгэл амжилттай. Wiki руу шилжүүлж байна…";location.href="genshin.html";}
+  else{message.textContent="Бүртгэл үүслээ. И-мэйл баталгаажуулалт унтраалттай бол одоо нэвтэрч болно. Баталгаажуулалт асаалттай бол inbox/spam-аа шалгана уу.";}
+ }catch(err){
+  message.textContent="Бүртгэлийн алдаа: "+(err?.message||"Тодорхойгүй алдаа")+". Дахин оролдоно уу.";
+ }finally{button.disabled=false;button.textContent="Бүртгүүлэх";}
 });
 </script></body></html>
