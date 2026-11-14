@@ -63,7 +63,7 @@ function initSupabase(){
   try{
     const {data,error}=await client.auth.getSession();
     if(error) throw error;
-    if(data.session) window.location.replace('wiki.html');
+    if(data.session) window.location.replace('wiki-v2.html');
   }catch(error){
     message.textContent='Холболтын алдаа: '+(error.message||'Дахин оролдоно уу.');
   }
@@ -82,7 +82,7 @@ form.addEventListener('submit',async(event)=>{
     if(error) throw error;
     if(!data.session) throw new Error('Нэвтрэх session үүссэнгүй.');
     message.textContent='Амжилттай нэвтэрлээ. Wiki руу шилжүүлж байна…';
-    window.location.replace('wiki.html');
+    window.location.replace('wiki-v2.html');
   }catch(error){
     message.textContent='Нэвтрэхэд алдаа гарлаа: '+(error.message||'И-мэйл болон нууц үгээ шалгана уу.');
   }finally{
