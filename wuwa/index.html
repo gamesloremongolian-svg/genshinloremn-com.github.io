@@ -480,4 +480,50 @@ body.glm-wuwa .glm-bottom-nav a span:first-child{color:#e8c783!important}
 }
 </style>
 
+
+<style id="wuwa-touch-device-layout">
+/* Touch-device layout: also applies when Android Chrome requests Desktop site. */
+@media (pointer:coarse) and (hover:none){
+ body.glm-wuwa{overflow-x:hidden!important;padding:0 0 calc(100px + env(safe-area-inset-bottom))!important}
+ body.glm-wuwa header{
+  position:sticky!important;top:0!important;left:auto!important;right:auto!important;bottom:auto!important;
+  width:100%!important;height:auto!important;min-height:0!important;margin:0!important;
+  border-radius:0 0 16px 16px!important;z-index:100!important;
+ }
+ body.glm-wuwa header nav{
+  width:100%!important;max-width:100%!important;min-height:0!important;height:auto!important;
+  margin:0!important;padding:11px 16px!important;display:flex!important;
+  flex-direction:column!important;align-items:flex-start!important;gap:7px!important;
+ }
+ body.glm-wuwa .brand{display:block!important;white-space:nowrap!important;font-size:15px!important}
+ body.glm-wuwa .navlinks{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+  width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;
+  white-space:nowrap!important;gap:7px!important;padding:2px 0 4px!important;scrollbar-width:none!important;
+ }
+ body.glm-wuwa .navlinks::-webkit-scrollbar{display:none!important}
+ body.glm-wuwa .navlinks a{flex:0 0 auto!important;padding:6px 9px!important;font-size:11px!important}
+ body.glm-wuwa .wrap{
+  display:block!important;width:calc(100% - 28px)!important;max-width:100%!important;
+  margin:14px auto 0!important;padding:0!important;left:auto!important;right:auto!important;
+ }
+ body.glm-wuwa .hero{
+  width:100%!important;min-height:390px!important;margin:0!important;
+  padding:190px 19px 25px!important;border-radius:16px!important;
+  background-position:center 38%!important;
+ }
+ body.glm-wuwa .hero h1{font-size:clamp(34px,7vw,48px)!important}
+ body.glm-wuwa section{padding:30px 0!important}
+ body.glm-wuwa .character-stage{grid-template-columns:minmax(0,1fr)!important}
+ body.glm-wuwa .character-picker{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.glm-wuwa .character-feature{width:100%!important;min-width:0!important}
+ body.glm-wuwa .topics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.glm-wuwa .roster-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.glm-wuwa .glm-bottom-nav{z-index:120!important}
+}
+@media (pointer:coarse) and (hover:none) and (max-width:390px){
+ body.glm-wuwa .character-picker,body.glm-wuwa .topics{grid-template-columns:1fr!important}
+}
+</style>
+
 </body></html>
