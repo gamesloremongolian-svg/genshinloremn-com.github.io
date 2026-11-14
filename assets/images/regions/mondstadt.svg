@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Mondstadt — wind city">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#77d6ef"/><stop offset="1" stop-color="#e6f3ff"/></linearGradient><linearGradient id="fade" x2="0" y2="1"><stop stop-color="#101b2b" stop-opacity="0"/><stop offset="1" stop-color="#101b2b" stop-opacity=".48"/></linearGradient></defs>
+<rect width="1200" height="600" fill="url(#sky)"/>
+<g fill="#fff" opacity=".28"><path d="M90 110Q130 35 210 80Q270 15 340 90Q400 125 350 150H120Q70 145 90 110Z"/><path d="M760 90Q810 15 900 60Q960 0 1040 70Q1110 100 1060 135H800Q735 130 760 90Z"/></g>
+<circle cx="900" cy="125" r="58" fill="#fff3c5" opacity=".9"/><path d="M0 360L190 170 340 345 510 150 730 360 900 205 1200 370V600H0Z" fill="#83c6b4"/><path d="M0 420L250 280 430 410 680 250 940 420 1100 300 1200 390V600H0Z" fill="#4f987f"/><path d="M370 360V250L420 205 470 250V360M440 360V210L495 160 550 210V360M520 360V265L575 225 630 265V360" fill="#f4e6c5"/><path d="M425 205V150L495 105 565 150V205M510 250V195L575 155 640 195V250" fill="#c77d62"/><path d="M0 500Q300 420 600 500T1200 480V600H0Z" fill="#4b8e79"/>
+<path d="M0 520Q280 475 560 525T1200 510V600H0Z" fill="#d7ebdc" opacity=".3"/>
+<rect width="1200" height="600" fill="url(#fade)"/>
+<g fill="#fff" opacity=".55"><circle cx="110" cy="190" r="3"/><circle cx="320" cy="110" r="2"/><circle cx="1080" cy="210" r="3"/></g>
+</svg>
