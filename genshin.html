@@ -504,6 +504,19 @@
 }
 
 </style>
+<style>
+
+/* Expandable Teyvat region cards */
+.genshin-page .g-region-details{position:relative;z-index:3;margin-top:14px;padding-top:9px;border-top:1px solid rgba(233,189,104,.22)}
+.genshin-page .g-region-details summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:34px;cursor:pointer;list-style:none;color:#f2cc82;font-size:12px;font-weight:700;touch-action:manipulation}
+.genshin-page .g-region-details summary::-webkit-details-marker{display:none}
+.genshin-page .g-region-details summary:after{content:"＋";font-size:17px;color:#75d9e8}
+.genshin-page .g-region-details[open] summary:after{content:"−"}
+.genshin-page .g-region-body{padding:8px 0 2px}
+.genshin-page .g-region-body p{font-size:12px;line-height:1.8;color:#cbd5e2;margin:7px 0}
+.genshin-page .g-region-details[open]{background:rgba(7,15,29,.2);border-radius:8px;padding:9px 10px}
+
+</style>
 </head>
 
 <body class="genshin-page">
@@ -559,6 +572,7 @@
         <h3>Mondstadt</h3>
         <div class="g-tag">ANEMO • FREEDOM</div>
         <p>Салхины үндэстэн. Эрх чөлөө болон Анемо Архонттой холбоотой түүх.</p>
+        <details class="g-region-details"><summary>Дэлгэрэнгүй мэдээлэл</summary><div class="g-region-body"><p>Mondstadt бол салхи, эрх чөлөөний үзэл санаатай холбоотой хот-улс. Барбатос буюу Venti нь Анемо Архонт бөгөөд олон зуун жилийн өмнөх бослого, эрх чөлөөний төлөөх тэмцэл тус улсын түүхэнд чухал байр эзэлдэг.</p><p>Судлах гол зүйлс: Favonius-ийн баатрууд, Four Winds, Decarabian-ийн хуучин хот, Dragonspine болон Durin-ийн түүх.</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="liyue liyue geo zhongli гэрээ">
@@ -566,6 +580,7 @@
         <h3>Liyue</h3>
         <div class="g-tag">GEO • CONTRACTS</div>
         <p>Гэрээ хэлцэл, Адептус болон Geo Архонтын тухай домог.</p>
+        <details class="g-region-details"><summary>Дэлгэрэнгүй мэдээлэл</summary><div class="g-region-body"><p>Liyue нь худалдаа, гэрээ хэлцэл, уламжлалд тулгуурласан боомтын улс. Rex Lapis хэмээн алдаршсан Morax буюу Zhongli-ийн удирдлага дор хүмүүс болон Адептусын хоорондын харилцаа олон үеэр бүрэлджээ.</p><p>Судлах гол зүйлс: Архоны дайн, Гуйжун, Адептус, Rite of Descension, Chasm болон Geo Гнозисын түүх.</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="inazuma inazuma electro ei raiden">
@@ -573,6 +588,7 @@
         <h3>Inazuma</h3>
         <div class="g-tag">ELECTRO • ETERNITY</div>
         <p>Мөнхийн үзэл санаа болон Electro Архонтын түүх.</p>
+        <details class="g-region-details"><summary>Дэлгэрэнгүй мэдээлэл</summary><div class="g-region-body"><p>Inazuma бол далайгаар тусгаарлагдсан арлуудаас бүрдэх Electro үндэстэн. Raiden Ei-ийн мөнхийн тухай үзэл, Vision Hunt Decree болон Sakoku Decree нь тус улсын саяхны түүх, иргэдийн амьдралд хүчтэй нөлөөлсөн.</p><p>Судлах гол зүйлс: Raiden Shogun ба Ei, Sacred Sakura, Enkanomiya, Watatsumi Island болон Cataclysm-ийн ул мөр.</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="sumeru sumeru dendro nahida wisdom">
@@ -580,6 +596,7 @@
         <h3>Sumeru</h3>
         <div class="g-tag">DENDRO • WISDOM</div>
         <p>Мэдлэг, Ирминсул болон Dendro Архонтын нууц.</p>
+        <details class="g-region-details"><summary>Дэлгэрэнгүй мэдээлэл</summary><div class="g-region-body"><p>Sumeru нь эрдэм мэдлэг, байгаль, мөрөөдөлтэй холбоотой улс. Akademiya олон жилийн турш мэдлэгийн урсгалыг хянаж ирсэн бол Dendro Архонт Nahida болон Irminsul-ийн нууц Архоны аяллын гол үйл явдлуудын нэг болсон.</p><p>Судлах гол зүйлс: Akademiya, Akademiya-ийн Sage-үүд, Aranara, Desert civilization, King Deshret болон Irminsul.</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="fontaine fontaine hydro furina justice">
@@ -587,6 +604,7 @@
         <h3>Fontaine</h3>
         <div class="g-tag">HYDRO • JUSTICE</div>
         <p>Шударга ёс, шүүх ажиллагаа болон Hydro-ийн түүх.</p>
+        <details class="g-region-details"><summary>Дэлгэрэнгүй мэдээлэл</summary><div class="g-region-body"><p>Fontaine бол хууль, шүүх, театрын соёл өндөр хөгжсөн Hydro үндэстэн. Шүүхийн тогтолцоонд Oratrice Mecanique d'Analyse Cardinale чухал үүрэгтэй байсан бөгөөд Furina, Focalors болон Hydro Dragon Sovereign Neuvillette-ийн түүх тус улсын хувь заяатай салшгүй холбоотой.</p><p>Судлах гол зүйлс: Fontaine-ийн зөгнөл, Primordial Sea, Remuria, Egeria, Focalors болон Neuvillette.</p></div></details>
       </article>
 
       <article class="g-card searchable" data-search="natlan natlan pyro mavuika war">
@@ -594,6 +612,7 @@
         <h3>Natlan</h3>
         <div class="g-tag">PYRO • WAR</div>
         <p>Тулаан, овог аймгууд болон Pyro Архонтын тухай.</p>
+        <details class="g-region-details"><summary>Дэлгэрэнгүй мэдээлэл</summary><div class="g-region-body"><p>Natlan бол олон овог аймаг, уламжлал, сорилт болон Abyss-ийн эсрэг тэмцлээр тодорхойлогдох Pyro үндэстэн. Pyro Архонт Mavuika болон овог аймгуудын хамтын хүч тус улсын түүх, ирээдүйд гол байр суурь эзэлдэг.</p><p>Судлах гол зүйлс: овог аймгууд, Pilgrimage of the Return of the Sacred Flame, Ancient Names, Night Kingdom болон Abyss-ийн довтолгоо.</p></div></details>
       </article>
     </div>
   </div>
