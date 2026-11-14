@@ -550,6 +550,44 @@
 .genshin-page .g-region-details[open]{background:rgba(7,15,29,.2);border-radius:8px;padding:9px 10px}
 
 </style>
+<style>
+
+/* Readable responsive sizing for the Archon archive */
+@media (max-width:900px) {
+  .genshin-page #archons .g-archon-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    align-items:start!important;
+    gap:14px!important;
+  }
+  .genshin-page #archons .g-archon-card{
+    align-self:start!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:17px!important;
+  }
+  .genshin-page #archons .g-archon-card h3{
+    font-size:18px!important;
+    line-height:1.35!important;
+  }
+  .genshin-page #archons .g-archon-card p{
+    font-size:13px!important;
+    line-height:1.65!important;
+  }
+}
+@media (max-width:560px) {
+  .genshin-page #archons .g-archon-grid{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  .genshin-page #archons .g-archon-card{
+    padding:18px!important;
+  }
+  .genshin-page #archons .g-archon-card h3{
+    font-size:19px!important;
+  }
+}
+
+</style>
 </head>
 
 <body class="genshin-page">
