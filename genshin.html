@@ -422,6 +422,24 @@
 
 .g-character-card{display:block;color:inherit;text-decoration:none;cursor:pointer}.g-character-open{display:inline-block;margin-top:10px;color:#e9bd68;font-size:12px;font-weight:700}.g-character-card:hover .g-character-open{letter-spacing:.3px}
 
+
+/* Lore topic cards expand independently; neighboring cards keep natural height */
+.genshin-page #lore .g-grid.g-lore-topics{
+  align-items:start!important;
+  grid-auto-rows:auto!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card{
+  align-self:start!important;
+  height:auto!important;
+  min-height:0!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card p{
+  flex:0 0 auto!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card .g-topic-details[open]{
+  height:auto!important;
+}
+
 /* Expandable lore topic reading panels */
 .genshin-page .g-topic-details{position:relative;z-index:2;margin-top:14px;padding-top:10px;border-top:1px solid rgba(233,189,104,.2)}
 .genshin-page .g-topic-details summary{cursor:pointer;list-style:none;color:#f2cc82;font-size:12px;font-weight:700;padding:8px 0}
