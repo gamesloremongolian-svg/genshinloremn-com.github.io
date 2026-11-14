@@ -16,6 +16,109 @@ header{background:rgba(6,15,29,.95);border-bottom-color:rgba(99,231,242,.28)}
 .topic:hover{border-color:#ff9a35;transform:translateY(-2px)}
 input:focus,select:focus{outline:1px solid #63e7f2;border-color:#63e7f2}
 
+
+/* Launcher-inspired responsive theme — glm-ananta */
+body.glm-ananta{
+ --theme-accent:#a66be8;--theme-deep:#50328c;--theme-pale:#f3eafa;
+ --theme-line:rgba(132,82,193,.2);--theme-shadow:rgba(91,54,139,.15);--theme-hero:#211536;
+ background:radial-gradient(ellipse at 12% 5%,#fff 0,transparent 26%),linear-gradient(135deg,var(--theme-pale),#fff 52%,#e9f1e9)!important;
+ color:#25352b!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;
+ padding-bottom:105px!important;
+}
+body.glm-ananta header{
+ position:fixed!important;left:22px!important;top:24px!important;bottom:24px!important;width:205px!important;
+ z-index:30!important;padding:0!important;border:1px solid rgba(255,255,255,.9)!important;
+ border-radius:20px!important;background:rgba(255,255,255,.96)!important;
+ box-shadow:0 18px 48px var(--theme-shadow)!important;backdrop-filter:blur(18px)!important;
+}
+body.glm-ananta header nav{
+ height:100%!important;max-width:none!important;padding:24px 16px!important;
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:24px!important;
+}
+body.glm-ananta .brand{color:#263a2d!important;font-size:17px!important;letter-spacing:.7px!important}
+body.glm-ananta .brand:after{content:"MONGOLIAN LORE ARCHIVE";display:block;font-size:8px;letter-spacing:1.5px;color:#829188;margin-top:5px}
+body.glm-ananta .navlinks{display:flex!important;flex-direction:column!important;gap:7px!important}
+body.glm-ananta .navlinks a{
+ color:#506357!important;text-decoration:none!important;padding:10px 11px!important;border-radius:10px!important;font-weight:650!important;
+}
+body.glm-ananta .navlinks a:hover{background:var(--theme-pale)!important;color:var(--theme-deep)!important}
+body.glm-ananta .wrap{width:min(1120px,calc(100% - 270px))!important;margin:25px 25px 25px 250px!important}
+body.glm-ananta .hero{
+ position:relative!important;overflow:hidden!important;padding:clamp(46px,7vw,82px)!important;
+ border:1px solid rgba(255,255,255,.28)!important;border-radius:20px!important;
+ background:linear-gradient(110deg,rgba(8,18,25,.84),rgba(10,20,28,.48)),radial-gradient(circle at 85% 15%,var(--theme-accent),transparent 38%),linear-gradient(135deg,var(--theme-hero),#334a52)!important;
+ box-shadow:0 20px 48px var(--theme-shadow)!important;
+}
+body.glm-ananta .hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.12),transparent 70%);opacity:.7}
+body.glm-ananta .hero h1{color:#fff!important;text-shadow:0 4px 20px #0008!important}
+body.glm-ananta .hero .kicker{color:#d7f5e1!important}
+body.glm-ananta .hero p{color:#f0f5f2!important}
+body.glm-ananta .btn{background:linear-gradient(135deg,var(--theme-accent),var(--theme-deep))!important;color:#fff!important;border:0!important;border-radius:999px!important;box-shadow:0 7px 18px var(--theme-shadow)!important}
+body.glm-ananta .btn.alt{background:rgba(255,255,255,.14)!important;border:1px solid rgba(255,255,255,.55)!important;color:#fff!important}
+body.glm-ananta section{padding:42px 0!important}
+body.glm-ananta .head h2{color:#263b2d!important}
+body.glm-ananta .head p{color:#718076!important}
+body.glm-ananta .topics{align-items:stretch!important;gap:14px!important}
+body.glm-ananta .topic,body.glm-ananta .panel,body.glm-ananta .roster-card,body.glm-ananta article{
+ background:rgba(255,255,255,.96)!important;color:#2c3b31!important;
+ border:1px solid var(--theme-line)!important;border-radius:16px!important;
+ box-shadow:0 12px 28px var(--theme-shadow)!important;
+}
+body.glm-ananta .topic strong,body.glm-ananta .roster-card strong{color:#293b30!important}
+body.glm-ananta .topic small,body.glm-ananta .roster-card small{color:#718076!important}
+body.glm-ananta a{color:var(--theme-deep)}
+body.glm-ananta input,body.glm-ananta select{
+ background:#fff!important;color:#293b30!important;border:1px solid var(--theme-line)!important;border-radius:11px!important;
+}
+body.glm-ananta input::placeholder{color:#89958d!important}
+body.glm-ananta .status{color:var(--theme-deep)!important}
+body.glm-ananta .glm-bottom-nav{
+ position:fixed!important;left:50%!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;
+ transform:translateX(-50%)!important;width:min(640px,calc(100% - 28px))!important;
+ min-height:68px!important;display:flex!important;align-items:center!important;justify-content:space-around!important;
+ gap:6px!important;padding:9px 12px!important;z-index:80!important;
+ background:rgba(255,255,255,.97)!important;border:1px solid var(--theme-line)!important;
+ border-radius:22px!important;box-shadow:0 12px 34px var(--theme-shadow)!important;
+ backdrop-filter:blur(18px)!important;
+}
+body.glm-ananta .glm-bottom-nav a{
+ flex:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ gap:3px!important;text-decoration:none!important;color:#526258!important;font-size:11px!important;font-weight:700!important;
+}
+body.glm-ananta .glm-bottom-nav a span:first-child{font-size:19px!important;line-height:1.1!important;color:var(--theme-deep)!important}
+@media(max-width:760px){
+ body.glm-ananta{padding:0 0 calc(108px + env(safe-area-inset-bottom))!important}
+ body.glm-ananta header{
+  position:sticky!important;left:auto!important;top:0!important;bottom:auto!important;width:100%!important;
+  border-radius:0 0 18px 18px!important;margin:0!important;padding:0!important;
+ }
+ body.glm-ananta header nav{
+  height:auto!important;min-height:72px!important;padding:13px 17px!important;gap:9px!important;
+  flex-direction:column!important;align-items:flex-start!important;
+ }
+ body.glm-ananta .brand{font-size:15px!important}
+ body.glm-ananta .brand:after{font-size:7px!important}
+ body.glm-ananta .navlinks{
+  width:100%!important;flex-direction:row!important;overflow-x:auto!important;white-space:nowrap!important;
+  gap:6px!important;padding-bottom:2px!important;scrollbar-width:none!important;
+ }
+ body.glm-ananta .navlinks::-webkit-scrollbar{display:none}
+ body.glm-ananta .navlinks a{flex:0 0 auto!important;padding:7px 9px!important;font-size:11px!important}
+ body.glm-ananta .wrap{width:calc(100% - 28px)!important;margin:14px auto 0!important}
+ body.glm-ananta .hero{padding:36px 22px!important;border-radius:16px!important}
+ body.glm-ananta .hero h1{font-size:clamp(32px,9vw,48px)!important}
+ body.glm-ananta section{padding:30px 0!important}
+ body.glm-ananta .topics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.glm-ananta .topic,body.glm-ananta .panel,body.glm-ananta .roster-card{min-width:0!important;padding:14px!important}
+ body.glm-ananta .glm-bottom-nav{min-height:62px!important;padding:7px 8px!important}
+ body.glm-ananta .glm-bottom-nav a{font-size:10px!important}
+ body.glm-ananta .glm-bottom-nav a span:first-child{font-size:17px!important}
+}
+@media(max-width:390px){
+ body.glm-ananta .topics{grid-template-columns:1fr!important}
+ body.glm-ananta .hero{padding:30px 18px!important}
+}
+
 </style><style>
 /* ANANTA dedicated neon-city theme */
 .hero{background:linear-gradient(105deg,rgba(8,18,32,.88),rgba(9,28,44,.52)),url('../assets/images/ananta-bg.png') center/cover no-repeat,linear-gradient(135deg,#081626,#0c2948)}
@@ -33,7 +136,7 @@ input:focus,select:focus{outline:1px solid #64e8f0;border-color:#64e8f0}
 <style>body .hero{background-image:linear-gradient(105deg,rgba(8,18,32,.84),rgba(9,28,44,.35)),url('../assets/images/ananta-bg.png');background-size:cover;background-position:center;}</style>
 <link rel="stylesheet" href="../assets/css/cinematic-motion.css">
   <link rel="stylesheet" href="../assets/css/anime-wiki-theme.css">
-</head><body>
+</head><body class="glm-ananta">
 <header><nav><a class="brand" href="../index.html">GAMES LORE MN</a><div class="navlinks"><a href="../index.html">Нүүр</a><a href="../lore-center.html">Нэгдсэн сан</a><a href="../wiki-v2.html">Нэгдсэн Wiki</a><a href="../auth.html">Нэвтрэх</a></div></nav></header>
 <main class="wrap"><section class="hero"><div class="kicker">MONGOLIAN GAME LORE ARCHIVE · A</div><h1>ANANTA</h1><div class="kicker">NOVA CITY · CHARACTERS · MYSTERIES</div><p>Nova City-ийн нээлттэй ертөнц, Weilan Lake, дүрүүд, хотын амьдрал, бүлэглэл болон үйл явдлын тухай албан ёсны мэдээлэлд тулгуурласан судалгааны архив.</p><div class="actions"><a class="btn" href="../wiki-v2.html">Админ нийтлэл нэмэх ↗</a><a class="btn alt" href="../index.html">← Нүүр хуудас</a></div></section>
 <section><div class="head"><h2>Судалгааны ангиллууд</h2><p>Энэ тоглоомын мэдээллийг дараах сэдвээр ангилан хадгална.</p></div><div class="topics"><div class="topic"><strong>01 · Nova City</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>02 · Дүрүүд</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>03 · Бүлэглэлүүд</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>04 · Weilan Lake ба хотын бүсүүд</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>05 · Үйл явдал</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>06 · Нууц ба онол</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div></div></section>
