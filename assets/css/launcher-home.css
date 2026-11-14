@@ -106,7 +106,7 @@ main{
 :where(.btn-primary,.facebook-btn,.messenger-btn){
  background:linear-gradient(135deg,#79d66b,#40a94a)!important;color:white!important;border:0!important;
 }
-:where(.site-footer){background:rgba(255,255,255,.92)!important;color:#607267!important;border-top:1px solid var(--launcher-line)!important}
+:where(.site-footer){margin:0 3.5vw 5vh 260px!important;padding:28px!important;border-radius:20px!important;background:rgba(255,255,255,.92)!important;color:#607267!important;border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 18px 50px rgba(26,78,37,.14)!important}
 .site-footer .footer-brand{color:#2e813e!important}
 .glm-bottom-nav{background:rgba(255,255,255,.96)!important;border-color:rgba(50,120,57,.16)!important}
 .glm-bottom-nav a{color:#405346!important}
@@ -126,6 +126,7 @@ main{
  .site-header .nav-links.open{display:flex!important}
  .site-header .nav-links a{min-height:40px}
  main{margin:10px 10px 20px!important;border-radius:18px}
+ .site-footer{margin:0 10px 90px!important;padding:24px 18px!important;border-radius:16px!important}
  .hero{min-height:390px;padding:34px 0 30px!important;background-position:56% center!important}
  .hero .container{width:90%}
  .hero h1{font-size:clamp(34px,9vw,48px)!important}
