@@ -493,6 +493,16 @@
     .site-info-section>p{max-width:680px;font-size:13px!important}
     .site-info-section .home-archive-links{grid-template-columns:repeat(3,minmax(0,1fr))}
     @media(max-width:700px){.site-info-section .home-archive-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+    .nav-site-info{position:relative;display:inline-block;color:var(--muted);font-size:13px}
+    .nav-site-info>summary{list-style:none;cursor:pointer;white-space:nowrap}
+    .nav-site-info>summary::-webkit-details-marker{display:none}
+    .nav-site-info>summary:hover{color:var(--gold)}
+    .nav-site-info[open]{z-index:50}
+    .nav-site-info-content{position:absolute;top:calc(100% + 12px);left:0;width:min(360px,calc(100vw - 36px));max-height:min(72vh,650px);overflow:auto;padding:16px;border:1px solid var(--border);border-radius:14px;background:var(--panel);box-shadow:0 16px 40px rgba(0,0,0,.28);color:var(--text)}
+    .nav-site-info-content .home-archive-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+    .nav-site-info-content .home-archive-links a{display:block;min-width:0;padding:6px;border:1px solid var(--border);border-radius:8px;font-size:10px;overflow-wrap:anywhere}
+    @media(max-width:800px){.nav-site-info{display:block;width:100%}.nav-site-info>summary{padding:10px 0}.nav-site-info-content{position:static;width:100%;max-height:52vh;margin-top:8px;box-shadow:none}}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
@@ -517,7 +527,51 @@
         <a href="#categories">Ангилал</a>
         <a href="#about">Бидний тухай</a>
         <a href="#contact">Холбоо барих</a>
-        <a href="#site-info">Сайтын мэдээлэл</a>
+        <details class="nav-site-info"><summary>Сайтын мэдээлэл</summary><div class="nav-site-info-content" id="site-info" style="scroll-margin-top:100px;border-top:1px solid var(--border);margin-top:20px;padding-top:18px;">
+            <div class="section-kicker">Games Lore MN</div>
+            <h3 style="color:var(--gold);font-size:16px;margin:6px 0 8px;">Сайтын мэдээлэл</h3>
+            <p style="color:var(--muted);font-size:11px;line-height:1.6;">Видео тоглоомын ертөнц, дүрүүд, домог, нууц болон түүхийг Монгол хэлээр судлах бие даасан архив.</p>
+            <div style="margin-top:12px;">
+              <div class="stat-label">УЛААНБААТАРЫН ЦАГ · UTC+8</div>
+              <time class="stat-value" id="mongoliaClock" style="font-size:23px;">--:--:--</time>
+              <div class="stat-note" id="mongoliaDate">Огноо ачаалж байна…</div>
+            </div>
+            <div style="margin-top:14px;">
+              <div class="stat-label">НИЙТ ХАНДАЛТ</div>
+              <span class="stat-value" id="visitorCount" aria-live="polite" style="font-size:23px;">Ачаалж байна…</span>
+              <div class="stat-note" id="visitorNote">Нүүр хуудасны хандалтын тоо</div>
+            </div>
+            <div style="display:grid;gap:8px;margin-top:14px;">
+              <a class="btn btn-outline" href="https://www.facebook.com/share/1BQdjxcDbM/" target="_blank" rel="noopener noreferrer">Facebook Page ↗</a>
+              <a class="btn btn-outline" href="https://m.me/batarivjikh.bataa" target="_blank" rel="noopener noreferrer">Админд мессэж бичих ↗</a>
+            </div>
+            <div style="margin-top:14px;border-top:1px solid var(--border);padding-top:14px;">
+              <div class="stat-label">ТОГЛООМЫН АРХИВ · 21</div>
+              <div class="home-archive-links">
+                <a href="./genshin.html">Genshin Impact ↗</a>
+                <a href="./wuwa/">Wuthering Waves ↗</a>
+                <a href="./ananta/">ANANTA ↗</a>
+                <a href="./aniimo/">Aniimo ↗</a>
+                <a href="./delta-force/">Delta Force ↗</a>
+                <a href="./mongolia-games.html">Монголын тоглоомын сан ↗</a>
+                <a href="./games/cs2/">Counter-Strike 2 ↗</a>
+                <a href="./games/pubg-mobile/">PUBG Mobile ↗</a>
+                <a href="./games/dota-2/">Dota 2 ↗</a>
+                <a href="./games/mlbb/">Mobile Legends ↗</a>
+                <a href="./games/valorant/">VALORANT ↗</a>
+                <a href="./games/cod-mobile/">Call of Duty: Mobile ↗</a>
+                <a href="./games/lol/">League of Legends ↗</a>
+                <a href="./games/free-fire/">Free Fire ↗</a>
+                <a href="./games/minecraft/">Minecraft ↗</a>
+                <a href="./games/roblox/">Roblox ↗</a>
+                <a href="./games/gta-v/">GTA V ↗</a>
+                <a href="./games/fortnite/">Fortnite ↗</a>
+                <a href="./games/pubg-pc/">PUBG: BATTLEGROUNDS ↗</a>
+                <a href="./games/efootball/">eFootball ↗</a>
+                <a href="./games/chess-com/">Chess.com ↗</a>
+              </div>
+            </div>
+          </div></details>
         <a class="nav-login" href="./auth.html">Нэвтрэх / Бүртгүүлэх</a>
       </nav>
     </div>
@@ -745,51 +799,7 @@
           </p>
 
         
-          <div class="site-info-section" id="site-info" style="scroll-margin-top:100px;border-top:1px solid var(--border);margin-top:20px;padding-top:18px;">
-            <div class="section-kicker">Games Lore MN</div>
-            <h3 style="color:var(--gold);font-size:16px;margin:6px 0 8px;">Сайтын мэдээлэл</h3>
-            <p style="color:var(--muted);font-size:11px;line-height:1.6;">Видео тоглоомын ертөнц, дүрүүд, домог, нууц болон түүхийг Монгол хэлээр судлах бие даасан архив.</p>
-            <div style="margin-top:12px;">
-              <div class="stat-label">УЛААНБААТАРЫН ЦАГ · UTC+8</div>
-              <time class="stat-value" id="mongoliaClock" style="font-size:23px;">--:--:--</time>
-              <div class="stat-note" id="mongoliaDate">Огноо ачаалж байна…</div>
-            </div>
-            <div style="margin-top:14px;">
-              <div class="stat-label">НИЙТ ХАНДАЛТ</div>
-              <span class="stat-value" id="visitorCount" aria-live="polite" style="font-size:23px;">Ачаалж байна…</span>
-              <div class="stat-note" id="visitorNote">Нүүр хуудасны хандалтын тоо</div>
-            </div>
-            <div style="display:grid;gap:8px;margin-top:14px;">
-              <a class="btn btn-outline" href="https://www.facebook.com/share/1BQdjxcDbM/" target="_blank" rel="noopener noreferrer">Facebook Page ↗</a>
-              <a class="btn btn-outline" href="https://m.me/batarivjikh.bataa" target="_blank" rel="noopener noreferrer">Админд мессэж бичих ↗</a>
-            </div>
-            <div style="margin-top:14px;border-top:1px solid var(--border);padding-top:14px;">
-              <div class="stat-label">ТОГЛООМЫН АРХИВ · 21</div>
-              <div class="home-archive-links">
-                <a href="./genshin.html">Genshin Impact ↗</a>
-                <a href="./wuwa/">Wuthering Waves ↗</a>
-                <a href="./ananta/">ANANTA ↗</a>
-                <a href="./aniimo/">Aniimo ↗</a>
-                <a href="./delta-force/">Delta Force ↗</a>
-                <a href="./mongolia-games.html">Монголын тоглоомын сан ↗</a>
-                <a href="./games/cs2/">Counter-Strike 2 ↗</a>
-                <a href="./games/pubg-mobile/">PUBG Mobile ↗</a>
-                <a href="./games/dota-2/">Dota 2 ↗</a>
-                <a href="./games/mlbb/">Mobile Legends ↗</a>
-                <a href="./games/valorant/">VALORANT ↗</a>
-                <a href="./games/cod-mobile/">Call of Duty: Mobile ↗</a>
-                <a href="./games/lol/">League of Legends ↗</a>
-                <a href="./games/free-fire/">Free Fire ↗</a>
-                <a href="./games/minecraft/">Minecraft ↗</a>
-                <a href="./games/roblox/">Roblox ↗</a>
-                <a href="./games/gta-v/">GTA V ↗</a>
-                <a href="./games/fortnite/">Fortnite ↗</a>
-                <a href="./games/pubg-pc/">PUBG: BATTLEGROUNDS ↗</a>
-                <a href="./games/efootball/">eFootball ↗</a>
-                <a href="./games/chess-com/">Chess.com ↗</a>
-              </div>
-            </div>
-          </div>
+          
 </aside>
       </div>
     </section>
