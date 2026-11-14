@@ -16,6 +16,109 @@ header{background:rgba(5,24,22,.95);border-bottom-color:rgba(98,231,203,.3)}
 .topic:hover{border-color:#b9f36b;transform:translateY(-2px)}
 input:focus,select:focus{outline:1px solid #62e7cb;border-color:#62e7cb}
 
+
+/* Launcher-inspired responsive theme — glm-aniimo */
+body.glm-aniimo{
+ --theme-accent:#55a96a;--theme-deep:#2d7548;--theme-pale:#edf8ec;
+ --theme-line:rgba(68,153,91,.2);--theme-shadow:rgba(49,112,67,.14);--theme-hero:#193b2a;
+ background:radial-gradient(ellipse at 12% 5%,#fff 0,transparent 26%),linear-gradient(135deg,var(--theme-pale),#fff 52%,#e9f1e9)!important;
+ color:#25352b!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;
+ padding-bottom:105px!important;
+}
+body.glm-aniimo header{
+ position:fixed!important;left:22px!important;top:24px!important;bottom:24px!important;width:205px!important;
+ z-index:30!important;padding:0!important;border:1px solid rgba(255,255,255,.9)!important;
+ border-radius:20px!important;background:rgba(255,255,255,.96)!important;
+ box-shadow:0 18px 48px var(--theme-shadow)!important;backdrop-filter:blur(18px)!important;
+}
+body.glm-aniimo header nav{
+ height:100%!important;max-width:none!important;padding:24px 16px!important;
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:24px!important;
+}
+body.glm-aniimo .brand{color:#263a2d!important;font-size:17px!important;letter-spacing:.7px!important}
+body.glm-aniimo .brand:after{content:"MONGOLIAN LORE ARCHIVE";display:block;font-size:8px;letter-spacing:1.5px;color:#829188;margin-top:5px}
+body.glm-aniimo .navlinks{display:flex!important;flex-direction:column!important;gap:7px!important}
+body.glm-aniimo .navlinks a{
+ color:#506357!important;text-decoration:none!important;padding:10px 11px!important;border-radius:10px!important;font-weight:650!important;
+}
+body.glm-aniimo .navlinks a:hover{background:var(--theme-pale)!important;color:var(--theme-deep)!important}
+body.glm-aniimo .wrap{width:min(1120px,calc(100% - 270px))!important;margin:25px 25px 25px 250px!important}
+body.glm-aniimo .hero{
+ position:relative!important;overflow:hidden!important;padding:clamp(46px,7vw,82px)!important;
+ border:1px solid rgba(255,255,255,.28)!important;border-radius:20px!important;
+ background:linear-gradient(110deg,rgba(8,18,25,.84),rgba(10,20,28,.48)),radial-gradient(circle at 85% 15%,var(--theme-accent),transparent 38%),linear-gradient(135deg,var(--theme-hero),#334a52)!important;
+ box-shadow:0 20px 48px var(--theme-shadow)!important;
+}
+body.glm-aniimo .hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.12),transparent 70%);opacity:.7}
+body.glm-aniimo .hero h1{color:#fff!important;text-shadow:0 4px 20px #0008!important}
+body.glm-aniimo .hero .kicker{color:#d7f5e1!important}
+body.glm-aniimo .hero p{color:#f0f5f2!important}
+body.glm-aniimo .btn{background:linear-gradient(135deg,var(--theme-accent),var(--theme-deep))!important;color:#fff!important;border:0!important;border-radius:999px!important;box-shadow:0 7px 18px var(--theme-shadow)!important}
+body.glm-aniimo .btn.alt{background:rgba(255,255,255,.14)!important;border:1px solid rgba(255,255,255,.55)!important;color:#fff!important}
+body.glm-aniimo section{padding:42px 0!important}
+body.glm-aniimo .head h2{color:#263b2d!important}
+body.glm-aniimo .head p{color:#718076!important}
+body.glm-aniimo .topics{align-items:stretch!important;gap:14px!important}
+body.glm-aniimo .topic,body.glm-aniimo .panel,body.glm-aniimo .roster-card,body.glm-aniimo article{
+ background:rgba(255,255,255,.96)!important;color:#2c3b31!important;
+ border:1px solid var(--theme-line)!important;border-radius:16px!important;
+ box-shadow:0 12px 28px var(--theme-shadow)!important;
+}
+body.glm-aniimo .topic strong,body.glm-aniimo .roster-card strong{color:#293b30!important}
+body.glm-aniimo .topic small,body.glm-aniimo .roster-card small{color:#718076!important}
+body.glm-aniimo a{color:var(--theme-deep)}
+body.glm-aniimo input,body.glm-aniimo select{
+ background:#fff!important;color:#293b30!important;border:1px solid var(--theme-line)!important;border-radius:11px!important;
+}
+body.glm-aniimo input::placeholder{color:#89958d!important}
+body.glm-aniimo .status{color:var(--theme-deep)!important}
+body.glm-aniimo .glm-bottom-nav{
+ position:fixed!important;left:50%!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;
+ transform:translateX(-50%)!important;width:min(640px,calc(100% - 28px))!important;
+ min-height:68px!important;display:flex!important;align-items:center!important;justify-content:space-around!important;
+ gap:6px!important;padding:9px 12px!important;z-index:80!important;
+ background:rgba(255,255,255,.97)!important;border:1px solid var(--theme-line)!important;
+ border-radius:22px!important;box-shadow:0 12px 34px var(--theme-shadow)!important;
+ backdrop-filter:blur(18px)!important;
+}
+body.glm-aniimo .glm-bottom-nav a{
+ flex:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ gap:3px!important;text-decoration:none!important;color:#526258!important;font-size:11px!important;font-weight:700!important;
+}
+body.glm-aniimo .glm-bottom-nav a span:first-child{font-size:19px!important;line-height:1.1!important;color:var(--theme-deep)!important}
+@media(max-width:760px){
+ body.glm-aniimo{padding:0 0 calc(108px + env(safe-area-inset-bottom))!important}
+ body.glm-aniimo header{
+  position:sticky!important;left:auto!important;top:0!important;bottom:auto!important;width:100%!important;
+  border-radius:0 0 18px 18px!important;margin:0!important;padding:0!important;
+ }
+ body.glm-aniimo header nav{
+  height:auto!important;min-height:72px!important;padding:13px 17px!important;gap:9px!important;
+  flex-direction:column!important;align-items:flex-start!important;
+ }
+ body.glm-aniimo .brand{font-size:15px!important}
+ body.glm-aniimo .brand:after{font-size:7px!important}
+ body.glm-aniimo .navlinks{
+  width:100%!important;flex-direction:row!important;overflow-x:auto!important;white-space:nowrap!important;
+  gap:6px!important;padding-bottom:2px!important;scrollbar-width:none!important;
+ }
+ body.glm-aniimo .navlinks::-webkit-scrollbar{display:none}
+ body.glm-aniimo .navlinks a{flex:0 0 auto!important;padding:7px 9px!important;font-size:11px!important}
+ body.glm-aniimo .wrap{width:calc(100% - 28px)!important;margin:14px auto 0!important}
+ body.glm-aniimo .hero{padding:36px 22px!important;border-radius:16px!important}
+ body.glm-aniimo .hero h1{font-size:clamp(32px,9vw,48px)!important}
+ body.glm-aniimo section{padding:30px 0!important}
+ body.glm-aniimo .topics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.glm-aniimo .topic,body.glm-aniimo .panel,body.glm-aniimo .roster-card{min-width:0!important;padding:14px!important}
+ body.glm-aniimo .glm-bottom-nav{min-height:62px!important;padding:7px 8px!important}
+ body.glm-aniimo .glm-bottom-nav a{font-size:10px!important}
+ body.glm-aniimo .glm-bottom-nav a span:first-child{font-size:17px!important}
+}
+@media(max-width:390px){
+ body.glm-aniimo .topics{grid-template-columns:1fr!important}
+ body.glm-aniimo .hero{padding:30px 18px!important}
+}
+
 </style>
 <style>
 /* ANIIMO visual refresh — responsive cinematic archive */
@@ -101,7 +204,7 @@ input:focus,select:focus{outline:1px solid #72e6c0;border-color:#72e6c0}
 <style>body .hero{background-image:linear-gradient(105deg,rgba(7,26,19,.82),rgba(17,58,39,.28)),url('https://worldx-website-cdn.aniimo.com/official-website/worldx/office_global/20250925-145829.png');background-size:cover;background-position:center;}</style>
 <link rel="stylesheet" href="../assets/css/cinematic-motion.css">
   <link rel="stylesheet" href="../assets/css/anime-wiki-theme.css">
-</head><body>
+</head><body class="glm-aniimo">
 <header><nav><a class="brand" href="../index.html">GAMES LORE MN</a><div class="navlinks"><a href="../index.html">Нүүр</a><a href="../lore-center.html">Нэгдсэн сан</a><a href="../wiki-v2.html">Нэгдсэн Wiki</a><a href="../auth.html">Нэвтрэх</a></div></nav></header>
 <main class="wrap"><section class="hero"><div class="kicker">MONGOLIAN GAME LORE ARCHIVE · AN</div><h1>ANIIMO</h1><div class="kicker">CREATURES · HOMELAND · EXPLORATION</div><p>Pawprint Studio-ийн free-to-play creature-catching open-world RPG Aniimo-ийн Idyll ертөнц, амьтад, Twining механик, бүс нутаг болон судалгааны архив.</p><div class="actions"><a class="btn" href="../wiki-v2.html">Админ нийтлэл нэмэх ↗</a><a class="btn alt" href="../index.html">← Нүүр хуудас</a></div></section>
 <section><div class="head"><h2>Судалгааны ангиллууд</h2><p>Энэ тоглоомын мэдээллийг дараах сэдвээр ангилан хадгална.</p></div><div class="topics"><div class="topic"><strong>01 · Aniimo амьтад ба төрөл зүйл</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>02 · Idyll ертөнц</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>03 · Бүс нутаг</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>04 · Судалгаа ба цуглуулга</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>05 · Twining ба тоглоомын механик</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div><div class="topic"><strong>06 · Хөтөч</strong><small>Нийтлэл нэмэгдэхэд энд харагдана</small></div></div></section>
