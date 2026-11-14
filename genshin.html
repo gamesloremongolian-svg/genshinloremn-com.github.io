@@ -698,6 +698,140 @@
 }
 
 </style>
+<style>
+
+/* =========================================================
+   GENSHIN VISUAL REFRESH — astral navy, soft gold & element accents
+   Presentation-only overrides; existing layout and interactions stay intact.
+   ========================================================= */
+.genshin-page{
+  --g-bg:#0b1222;
+  --g-panel:#17243a;
+  --g-gold:#e8c783;
+  --g-cyan:#8bd8e2;
+  background:
+    radial-gradient(ellipse at 12% 9%,rgba(75,104,155,.18),transparent 32%),
+    radial-gradient(ellipse at 88% 38%,rgba(111,82,151,.13),transparent 30%),
+    linear-gradient(180deg,#0b1222 0%,#101a2d 48%,#0b1222 100%)!important;
+  color:#f4f1e9;
+}
+.genshin-page .g-header{
+  background:rgba(9,16,30,.91)!important;
+  border-bottom:1px solid rgba(232,199,131,.28)!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.22);
+}
+.genshin-page .g-brand{color:#f6f0e4!important}
+.genshin-page .g-navlinks a{color:#c4cede!important}
+.genshin-page .g-navlinks a:hover{color:#f2d69d!important}
+.genshin-page .g-hero{
+  border-bottom:1px solid rgba(232,199,131,.42)!important;
+  box-shadow:inset 0 -70px 90px rgba(8,15,29,.24);
+}
+.genshin-page .g-hero:before,
+.genshin-page .g-hero:after{border-color:rgba(232,199,131,.2)!important}
+.genshin-page .g-eyebrow,
+.genshin-page .g-tag{color:#9de2e8!important}
+.genshin-page .g-heading{margin-bottom:30px}
+.genshin-page .g-heading h2{
+  color:#f6f1e8;
+  letter-spacing:-.45px;
+  text-shadow:0 4px 22px rgba(0,0,0,.42);
+}
+.genshin-page .g-heading p{color:#aebbd0!important}
+.genshin-page .g-section{background:transparent}
+.genshin-page .g-section:nth-child(even){
+  background:linear-gradient(135deg,rgba(27,42,67,.76),rgba(13,23,41,.84))!important;
+  border-top:1px solid rgba(151,178,213,.07);
+  border-bottom:1px solid rgba(151,178,213,.07);
+}
+.genshin-page .g-card{
+  background:linear-gradient(145deg,rgba(31,48,75,.96),rgba(17,29,49,.98))!important;
+  border:1px solid rgba(169,192,222,.16)!important;
+  border-radius:16px!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+.genshin-page .g-card:hover{
+  border-color:rgba(232,199,131,.52)!important;
+  box-shadow:0 16px 34px rgba(0,0,0,.28),0 0 22px rgba(232,199,131,.07)!important;
+}
+.genshin-page .g-card h3{color:#f4ead7}
+.genshin-page .g-card p{color:#b7c3d4!important}
+.genshin-page .g-gold,
+.genshin-page h1 span{color:#f0ca83!important}
+.genshin-page .g-symbol{
+  border-color:rgba(141,218,229,.45)!important;
+  color:#a3e4eb!important;
+  background:linear-gradient(145deg,rgba(119,208,224,.12),rgba(119,208,224,.025))!important;
+  box-shadow:0 0 22px rgba(117,217,232,.1),inset 0 0 14px rgba(117,217,232,.05)!important;
+}
+.genshin-page #world .g-card:nth-child(1){border-top-color:rgba(125,207,235,.58)!important}
+.genshin-page #world .g-card:nth-child(2){border-top-color:rgba(225,187,120,.62)!important}
+.genshin-page #world .g-card:nth-child(3){border-top-color:rgba(177,151,235,.62)!important}
+.genshin-page #world .g-card:nth-child(4){border-top-color:rgba(150,207,145,.62)!important}
+.genshin-page #world .g-card:nth-child(5){border-top-color:rgba(115,190,231,.62)!important}
+.genshin-page #world .g-card:nth-child(6){border-top-color:rgba(230,142,113,.62)!important}
+.genshin-page #world .g-card:nth-child(7){border-top-color:rgba(171,202,239,.62)!important}
+.genshin-page .g-region-details,
+.genshin-page .g-topic-details,
+.genshin-page .g-archon-details{border-color:rgba(232,199,131,.2)!important}
+.genshin-page .g-region-details summary,
+.genshin-page .g-topic-details summary,
+.genshin-page .g-archon-details summary{color:#f0cf91!important}
+.genshin-page .g-region-body,
+.genshin-page .g-topic-body,
+.genshin-page .g-archon-body{
+  background:rgba(7,14,27,.24);
+  border-radius:10px;
+}
+.genshin-page .g-archon-card{
+  background:linear-gradient(150deg,rgba(33,49,76,.98),rgba(16,28,47,.98))!important;
+}
+.genshin-page .g-character-info{
+  background:linear-gradient(180deg,rgba(24,39,62,.97),rgba(13,24,42,.99))!important;
+  border-top:1px solid rgba(232,199,131,.2)!important;
+}
+.genshin-page .g-character-info h3{color:#f7ead1!important}
+.genshin-page .g-character-info p{color:#b9c7d8!important}
+.genshin-page .g-character-image{
+  background:
+    radial-gradient(ellipse at 50% 34%,rgba(139,216,226,.2),transparent 68%),
+    linear-gradient(180deg,#263a58,#15243b)!important;
+}
+.genshin-page .g-search input{
+  background:rgba(24,39,62,.94)!important;
+  border:1px solid rgba(163,188,220,.25)!important;
+  color:#f4f1e9!important;
+}
+.genshin-page .g-search input::placeholder{color:#8999b1}
+.genshin-page .g-search button{
+  background:linear-gradient(135deg,#f1d69e,#d9ad62)!important;
+  color:#1b2230!important;
+  border:1px solid rgba(255,239,199,.55)!important;
+  border-radius:10px!important;
+}
+.genshin-page .g-footer{
+  color:#98a8bf!important;
+  border-top-color:rgba(232,199,131,.17)!important;
+}
+.genshin-page .glm-bottom-nav{
+  background:rgba(9,16,30,.96)!important;
+  border-color:rgba(232,199,131,.32)!important;
+}
+.genshin-page .glm-bottom-nav a{color:#c4cede!important}
+.genshin-page .glm-bottom-nav a:active,
+.genshin-page .glm-bottom-nav a:focus-visible{
+  color:#f3d79e!important;
+  background:rgba(232,199,131,.12)!important;
+}
+@media(max-width:650px){
+  .genshin-page .g-card{border-radius:14px!important}
+  .genshin-page .g-heading h2{letter-spacing:-.25px}
+}
+@media(prefers-reduced-motion:reduce){
+  .genshin-page .g-card,.genshin-page .g-card:before{transition:none!important}
+}
+
+</style>
 </head>
 
 <body class="genshin-page">
