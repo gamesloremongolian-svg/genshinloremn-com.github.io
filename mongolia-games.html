@@ -16,6 +16,13 @@ body{padding-bottom:calc(104px + env(safe-area-inset-bottom))!important}
 .glm-bottom-nav a span:first-child{font-size:19px!important;line-height:1.1!important;color:#38a852!important}
 .glm-bottom-nav a:active{transform:scale(.96)}
 @media(min-width:900px){.glm-bottom-nav{width:min(560px,calc(100% - 40px))!important}}
+
+/* Shared Games Lore MN bottom navigation */
+body{padding-bottom:calc(104px + env(safe-area-inset-bottom))!important}
+.glm-bottom-nav{position:fixed!important;z-index:9999!important;left:50%!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;width:min(640px,calc(100% - 24px))!important;min-height:66px!important;display:flex!important;align-items:center!important;justify-content:space-around!important;gap:4px!important;padding:8px 9px!important;border:1px solid rgba(69,170,91,.28)!important;border-radius:20px!important;background:rgba(255,255,255,.97)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;box-shadow:0 10px 32px rgba(13,45,24,.2)!important}
+.glm-bottom-nav a{flex:1!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;padding:4px 2px!important;color:#43584a!important;text-decoration:none!important;font:700 10px/1.2 Arial,sans-serif!important;text-align:center!important}
+.glm-bottom-nav a span:first-child{font-size:19px!important;line-height:1.1!important;color:#38a852!important}
+.glm-bottom-nav a:active{transform:scale(.96)}
 </style>
 </head>
 <body>
@@ -50,5 +57,6 @@ body{padding-bottom:calc(104px + env(safe-area-inset-bottom))!important}
 <section class="section"><h2>Эрэмбэ, эх сурвалж ба мэдээллийн чанар</h2><div class="method"><p><b>Юуг хэмжсэн бэ?</b> Esports Earnings-ийн Монголын бүртгэлд нийт 355 тоглогч 484 тэмцээнээс 7.67 сая ам.долларын шагнал авсан гэж бүртгэсэн бөгөөд CS2, PUBG Mobile, Dota 2, MLBB болон VALORANT нь шагналын бүртгэлд дээгүүр ордог. Энэ нь зөвхөн бүртгэгдсэн esports шагналын өгөгдөл болохоос тоглоомын нийт хэрэглэгч, таталтын тоо биш.</p><p><b>Орон нутгийн тэмцээний нотолгоо:</b> Ulaanbaatar-ийн тэмцээний хуанлид CS, PUBG Mobile, MLBB, Dota 2, VALORANT-ийн арга хэмжээ бүртгэгдсэн байдаг. Монголын esports хэвлэлүүд ч эдгээр төрлийн дотоодын баг, олон улсын тэмцээний оролцоог тогтмол мэдээлдэг.</p><p><b>Архивын зарчим:</b> тоглоом бүрийн мэдээллийг албан ёсны эх сурвалжаар нягтална; хувилбар, улирал, patch-ийн огноог тэмдэглэнэ; community theory, rumor болон батлагдсан баримтыг ялгана; хуучирсан build/статистикийг шинэчилнэ.</p><div class="links"><a href="https://www.esportsearnings.com/countries/mn" target="_blank" rel="noopener">Esports Earnings — Mongolia ↗</a><a href="https://visitesports.com/locations/mn/ulan-bator" target="_blank" rel="noopener">Ulaanbaatar тэмцээний хуанли ↗</a><a href="https://www.esportsnews.mn/all-articles/categories/mongolian-esports" target="_blank" rel="noopener">Esports News Mongolia ↗</a><a href="https://esportmongolia.com/" target="_blank" rel="noopener">Esport Mongolia ↗</a></div></div></section>
 </main><footer><div class="wrap">© <span id="year"></span> Games Lore MN · Монгол хэл дээрх тоглоомын мэдээллийн архив.</div></footer>
 <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<nav class="glm-bottom-nav" aria-label="Доод навигаци"><a href="./index.html"><span>⌂</span><span>Нүүр</span></a><a href="./mongolia-games.html"><span>▦</span><span>Тоглоом</span></a><a href="./lore-center.html"><span>⌕</span><span>Lore сан</span></a><a href="./lore-center.html#articles"><span>▤</span><span>Нийтлэл</span></a></nav>
 <nav class="glm-bottom-nav" aria-label="Доод навигаци"><a href="./index.html"><span>⌂</span><span>Нүүр</span></a><a href="./mongolia-games.html"><span>▦</span><span>Тоглоом</span></a><a href="./lore-center.html"><span>⌕</span><span>Lore сан</span></a><a href="./lore-center.html#articles"><span>▤</span><span>Нийтлэл</span></a></nav>
 </body></html>
