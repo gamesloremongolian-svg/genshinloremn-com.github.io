@@ -503,6 +503,14 @@
     .nav-site-info-content .home-archive-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
     .nav-site-info-content .home-archive-links a{display:block;min-width:0;padding:6px;border:1px solid var(--border);border-radius:8px;font-size:10px;overflow-wrap:anywhere}
     @media(max-width:800px){.nav-site-info{display:block;width:100%}.nav-site-info>summary{padding:10px 0}.nav-site-info-content{position:static;width:100%;max-height:52vh;margin-top:8px;box-shadow:none}}
+
+    /* Keep site information visible inside the left navigation sidebar */
+    .nav-links .nav-site-info{display:block!important;position:static!important;flex:0 0 100%!important;width:100%!important;min-width:0!important;margin:0!important;color:var(--muted)!important}
+    .nav-links .nav-site-info>summary{display:block!important;padding:10px 0!important;white-space:normal!important;cursor:default!important;color:var(--muted)!important}
+    .nav-links .nav-site-info-content{display:block!important;position:static!important;inset:auto!important;transform:none!important;width:100%!important;max-width:100%!important;max-height:none!important;height:auto!important;overflow:visible!important;box-sizing:border-box!important;margin:8px 0 0!important;padding:12px!important;border:1px solid var(--border)!important;border-radius:12px!important;background:rgba(255,255,255,.06)!important;box-shadow:none!important}
+    .nav-links .nav-site-info-content .home-archive-links{display:grid!important;grid-template-columns:1fr!important;gap:5px!important}
+    .nav-links .nav-site-info-content .home-archive-links a{display:block!important;min-width:0!important;padding:6px 7px!important;font-size:10px!important;line-height:1.35!important;overflow-wrap:anywhere!important}
+    .nav-links .nav-site-info-content .btn{display:flex!important;width:100%!important;box-sizing:border-box!important;white-space:normal!important;text-align:center!important}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
