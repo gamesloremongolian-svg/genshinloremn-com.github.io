@@ -48,7 +48,7 @@
       <div class="world"><span>✦</span><b>Aniimo</b></div>
       <div class="world"><span>⌖</span><b>Delta Force</b></div>
     </div>
-    <div class="price">5,000₮ <span class="muted" style="font-size:16px;font-weight:500">/ 30 хоног</span></div>
+    <div class="price">10,000₮ <span class="muted" style="font-size:16px;font-weight:500">/ 30 хоног</span></div>
     <ul><li>Premium ангиллын нийтлэлүүд</li><li>Дүр, ертөнц, үйл явдлын дэлгэрэнгүй судалгаа</li><li>Эрхийн хугацаа дуусахад сунгах боломж</li></ul>
   </section>
   <div class="grid">
@@ -62,14 +62,25 @@
       <div id="authStatus" class="status" role="status">Supabase-ийн Project URL болон anon key холбохыг хүлээж байна.</div>
     </section>
     <section class="panel">
-      <div class="section-kicker">Unlock premium access</div><h2>2. QPay төлбөр</h2>
-      <p class="muted">QPay-ийн бодит QR зураг болон төлбөр баталгаажуулах сервер холбогдоогүй тул Premium төлбөр одоогоор идэвхгүй.</p>
-      <img class="qr" src="./assets/images/qpay-qr.png" alt="Games Lore MN Premium QPay QR код" onerror="this.style.display='none';document.getElementById('qrMissing').hidden=false">
-      <p id="qrMissing" class="notice">QPay QR зураг хараахан байршуулаагүй. Төлбөрийн хэсэг идэвхжээгүй байна.</p>
-      <div class="notice">QPay сервер/API холбогдож, бодит QR баталгаажсаны дараа энэ хэсгийг идэвхжүүлнэ. Одоогоор төлбөр бүү шилжүүлээрэй.</div>
-      <label for="reference">Гүйлгээний утга / баримтын дугаар</label><input id="reference" type="text" placeholder="Гүйлгээний утга эсвэл баримтын дугаар">
-      <button id="submitProof" type="button" disabled aria-disabled="true">Төлбөрийн систем холбогдоогүй</button>
-      <div id="paymentStatus" class="status" role="status">Төлбөр баталгаажуулах API хараахан холбогдоогүй.</div>
+      <div class="section-kicker">Bank transfer · 30 days</div><h2>2. Дансаар төлбөр хийх</h2>
+      <p class="muted">10,000₮ шилжүүлээд гүйлгээний баримтаа админд илгээнэ. Төлбөр баталгаажсаны дараа Premium эрхийг 30 хоногоор нээнэ.</p>
+      <div class="status" style="padding:16px">
+        <div class="muted" style="font-size:12px">БАНК</div><strong>ХААН БАНК</strong>
+        <div class="muted" style="font-size:12px;margin-top:12px">ДАНСНЫ ДУГААР</div>
+        <div style="font-size:clamp(19px,4vw,25px);font-weight:900;letter-spacing:.5px;overflow-wrap:anywhere" id="bankAccount">MN910005005622218472</div>
+        <button type="button" class="secondary" id="copyAccount">Дансны дугаар хуулах</button>
+        <div class="muted" style="font-size:12px;margin-top:12px">ДАНС ЭЗЭМШИГЧ</div><strong>Батравжих</strong>
+        <div class="muted" style="font-size:12px;margin-top:12px">ШИЛЖҮҮЛЭХ ДҮН</div><strong style="font-size:22px;color:var(--gold)">10,000₮</strong>
+      </div>
+      <div class="notice" style="margin-top:14px"><strong>Гүйлгээний утга:</strong> GLMN + өөрийн бүртгэлтэй имэйл хаяг. Жишээ: GLMN name@example.com</div>
+      <ol>
+        <li>Дээрх Хаан банкны данс руу 10,000₮ шилжүүлнэ.</li>
+        <li>Гүйлгээний утгад GLMN болон Games Lore MN-д бүртгүүлсэн имэйлээ бичнэ.</li>
+        <li>Гүйлгээний баримтаа админд Messenger-ээр илгээнэ.</li>
+        <li>Админ банкны орлогыг тулгаж баталгаажуулсны дараа эрх 30 хоногоор идэвхжинэ.</li>
+      </ol>
+      <a href="https://m.me/batarivjikh.bataa" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px 16px;margin-top:12px;border-radius:10px;background:linear-gradient(135deg,#e3c27b,#bd9650);color:#101522;text-decoration:none;font-weight:800">Төлбөрийн баримт илгээх · Админтай холбогдох</a>
+      <div id="paymentStatus" class="status" role="status">Төлбөрийг автоматаар шалгах холболт одоогоор байхгүй. Админ баталгаажуулсны дараа эрх нээгдэнэ.</div>
     </section>
   </div>
   <section class="panel" id="premiumReader" hidden>
@@ -80,7 +91,7 @@
   <section class="panel">
     <div class="section-kicker">System status</div><h2>API холболтын төлөв</h2>
     <p class="muted">Дараагийн шатанд Supabase Auth, төлбөрийн сервер/API, QPay callback болон 30 хоногийн эрхийн шалгалтыг холбоно. QPay-ийн secret key-г энэ HTML/JavaScript файлд хэзээ ч байрлуулахгүй.</p>
-    <div class="status">Одоогийн хувилбар: интерфэйсийн суурь бэлэн · бодит төлбөр ба эрхийн хамгаалалт идэвхгүй</div>
+    <div class="status">Одоогийн хувилбар: дансны шилжүүлгийн заавар бэлэн · төлбөрийг админ гараар баталгаажуулна · эрхийн автомат олголт хараахан холбогдоогүй</div>
   </section>
   <footer>© Games Lore MN · Premium access</footer>
 </main>
@@ -155,9 +166,15 @@
     if (data.session) loadPremiumArticle();
   });
 
-  byId('submitProof').addEventListener('click', () => {
-    byId('paymentStatus').textContent = 'QPay-ийн баталгаажуулалтын сервер холбогдоогүй тул энэ үйлдэл идэвхгүй.';
-  });
+  byId('copyAccount').addEventListener('click', async () => {
+    const account = byId('bankAccount').textContent.trim();
+    try {
+      await navigator.clipboard.writeText(account);
+      byId('paymentStatus').textContent = 'Дансны дугаарыг хууллаа. Шилжүүлгийн өмнө банкны апп дээр дансны нэрийг нягтлаарай.';
+    } catch {
+      byId('paymentStatus').textContent = 'Хуулах боломжгүй байна. Дансны дугаарыг гараар хуулна уу: ' + account;
+    }
+  });;
 
   (async () => {
     if (!client) return;
