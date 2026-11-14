@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Fontaine — water opera city">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#9bd8ee"/><stop offset="1" stop-color="#e4f5fb"/></linearGradient><linearGradient id="fade" x2="0" y2="1"><stop stop-color="#101b2b" stop-opacity="0"/><stop offset="1" stop-color="#101b2b" stop-opacity=".48"/></linearGradient></defs>
+<rect width="1200" height="600" fill="url(#sky)"/>
+<g fill="#fff" opacity=".28"><path d="M90 110Q130 35 210 80Q270 15 340 90Q400 125 350 150H120Q70 145 90 110Z"/><path d="M760 90Q810 15 900 60Q960 0 1040 70Q1110 100 1060 135H800Q735 130 760 90Z"/></g>
+<circle cx="930" cy="125" r="58" fill="#fff2cb"/><path d="M0 380L180 245 340 380 520 200 700 390 900 230 1080 390 1200 280V600H0Z" fill="#78b9c9"/><path d="M0 460L220 340 420 460 650 315 860 460 1080 350 1200 430V600H0Z" fill="#4e91aa"/><path d="M0 510Q300 450 600 510T1200 500V600H0Z" fill="#2f789b"/><path d="M460 390V250H730V390M485 250L595 175 705 250M520 250V215H670V250" fill="#e8e2d4"/><path d="M520 390V285H560V390M625 390V285H665V390" fill="#9acbd5"/><path d="M0 420Q260 380 480 425T900 420T1200 410" stroke="#c6edf0" stroke-width="12" fill="none"/>
+<path d="M0 520Q280 475 560 525T1200 510V600H0Z" fill="#d5e9ee" opacity=".3"/>
+<rect width="1200" height="600" fill="url(#fade)"/>
+<g fill="#fff" opacity=".55"><circle cx="110" cy="190" r="3"/><circle cx="320" cy="110" r="2"/><circle cx="1080" cy="210" r="3"/></g>
+</svg>
