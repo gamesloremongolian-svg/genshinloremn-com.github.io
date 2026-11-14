@@ -72,6 +72,11 @@
       <div id="paymentStatus" class="status" role="status">Төлбөр баталгаажуулах API хараахан холбогдоогүй.</div>
     </section>
   </div>
+  <section class="panel" id="premiumReader" hidden>
+    <div class="section-kicker">Member-only archive</div><h2 id="readerTitle">Premium Lore</h2>
+    <p id="readerMeta" class="muted"></p>
+    <article id="readerBody" style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9"></article>
+  </section>
   <section class="panel">
     <div class="section-kicker">System status</div><h2>API холболтын төлөв</h2>
     <p class="muted">Дараагийн шатанд Supabase Auth, төлбөрийн сервер/API, QPay callback болон 30 хоногийн эрхийн шалгалтыг холбоно. QPay-ийн secret key-г энэ HTML/JavaScript файлд хэзээ ч байрлуулахгүй.</p>
@@ -79,23 +84,87 @@
   </section>
   <footer>© Games Lore MN · Premium access</footer>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-  // API integration placeholders.
-  // Keep QPay client secret and payment signing credentials on a trusted server only.
-  // Supabase setup will be added after the project anon key and auth configuration are confirmed.
+  'use strict';
   const byId = id => document.getElementById(id);
-  byId('signup').addEventListener('click', () => {
-    byId('authStatus').textContent = 'Бүртгэлийн API хараахан холбогдоогүй. Supabase тохиргоог дараагийн шатанд холбоно.';
+  const SUPABASE_URL = 'https://zyocifqdpbgwlgwtrgnq.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_-VovpqoGFuRIi5yle5SYMw_iwMDpETf';
+  const client = window.supabase?.createClient
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
+
+  if (!client) byId('authStatus').textContent = 'Supabase холболт ачаалсангүй. Интернэтээ шалгаад дахин оролдоно уу.';
+
+  async function loadPremiumArticle() {
+    const slug = new URLSearchParams(location.search).get('article');
+    if (!slug) return;
+    const reader = byId('premiumReader');
+    reader.hidden = false;
+    byId('readerTitle').textContent = 'Premium Lore ачаалж байна…';
+    if (!client) {
+      byId('readerTitle').textContent = 'Холболтын алдаа';
+      return;
+    }
+    const { data: sessionData } = await client.auth.getSession();
+    const token = sessionData.session?.access_token;
+    if (!token) {
+      byId('readerTitle').textContent = 'Нэвтрэх шаардлагатай';
+      byId('readerBody').textContent = 'Premium судалгаа уншихын тулд эхлээд бүртгэлдээ нэвтэрнэ үү.';
+      return;
+    }
+    const { data, error } = await client.functions.invoke('get-premium-lore', {
+      body: { slug }
+    });
+    if (error || !data) {
+      byId('readerTitle').textContent = 'Нийтлэл нээгдсэнгүй';
+      byId('readerBody').textContent = data?.message || error?.message || 'Premium API холбогдоогүй эсвэл нийтлэл олдсонгүй.';
+      return;
+    }
+    byId('readerTitle').textContent = data.article.title;
+    byId('readerMeta').textContent = data.article.game + ' · Эрхийн дуусах хугацаа: ' + new Date(data.membership_expires_at).toLocaleDateString('mn-MN');
+    byId('readerBody').textContent = data.body_markdown;
+  }
+
+  byId('signup').addEventListener('click', async () => {
+    if (!client) return;
+    const email = byId('email').value.trim();
+    const password = byId('password').value;
+    if (!email || password.length < 8) {
+      byId('authStatus').textContent = 'Имэйл оруулж, хамгийн багадаа 8 тэмдэгттэй нууц үг сонгоно уу.';
+      return;
+    }
+    byId('signup').disabled = true;
+    const { error } = await client.auth.signUp({ email, password });
+    byId('authStatus').textContent = error
+      ? 'Бүртгэлийн алдаа: ' + error.message
+      : 'Бүртгэлийн хүсэлт илгээгдлээ. Имэйл баталгаажуулах шаардлагатай байж болно.';
+    byId('signup').disabled = false;
   });
-  byId('login').addEventListener('click', () => {
-    byId('authStatus').textContent = 'Нэвтрэлтийн API хараахан холбогдоогүй. Supabase тохиргоог дараагийн шатанд холбоно.';
+
+  byId('login').addEventListener('click', async () => {
+    if (!client) return;
+    const email = byId('email').value.trim();
+    const password = byId('password').value;
+    byId('login').disabled = true;
+    const { data, error } = await client.auth.signInWithPassword({ email, password });
+    byId('authStatus').textContent = error
+      ? 'Нэвтрэхэд алдаа гарлаа: ' + error.message
+      : 'Амжилттай нэвтэрлээ. Premium нийтлэлээ нээж байна…';
+    byId('login').disabled = false;
+    if (data.session) loadPremiumArticle();
   });
+
   byId('submitProof').addEventListener('click', () => {
-    const value = byId('reference').value.trim();
-    byId('paymentStatus').textContent = value
-      ? 'Мэдээлэл орууллаа. Илгээх/баталгаажуулах API холбогдоогүй тул админд одоогоор автоматаар хүрэхгүй.'
-      : 'Эхлээд гүйлгээний утга эсвэл баримтын дугаараа оруулна уу.';
+    byId('paymentStatus').textContent = 'QPay-ийн баталгаажуулалтын сервер холбогдоогүй тул энэ үйлдэл идэвхгүй.';
   });
+
+  (async () => {
+    if (!client) return;
+    const { data } = await client.auth.getSession();
+    if (data.session) byId('authStatus').textContent = 'Нэвтэрсэн: ' + data.session.user.email;
+    await loadPremiumArticle();
+  })();
 </script>
 </body>
 </html>
