@@ -488,6 +488,11 @@
     .home-archive-links a{display:block;min-width:0;padding:7px 8px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.035);color:var(--text);font-size:11px;line-height:1.35;text-decoration:none;overflow-wrap:anywhere}
     .home-archive-links a:hover{border-color:var(--gold);color:var(--gold)}
     @media(max-width:700px){.home-archive-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.home-archive-links a{font-size:10px;padding:7px 6px}}
+
+    .site-info-section{scroll-margin-top:100px;border-top:1px solid var(--border);margin-top:22px;padding-top:20px;display:block;width:100%}
+    .site-info-section>p{max-width:680px;font-size:13px!important}
+    .site-info-section .home-archive-links{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media(max-width:700px){.site-info-section .home-archive-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
@@ -715,29 +720,7 @@
               </div>
             </article>
           </div>
-        </div>
-
-        <aside class="panel">
-          <div class="section-kicker">Reader picks</div>
-          <h2 style="font-size:19px;color:var(--gold);margin-bottom:18px;">Түгээмэл Lore</h2>
-          <ol class="rank-list">
-            <li class="rank-item">
-              <span class="rank-number">01</span>
-              <div><strong>Khaenri'ah — Алдагдсан улс</strong><small>Genshin Impact · Эртний түүх</small></div>
-            </li>
-            <li class="rank-item">
-              <span class="rank-number">02</span>
-              <div><strong>Celestia — Тэнгэрийн арал</strong><small>Genshin Impact · Нууцлаг газар</small></div>
-            </li>
-            <li class="rank-item">
-              <span class="rank-number">03</span>
-              <div><strong>The Primordial One</strong><small>Genshin Impact · Эртний домог</small></div>
-            </li>
-          </ol>
-          <p style="color:var(--muted);font-size:10px;margin-top:17px;">
-            Одоогоор редакцын онцолсон жагсаалт. Бодит уншилтын статистик холбосны дараа автоматаар эрэмбэлнэ.
-          </p>
-          <div class="sidebar-info-block" id="site-info" style="scroll-margin-top:100px;border-top:1px solid var(--border);margin-top:20px;padding-top:18px;">
+          <div class="site-info-section" id="site-info" style="scroll-margin-top:100px;border-top:1px solid var(--border);margin-top:20px;padding-top:18px;">
             <div class="section-kicker">Games Lore MN</div>
             <h3 style="color:var(--gold);font-size:16px;margin:6px 0 8px;">Сайтын мэдээлэл</h3>
             <p style="color:var(--muted);font-size:11px;line-height:1.6;">Видео тоглоомын ертөнц, дүрүүд, домог, нууц болон түүхийг Монгол хэлээр судлах бие даасан архив.</p>
@@ -782,6 +765,29 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <aside class="panel">
+          <div class="section-kicker">Reader picks</div>
+          <h2 style="font-size:19px;color:var(--gold);margin-bottom:18px;">Түгээмэл Lore</h2>
+          <ol class="rank-list">
+            <li class="rank-item">
+              <span class="rank-number">01</span>
+              <div><strong>Khaenri'ah — Алдагдсан улс</strong><small>Genshin Impact · Эртний түүх</small></div>
+            </li>
+            <li class="rank-item">
+              <span class="rank-number">02</span>
+              <div><strong>Celestia — Тэнгэрийн арал</strong><small>Genshin Impact · Нууцлаг газар</small></div>
+            </li>
+            <li class="rank-item">
+              <span class="rank-number">03</span>
+              <div><strong>The Primordial One</strong><small>Genshin Impact · Эртний домог</small></div>
+            </li>
+          </ol>
+          <p style="color:var(--muted);font-size:10px;margin-top:17px;">
+            Одоогоор редакцын онцолсон жагсаалт. Бодит уншилтын статистик холбосны дараа автоматаар эрэмбэлнэ.
+          </p>
+
         </aside>
       </div>
     </section>
