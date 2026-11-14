@@ -32,9 +32,9 @@
   var input = document.getElementById('searchInput');
   var message = document.getElementById('searchMessage');
   var noResults = document.getElementById('noResults');
-  var items = Array.prototype.slice.call(document.querySelectorAll('.searchable'));
-
   function runSearch(shouldScroll) {
+    // Динамикаар ачаалагдсан дүрийн картуудыг ч хайлтад хамруулахын тулд жагсаалтыг үйлдэл бүрд шинэчилнэ.
+    var items = Array.prototype.slice.call(document.querySelectorAll('.searchable'));
     var q = input.value.trim().toLocaleLowerCase('mn');
     var found = 0;
     var firstMatch = null;
