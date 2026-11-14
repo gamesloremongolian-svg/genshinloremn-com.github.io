@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Sumeru — emerald rainforest">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#a5d8a2"/><stop offset="1" stop-color="#e4edbb"/></linearGradient><linearGradient id="fade" x2="0" y2="1"><stop stop-color="#101b2b" stop-opacity="0"/><stop offset="1" stop-color="#101b2b" stop-opacity=".48"/></linearGradient></defs>
+<rect width="1200" height="600" fill="url(#sky)"/>
+<g fill="#fff" opacity=".28"><path d="M90 110Q130 35 210 80Q270 15 340 90Q400 125 350 150H120Q70 145 90 110Z"/><path d="M760 90Q810 15 900 60Q960 0 1040 70Q1110 100 1060 135H800Q735 130 760 90Z"/></g>
+<circle cx="920" cy="120" r="60" fill="#fff0b0"/><path d="M0 390L180 250 340 390 520 190 710 390 900 230 1080 390 1200 270V600H0Z" fill="#5f9f76"/><path d="M0 460L220 330 420 460 650 310 860 460 1080 340 1200 420V600H0Z" fill="#357d62"/><path d="M0 520Q280 450 560 520T1200 505V600H0Z" fill="#276b5a"/><path d="M470 380Q430 285 485 235Q540 185 595 235Q650 285 610 380Z" fill="#d7c78e"/><path d="M500 280L540 205 585 280" fill="#f1e2b5"/><path d="M200 410Q145 280 235 240Q325 280 280 410M900 430Q840 280 940 230Q1040 280 990 430" fill="#2f805f"/>
+<path d="M0 520Q280 475 560 525T1200 510V600H0Z" fill="#a5c98d" opacity=".3"/>
+<rect width="1200" height="600" fill="url(#fade)"/>
+<g fill="#fff" opacity=".55"><circle cx="110" cy="190" r="3"/><circle cx="320" cy="110" r="2"/><circle cx="1080" cy="210" r="3"/></g>
+</svg>
