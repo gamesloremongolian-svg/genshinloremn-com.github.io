@@ -16,3 +16,5 @@ on public.wiki_articles
 for select
 to anon, authenticated
 using (published_at is not null);
+-- Explicit table privileges are required in addition to the RLS policy.
+grant select on public.wiki_articles to anon, authenticated;
