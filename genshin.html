@@ -552,6 +552,75 @@
 </style>
 <style>
 
+
+/* Uniform sizing for all four Lore topic cards */
+.genshin-page #lore .g-grid.g-lore-topics{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  align-items:start!important;
+  grid-auto-rows:auto!important;
+  gap:16px!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card{
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  align-self:start!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:198px!important;
+  height:auto!important;
+  padding:20px!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card .g-tag{min-height:14px}
+.genshin-page #lore .g-lore-topics>.g-card h3{
+  min-height:24px;
+  margin:10px 0 8px!important;
+  line-height:1.35!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card>p{
+  flex:0 0 auto!important;
+  min-height:40px;
+  margin:0 0 12px!important;
+  line-height:1.6!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card .g-topic-details{
+  width:100%;
+  margin-top:auto!important;
+}
+.genshin-page #lore .g-lore-topics>.g-card .g-topic-details>summary{
+  min-height:28px;
+}
+@media(max-width:560px){
+  .genshin-page #lore .g-grid.g-lore-topics{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+  .genshin-page #lore .g-lore-topics>.g-card{
+    min-height:190px!important;
+    padding:15px!important;
+  }
+  .genshin-page #lore .g-lore-topics>.g-card h3{
+    font-size:15px!important;
+  }
+  .genshin-page #lore .g-lore-topics>.g-card>p{
+    font-size:11px!important;
+    min-height:48px;
+  }
+}
+@media(max-width:380px){
+  .genshin-page #lore .g-grid.g-lore-topics{
+    grid-template-columns:1fr!important;
+  }
+  .genshin-page #lore .g-lore-topics>.g-card{
+    min-height:160px!important;
+    padding:17px!important;
+  }
+  .genshin-page #lore .g-lore-topics>.g-card h3{font-size:17px!important}
+  .genshin-page #lore .g-lore-topics>.g-card>p{font-size:12px!important;min-height:0}
+}
+
 /* Readable responsive sizing for the Archon archive */
 @media (max-width:900px) {
   .genshin-page #archons .g-archon-grid{
