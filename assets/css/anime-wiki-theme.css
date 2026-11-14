@@ -181,3 +181,101 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
  .genshin-page #world .g-grid{grid-template-columns:1fr}
  .genshin-page #world .g-region-cover{height:165px}
 }
+
+/* FINAL THEME OVERRIDES — enforce the anime archive visual system on Genshin page */
+.genshin-page{
+ --g-bg:#0b1020;--g-panel:#19243c;--g-gold:#f4cf8a;--g-cyan:#9be8f0;
+ background:
+  radial-gradient(ellipse at 15% 0%,rgba(121,104,202,.2),transparent 34%),
+  radial-gradient(ellipse at 88% 22%,rgba(68,167,190,.13),transparent 32%),
+  linear-gradient(180deg,#0b1020 0%,#111a31 55%,#0b1020 100%)!important;
+ color:#f4f3ff!important;
+}
+.genshin-page .g-header{
+ background:rgba(9,14,29,.88)!important;
+ border-bottom:1px solid rgba(174,160,238,.24)!important;
+ box-shadow:0 8px 30px rgba(0,0,0,.22)!important;
+ backdrop-filter:blur(18px)!important;
+}
+.genshin-page .g-brand{color:#fff!important}
+.genshin-page .g-brand span{color:#f2acd8!important}
+.genshin-page .g-navlinks a{color:#d0d4e8!important}
+.genshin-page .g-navlinks a:hover{color:#9be8f0!important}
+.genshin-page .g-hero{
+ min-height:540px!important;
+ background:
+  linear-gradient(90deg,rgba(7,12,27,.86),rgba(13,19,43,.48) 55%,rgba(12,20,40,.12)),
+  linear-gradient(0deg,rgba(8,13,28,.28),transparent 50%),
+  url('assets/images/genshin-bg.png') center 45%/cover no-repeat!important;
+ border-bottom:1px solid rgba(174,160,238,.24)!important;
+}
+.genshin-page .g-hero h1{color:#fff!important;text-shadow:0 5px 30px #0009!important}
+.genshin-page .g-hero h1 .g-gold,
+.genshin-page .g-hero .g-gold{color:#f2acd8!important}
+.genshin-page .g-eyebrow,.genshin-page .g-tag{color:#9be8f0!important}
+.genshin-page .g-section{
+ background:transparent!important;
+ border-top:1px solid rgba(174,160,238,.08)!important;
+}
+.genshin-page .g-section:nth-child(even){
+ background:linear-gradient(120deg,rgba(32,40,76,.68),rgba(15,25,48,.56))!important;
+}
+.genshin-page .g-heading h2{color:#f7f3ff!important}
+.genshin-page .g-heading .g-gold{color:#f4cf8a!important}
+.genshin-page .g-heading p{color:#bfc9df!important}
+.genshin-page .g-card{
+ color:#f4f3ff!important;
+ background:linear-gradient(145deg,rgba(34,43,77,.97),rgba(18,29,53,.98))!important;
+ border:1px solid rgba(174,160,238,.24)!important;
+ border-radius:17px!important;
+ box-shadow:0 15px 36px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.045)!important;
+}
+.genshin-page .g-card:hover{
+ border-color:rgba(242,172,216,.62)!important;
+ box-shadow:0 20px 42px rgba(0,0,0,.32),0 0 22px rgba(154,132,232,.12)!important;
+}
+.genshin-page .g-card h3{color:#fff4e8!important}
+.genshin-page .g-card p{color:#c4cde0!important}
+.genshin-page .g-symbol{
+ color:#a9f0f1!important;
+ background:linear-gradient(145deg,rgba(126,204,223,.16),rgba(167,139,250,.1))!important;
+ border:1px solid rgba(155,232,240,.6)!important;
+ box-shadow:0 0 22px rgba(115,208,226,.17)!important;
+}
+.genshin-page .g-region-cover{border-bottom:1px solid rgba(174,160,238,.2)!important}
+.genshin-page .g-region-details summary,
+.genshin-page .g-topic-details summary,
+.genshin-page .g-archon-details summary{color:#f4cf8a!important}
+.genshin-page .g-region-body p,
+.genshin-page .g-topic-body p,
+.genshin-page .g-archon-details p{color:#c7d0e3!important}
+.genshin-page .g-search input{
+ background:#17233d!important;color:#fff!important;
+ border:1px solid rgba(174,160,238,.35)!important;border-radius:11px!important;
+}
+.genshin-page .g-search input:focus{border-color:#9be8f0!important;box-shadow:0 0 0 3px rgba(155,232,240,.13)!important}
+.genshin-page .g-search button{
+ background:linear-gradient(135deg,#f4cf8a,#e5a9d0)!important;color:#1c2033!important;
+ border:0!important;border-radius:11px!important;
+}
+.genshin-page .g-character-image{
+ background:radial-gradient(ellipse at 50% 35%,rgba(155,232,240,.2),transparent 68%),linear-gradient(180deg,#29385a,#141f39)!important;
+}
+.genshin-page .g-character-info{
+ background:linear-gradient(180deg,#202e4d,#121d35)!important;
+ border-top:1px solid rgba(174,160,238,.2)!important;
+}
+.genshin-page .g-footer{color:#aebbd3!important;border-top-color:rgba(174,160,238,.2)!important}
+.genshin-page .glm-bottom-nav{
+ background:rgba(9,14,29,.96)!important;
+ border:1px solid rgba(174,160,238,.34)!important;
+ box-shadow:0 12px 35px rgba(0,0,0,.45)!important;
+}
+.genshin-page .glm-bottom-nav a{color:#d4d8e9!important}
+.genshin-page .glm-bottom-nav a:active,
+.genshin-page .glm-bottom-nav a:focus-visible{color:#9be8f0!important;background:rgba(155,232,240,.12)!important}
+@media(max-width:750px){
+ .genshin-page .g-hero{min-height:420px!important}
+ .genshin-page .g-section{padding:52px 0!important}
+ .genshin-page .g-card{border-radius:15px!important}
+}
