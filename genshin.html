@@ -712,7 +712,7 @@
    const nation=ch.nation||ch.region||'';
    const desc=ch.description||ch.title||'Дүрийн дэлгэрэнгүй түүх удахгүй нэмэгдэнэ.';
    const image=ch.images?.card||ch.image?.card||ch.img?.card||imageFor(slugify(id));
-   return '<a class="g-card g-character-card searchable" href="character.html?id='+encodeURIComponent(slugify(id))+'" data-search="'+esc([name,element,weapon,nation].join(' ')).toLowerCase()+'" aria-label="'+esc(name)+' дэлгэрэнгүй үзэх"><img class="g-character-image" src="'+esc(image)+'" alt="'+esc(name)+'" loading="lazy" onerror="this.style.display=\\'none\\'"><div class="g-character-info"><div class="g-tag">'+esc(element)+' · '+esc(weapon)+'</div><h3>'+esc(name)+'</h3><p>'+esc(desc)+'</p><p class="g-character-meta">'+esc([rarity,nation].filter(Boolean).join(' · '))+'</p><span class="g-character-open">Дэлгэрэнгүй үзэх →</span></div></a>';
+   return '<a class="g-card g-character-card searchable" href="character.html?id='+encodeURIComponent(slugify(id))+'" data-search="'+esc([name,element,weapon,nation].join(' ')).toLowerCase()+'" aria-label="'+esc(name)+' дэлгэрэнгүй үзэх"><img class="g-character-image" src="'+esc(image)+'" alt="'+esc(name)+'" loading="lazy" onerror="this.remove()"><div class="g-character-info"><div class="g-tag">'+esc(element)+' · '+esc(weapon)+'</div><h3>'+esc(name)+'</h3><p>'+esc(desc)+'</p><p class="g-character-meta">'+esc([rarity,nation].filter(Boolean).join(' · '))+'</p><span class="g-character-open">Дэлгэрэнгүй үзэх →</span></div></a>';
   }).join('');
   rail.dataset.loaded='1';
  };
