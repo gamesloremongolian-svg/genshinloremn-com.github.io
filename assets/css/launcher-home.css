@@ -68,7 +68,7 @@ main::before{
  background:
   linear-gradient(90deg,rgba(7,26,18,.78),rgba(8,35,22,.32) 62%,rgba(8,35,22,.08)),
   linear-gradient(0deg,rgba(5,20,13,.64),transparent 66%),
-  url("../images/genshin-bg.png") center 43%/cover!important;
+  url("../images/home-hero.svg") center 48%/cover!important;
  border:0!important;border-radius:0!important;
 }
 .hero::after{display:none!important}
