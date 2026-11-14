@@ -556,6 +556,16 @@
     .game-card[hidden]{display:none!important}
     @media(max-width:900px){.genre-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
     @media(max-width:560px){.genre-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.genre-card{min-height:100px;padding:11px}}
+
+    .game-search-wrap{max-width:720px;margin:18px 0 22px}
+    .game-search-label{display:block;margin-bottom:8px;color:var(--text);font-size:13px;font-weight:800}
+    .game-search-box{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 14px;border:1px solid var(--border);border-radius:14px;background:var(--panel);box-shadow:0 5px 18px rgba(0,0,0,.045)}
+    .game-search-box>span{font-size:24px;color:var(--muted);line-height:1}
+    .game-search-box input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:14px}
+    .game-search-box input::placeholder{color:var(--muted);opacity:.85}
+    .game-search-box button{border:0;background:transparent;color:var(--muted);font-size:18px;padding:8px;cursor:pointer}
+    .game-search-hint{margin:7px 2px 0;color:var(--muted);font-size:11px}
+    @media(max-width:600px){.game-search-wrap{margin:14px 0 18px}.game-search-box{min-height:48px;padding:0 11px}}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
@@ -631,6 +641,16 @@
           <h2>Тоглоомын сан</h2>
           <p>Судлахыг хүссэн ертөнцөө сонгоорой.</p>
         </div>
+      </div>
+
+      <div class="game-search-wrap">
+        <label class="game-search-label" for="gameSearch">Тоглоом хайх</label>
+        <div class="game-search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="gameSearch" type="search" placeholder="Нэрээр хайх... Жишээ нь: Genshin, PUBG, Dota" autocomplete="off">
+          <button id="clearGameSearch" type="button" aria-label="Хайлтыг арилгах" hidden>✕</button>
+        </div>
+        <p class="game-search-hint" id="gameSearchResult" aria-live="polite">21 тоглоомоос хайх боломжтой.</p>
       </div>
 
       <div class="games-grid">
@@ -933,28 +953,47 @@
 
     updateVisitorCounter();
   
-    // Homepage game genre filters
+    // Homepage game search and genre filters
     const genreButtons = document.querySelectorAll(".genre-card[data-filter]");
     const gameCards = document.querySelectorAll("#games .game-card[data-genres]");
     const genreResult = document.getElementById("genreResult");
+    const gameSearch = document.getElementById("gameSearch");
+    const clearGameSearch = document.getElementById("clearGameSearch");
+    const gameSearchResult = document.getElementById("gameSearchResult");
+    let activeGenre = "all";
+    function filterHomepageGames(scrollToGames = false) {
+      const query = (gameSearch?.value || "").trim().toLocaleLowerCase();
+      let visible = 0;
+      gameCards.forEach(card => {
+        const genres = (card.dataset.genres || "").split(/\\s+/);
+        const searchable = (card.innerText + " " + (card.getAttribute("aria-label") || "")).toLocaleLowerCase();
+        const genreMatch = activeGenre === "all" || genres.includes(activeGenre);
+        const searchMatch = !query || searchable.includes(query);
+        const show = genreMatch && searchMatch;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      if (gameSearchResult) gameSearchResult.textContent = query ? (visible ? visible + " тоглоом олдлоо." : "Тохирох тоглоом олдсонгүй.") : "21 тоглоомоос хайх боломжтой.";
+      if (clearGameSearch) clearGameSearch.hidden = !query;
+      if (genreResult) genreResult.textContent = activeGenre === "all" ? "Бүх тоглоом харагдаж байна." : "Сонгосон төрөлд " + visible + " тоглоом байна.";
+      if (scrollToGames) document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"});
+    }
     genreButtons.forEach(button => {
       button.addEventListener("click", () => {
-        const filter = button.dataset.filter;
-        let visible = 0;
+        activeGenre = button.dataset.filter;
         genreButtons.forEach(item => {
           const active = item === button;
           item.classList.toggle("active", active);
           item.setAttribute("aria-pressed", String(active));
         });
-        gameCards.forEach(card => {
-          const genres = (card.dataset.genres || "").split(/\\s+/);
-          const show = filter === "all" || genres.includes(filter) || (filter === "all" && genres.includes("all"));
-          card.hidden = !show;
-          if (show) visible++;
-        });
-        genreResult.textContent = filter === "all" ? "Бүх тоглоом харагдаж байна." : "Сонгосон төрөлд " + visible + " тоглоом байна.";
-        document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"});
+        filterHomepageGames(true);
       });
+    });
+    gameSearch?.addEventListener("input", () => filterHomepageGames());
+    clearGameSearch?.addEventListener("click", () => {
+      gameSearch.value = "";
+      filterHomepageGames();
+      gameSearch.focus();
     });
 
 </script>
