@@ -566,6 +566,13 @@
     .game-search-box button{border:0;background:transparent;color:var(--muted);font-size:18px;padding:8px;cursor:pointer}
     .game-search-hint{margin:7px 2px 0;color:var(--muted);font-size:11px}
     @media(max-width:600px){.game-search-wrap{margin:14px 0 18px}.game-search-box{min-height:48px;padding:0 11px}}
+
+    .games-grid .game-card:nth-child(n+11){display:none}
+    .games-grid.show-all .game-card:nth-child(n+11){display:flex}
+    .games-more-wrap{display:flex;justify-content:center;margin:22px 0 8px}
+    .games-more-btn{min-height:44px;padding:11px 22px;border:1px solid var(--border);border-radius:999px;background:var(--panel);color:var(--text);font:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 5px 16px rgba(0,0,0,.06)}
+    .games-more-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .games-grid.show-all .game-card[hidden]{display:none!important}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
@@ -781,6 +788,7 @@
           <div class="game-info"><h3>Chess.com</h3><p>Chess · Openings · Tactics</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
       </div>
+      <div class="games-more-wrap"><button class="games-more-btn" id="gamesMoreBtn" type="button" aria-expanded="false">Бусад тоглоом үзэх (11) ↓</button></div>
     </section>
 
     <section class="section container" id="categories">
@@ -960,24 +968,42 @@
     const gameSearch = document.getElementById("gameSearch");
     const clearGameSearch = document.getElementById("clearGameSearch");
     const gameSearchResult = document.getElementById("gameSearchResult");
+    const gamesGrid = document.querySelector("#games .games-grid");
+    const gamesMoreBtn = document.getElementById("gamesMoreBtn");
     let activeGenre = "all";
+    let showAllGames = false;
     function filterHomepageGames(scrollToGames = false) {
       const query = (gameSearch?.value || "").trim().toLocaleLowerCase();
-      let visible = 0;
+      let matches = [];
       gameCards.forEach(card => {
         const genres = (card.dataset.genres || "").split(/\\s+/);
         const searchable = (card.innerText + " " + (card.getAttribute("aria-label") || "")).toLocaleLowerCase();
         const genreMatch = activeGenre === "all" || genres.includes(activeGenre);
         const searchMatch = !query || searchable.includes(query);
-        const show = genreMatch && searchMatch;
-        card.hidden = !show;
-        if (show) visible++;
+        const match = genreMatch && searchMatch;
+        card.hidden = !match;
+        if (match) matches.push(card);
       });
-      if (gameSearchResult) gameSearchResult.textContent = query ? (visible ? visible + " тоглоом олдлоо." : "Тохирох тоглоом олдсонгүй.") : "21 тоглоомоос хайх боломжтой.";
+      const browsingAll = !query && activeGenre === "all";
+      matches.forEach((card,index) => {
+        if (browsingAll && !showAllGames && index >= 10) card.hidden = true;
+      });
+      if (gamesGrid) gamesGrid.classList.toggle("show-all",showAllGames || !browsingAll);
+      if (gamesMoreBtn) {
+        gamesMoreBtn.hidden = !browsingAll || matches.length <= 10;
+        gamesMoreBtn.textContent = showAllGames ? "Цөөн тоглоом харах ↑" : "Бусад тоглоом үзэх (" + (matches.length-10) + ") ↓";
+        gamesMoreBtn.setAttribute("aria-expanded",String(showAllGames));
+      }
+      const visible = matches.filter(card => !card.hidden).length;
+      if (gameSearchResult) gameSearchResult.textContent = query ? (visible ? visible + " тоглоом олдлоо." : "Тохирох тоглоом олдсонгүй.") : "Нийт " + matches.length + " тоглоом · Эхний 10-ыг харуулж байна.";
       if (clearGameSearch) clearGameSearch.hidden = !query;
       if (genreResult) genreResult.textContent = activeGenre === "all" ? "Бүх тоглоом харагдаж байна." : "Сонгосон төрөлд " + visible + " тоглоом байна.";
       if (scrollToGames) document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"});
     }
+    gamesMoreBtn?.addEventListener("click",() => {
+      showAllGames = !showAllGames;
+      filterHomepageGames();
+    });
     genreButtons.forEach(button => {
       button.addEventListener("click", () => {
         activeGenre = button.dataset.filter;
