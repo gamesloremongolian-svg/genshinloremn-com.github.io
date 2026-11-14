@@ -135,3 +135,49 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+/* Teyvat region cards — real landscape artwork */
+.genshin-page #world .g-grid{align-items:stretch;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.genshin-page #world .g-card{
+ position:relative;overflow:hidden;min-width:0;display:flex;flex-direction:column;
+ padding:0!important;align-self:stretch;
+}
+.genshin-page #world .g-region-cover{
+ position:relative;height:clamp(125px,15vw,190px);width:100%;overflow:hidden;
+ background:linear-gradient(135deg,#223d57,#17243b);
+ border-bottom:1px solid rgba(255,255,255,.1);flex:0 0 auto;
+}
+.genshin-page #world .g-region-cover:after{
+ content:"";position:absolute;inset:0;
+ background:linear-gradient(0deg,rgba(9,15,30,.65),transparent 58%);
+ pointer-events:none;
+}
+.genshin-page #world .g-region-cover img{
+ display:block;width:100%;height:100%;object-fit:cover;object-position:center;
+ transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .35s;
+}
+.genshin-page #world .g-card:hover .g-region-cover img{transform:scale(1.055);filter:saturate(1.08)}
+.genshin-page #world .g-symbol,
+.genshin-page #world .g-card h3,
+.genshin-page #world .g-card .g-tag,
+.genshin-page #world .g-card>p,
+.genshin-page #world .g-card .g-region-details{margin-left:18px;margin-right:18px}
+.genshin-page #world .g-symbol{margin-top:-22px;position:relative;z-index:2;align-self:flex-start}
+.genshin-page #world .g-card h3{margin-top:13px}
+.genshin-page #world .g-card .g-region-details{margin-top:auto;margin-bottom:16px}
+.genshin-page #world .g-region-image-note{
+ position:absolute;z-index:2;right:8px;bottom:7px;padding:4px 7px;
+ border-radius:6px;background:rgba(5,12,24,.72);color:#f5f3ff;font-size:9px;
+}
+.genshin-page #world .g-card>p{flex:1}
+@media(max-width:760px){
+ .genshin-page #world .g-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .genshin-page #world .g-region-cover{height:125px}
+ .genshin-page #world .g-symbol,.genshin-page #world .g-card h3,
+ .genshin-page #world .g-card .g-tag,.genshin-page #world .g-card>p,
+ .genshin-page #world .g-card .g-region-details{margin-left:12px;margin-right:12px}
+ .genshin-page #world .g-card .g-region-details{margin-bottom:12px}
+}
+@media(max-width:390px){
+ .genshin-page #world .g-grid{grid-template-columns:1fr}
+ .genshin-page #world .g-region-cover{height:165px}
+}
