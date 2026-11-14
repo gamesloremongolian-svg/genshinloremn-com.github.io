@@ -81,6 +81,12 @@
       </ol>
       <a href="https://m.me/batarivjikh.bataa" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px 16px;margin-top:12px;border-radius:10px;background:linear-gradient(135deg,#e3c27b,#bd9650);color:#101522;text-decoration:none;font-weight:800">Төлбөрийн баримт илгээх · Админтай холбогдох</a>
       <div id="paymentStatus" class="status" role="status">Төлбөрийг автоматаар шалгах холболт одоогоор байхгүй. Админ баталгаажуулсны дараа эрх нээгдэнэ.</div>
+      <div class="status" id="reviewTimer" aria-live="polite">
+        <strong>Төлбөр шалгах хугацаа: 5:00</strong>
+        <div id="reviewTimerText" class="muted">Баримтаа Messenger-ээр илгээсний дараа админ 5 минутын дотор шалгана.</div>
+        <button type="button" class="secondary" id="startReviewTimer">5 минутын хугацаа эхлүүлэх</button>
+      </div>
+
     </section>
   </div>
   <section class="panel" id="premiumReader" hidden>
@@ -164,6 +170,35 @@
       : 'Амжилттай нэвтэрлээ. Premium нийтлэлээ нээж байна…';
     byId('login').disabled = false;
     if (data.session) loadPremiumArticle();
+  });
+
+  let reviewTimerInterval = null;
+  byId('startReviewTimer').addEventListener('click', () => {
+    if (reviewTimerInterval) clearInterval(reviewTimerInterval);
+    let remaining = 5 * 60;
+    const button = byId('startReviewTimer');
+    const display = byId('reviewTimerText');
+    const title = byId('reviewTimer').querySelector('strong');
+    button.disabled = true;
+    button.textContent = 'Хугацаа явж байна…';
+    const render = () => {
+      const minutes = Math.floor(remaining / 60);
+      const seconds = String(remaining % 60).padStart(2, '0');
+      title.textContent = 'Төлбөр шалгах хугацаа: ' + minutes + ':' + seconds;
+      if (remaining <= 0) {
+        clearInterval(reviewTimerInterval);
+        reviewTimerInterval = null;
+        title.textContent = '5 минут өнгөрлөө';
+        display.textContent = 'Төлбөр баталгаажаагүй бол админтай Messenger-ээр холбогдоно уу. Хугацаа дууссан нь төлбөр баталгаажсан гэсэн үг биш.';
+        button.disabled = false;
+        button.textContent = 'Дахин 5 минут эхлүүлэх';
+        return;
+      }
+      remaining -= 1;
+    };
+    render();
+    reviewTimerInterval = setInterval(render, 1000);
+    byId('paymentStatus').textContent = '5 минутын хүлээлгийн хугацаа эхэллээ. Админ таны шилжүүлгийг шалгаж баталгаажуулна.';
   });
 
   byId('copyAccount').addEventListener('click', async () => {
