@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /auth.html
+Disallow: /wiki.html
+Disallow: /wiki-v2.html
+Disallow: /signup.html
+
+Sitemap: https://gamesloremongolian-svg.github.io/genshinloremn-com.github.io/sitemap.xml
