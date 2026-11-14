@@ -511,6 +511,16 @@
     .nav-links .nav-site-info-content .home-archive-links{display:grid!important;grid-template-columns:1fr!important;gap:5px!important}
     .nav-links .nav-site-info-content .home-archive-links a{display:block!important;min-width:0!important;padding:6px 7px!important;font-size:10px!important;line-height:1.35!important;overflow-wrap:anywhere!important}
     .nav-links .nav-site-info-content .btn{display:flex!important;width:100%!important;box-sizing:border-box!important;white-space:normal!important;text-align:center!important}
+
+    /* Dedicated, visible contact area */
+    .contact-section{scroll-margin-top:90px!important;padding-top:24px!important;padding-bottom:42px!important}
+    .contact-section-inner{max-width:900px;margin:0 auto}
+    .contact-card-featured{display:block!important;visibility:visible!important;opacity:1!important;width:100%;box-sizing:border-box;padding:clamp(20px,4vw,34px)!important;background:linear-gradient(135deg,#173c2b,#10251d)!important;border:1px solid rgba(70,170,91,.35)!important;border-radius:18px!important;box-shadow:0 12px 34px rgba(20,60,30,.14)!important}
+    .contact-card-featured h2{color:#f0d28b!important;font-size:clamp(21px,3vw,28px)!important}
+    .contact-card-featured p{color:#e0e9e1!important;max-width:680px;line-height:1.7!important}
+    .contact-card-featured .contact-actions{display:flex!important;flex-wrap:wrap;gap:12px;margin-top:20px!important}
+    .contact-card-featured .contact-actions .btn{display:inline-flex!important;align-items:center;justify-content:center;min-height:46px;padding:12px 18px!important;white-space:normal;text-align:center}
+    @media(max-width:700px){.contact-section{padding-left:15px!important;padding-right:15px!important}.contact-card-featured .contact-actions{display:grid!important;grid-template-columns:1fr!important}.contact-card-featured .contact-actions .btn{width:100%;box-sizing:border-box}}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
@@ -830,9 +840,15 @@
           </div>
         </div>
 
-        <div class="contact-card" id="contact">
+
+      </div>
+    </section>
+
+    <section class="section container contact-section" aria-labelledby="contact-heading">
+      <div class="contact-section-inner">
+        <div class="contact-card contact-card-featured" id="contact">
           <div class="section-kicker">Community & contact</div>
-          <h2>Бидэнтэй холбогдоорой</h2>
+          <h2 id="contact-heading">Бидэнтэй холбогдоорой</h2>
           <p>
             Санал хүсэлт, хамтын ажиллагаа, нийтлэлтэй холбоотой мэдээлэл
             болон асуултаа Facebook Page эсвэл Messenger-ээр илгээнэ үү.
