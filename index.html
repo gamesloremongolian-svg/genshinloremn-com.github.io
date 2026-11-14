@@ -611,6 +611,11 @@
               <span class="stat-value" id="visitorCount" aria-live="polite" style="font-size:23px;">Ачаалж байна…</span>
               <div class="stat-note" id="visitorNote">Нүүр хуудасны хандалтын тоо</div>
             </div>
+            <div class="sidebar-game-total" style="margin-top:16px;padding:12px;border:1px solid var(--border);border-radius:12px;background:rgba(90,180,100,.08);">
+              <div class="stat-label">НИЙТ ТОГЛООМ</div>
+              <div class="stat-value" id="totalGameCount" style="font-size:28px;line-height:1.2;">21</div>
+              <div class="stat-note">Архивт бүртгэлтэй тоглоом</div>
+            </div>
             <div style="display:grid;gap:8px;margin-top:14px;">
               <a class="btn btn-outline" href="https://www.facebook.com/share/1BQdjxcDbM/" target="_blank" rel="noopener noreferrer">Facebook Page ↗</a>
               <a class="btn btn-outline" href="https://m.me/batarivjikh.bataa" target="_blank" rel="noopener noreferrer">Админд мессэж бичих ↗</a>
@@ -961,6 +966,13 @@
 
     updateVisitorCounter();
   
+    // Display the live total number of game cards in the archive.
+    const totalGameCount = document.getElementById("totalGameCount");
+    if (totalGameCount) {
+      const total = document.querySelectorAll("#games .game-card").length;
+      totalGameCount.textContent = String(total);
+    }
+
     // Homepage game search and genre filters
     const genreButtons = document.querySelectorAll(".genre-card[data-filter]");
     const gameCards = document.querySelectorAll("#games .game-card[data-genres]");
