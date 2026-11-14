@@ -1472,7 +1472,7 @@
  if(!rail || rail.dataset.dynamicReady==='1') return;
  rail.dataset.dynamicReady='1';
  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
- const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
  const elementMap={Anemo:'Салхи',Geo:'Газар',Electro:'Цахилгаан',Dendro:'Ургамал',Hydro:'Ус',Pyro:'Гал',Cryo:'Мөс'};
  const weaponMap={Sword:'Нэг гар сэлэм',Claymore:'Хоёр гар сэлэм',Polearm:'Жад',Bow:'Нум',Catalyst:'Катализатор'};
  const render=items=>{
