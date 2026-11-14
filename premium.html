@@ -63,12 +63,12 @@
     </section>
     <section class="panel">
       <div class="section-kicker">Unlock premium access</div><h2>2. QPay төлбөр</h2>
-      <p class="muted">Доорх QR кодыг уншуулж төлбөрөө хийнэ үү. Хэрэв банкны апп дүн асуувал 5,000₮ оруулна.</p>
+      <p class="muted">QPay-ийн бодит QR зураг болон төлбөр баталгаажуулах сервер холбогдоогүй тул Premium төлбөр одоогоор идэвхгүй.</p>
       <img class="qr" src="./assets/images/qpay-qr.png" alt="Games Lore MN Premium QPay QR код" onerror="this.style.display='none';document.getElementById('qrMissing').hidden=false">
-      <p id="qrMissing" class="notice" hidden>QR зургийг assets/images/qpay-qr.png нэрээр байршуулах шаардлагатай.</p>
-      <div class="notice">Төлбөр хийсний дараа гүйлгээний баримтаа админд илгээнэ үү. API холбогдох хүртэл төлбөр автоматаар баталгаажихгүй.</div>
+      <p id="qrMissing" class="notice">QPay QR зураг хараахан байршуулаагүй. Төлбөрийн хэсэг идэвхжээгүй байна.</p>
+      <div class="notice">QPay сервер/API холбогдож, бодит QR баталгаажсаны дараа энэ хэсгийг идэвхжүүлнэ. Одоогоор төлбөр бүү шилжүүлээрэй.</div>
       <label for="reference">Гүйлгээний утга / баримтын дугаар</label><input id="reference" type="text" placeholder="Гүйлгээний утга эсвэл баримтын дугаар">
-      <button id="submitProof" type="button">Төлбөрийн мэдээлэл илгээх</button>
+      <button id="submitProof" type="button" disabled aria-disabled="true">Төлбөрийн систем холбогдоогүй</button>
       <div id="paymentStatus" class="status" role="status">Төлбөр баталгаажуулах API хараахан холбогдоогүй.</div>
     </section>
   </div>
