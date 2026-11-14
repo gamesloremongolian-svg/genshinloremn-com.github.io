@@ -506,6 +506,21 @@
 </style>
 <style>
 
+
+/* Teyvat cards must grow independently when details are expanded */
+.genshin-page #world .g-grid{
+  align-items:start!important;
+  grid-auto-rows:auto!important;
+}
+.genshin-page #world .g-grid > .g-card{
+  align-self:start!important;
+  height:auto!important;
+  min-height:0!important;
+}
+.genshin-page #world .g-region-details[open]{
+  height:auto!important;
+}
+
 /* Expandable Teyvat region cards */
 .genshin-page .g-region-details{position:relative;z-index:3;margin-top:14px;padding-top:9px;border-top:1px solid rgba(233,189,104,.22)}
 .genshin-page .g-region-details summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:34px;cursor:pointer;list-style:none;color:#f2cc82;font-size:12px;font-weight:700;touch-action:manipulation}
