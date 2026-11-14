@@ -553,6 +553,25 @@
 <style>
 
 
+
+/* Archon cards: expanded content must not stretch neighboring cards */
+.genshin-page #archons .g-archon-grid{
+  display:grid!important;
+  align-items:start!important;
+  grid-auto-rows:min-content!important;
+  grid-template-rows:none!important;
+}
+.genshin-page #archons .g-archon-card{
+  display:block!important;
+  align-self:start!important;
+  justify-self:stretch!important;
+  height:fit-content!important;
+  min-height:0!important;
+}
+.genshin-page #archons .g-archon-details[open]{
+  height:auto!important;
+}
+
 /* Uniform sizing for all four Lore topic cards */
 .genshin-page #lore .g-grid.g-lore-topics{
   display:grid!important;
