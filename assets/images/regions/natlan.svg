@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Natlan — volcanic frontier">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#f4a16d"/><stop offset="1" stop-color="#f8d29a"/></linearGradient><linearGradient id="fade" x2="0" y2="1"><stop stop-color="#101b2b" stop-opacity="0"/><stop offset="1" stop-color="#101b2b" stop-opacity=".48"/></linearGradient></defs>
+<rect width="1200" height="600" fill="url(#sky)"/>
+<g fill="#fff" opacity=".28"><path d="M90 110Q130 35 210 80Q270 15 340 90Q400 125 350 150H120Q70 145 90 110Z"/><path d="M760 90Q810 15 900 60Q960 0 1040 70Q1110 100 1060 135H800Q735 130 760 90Z"/></g>
+<circle cx="930" cy="125" r="62" fill="#ffe2a0"/><path d="M0 390L180 250 340 390 520 120 700 390 900 220 1080 390 1200 270V600H0Z" fill="#a95447"/><path d="M430 255L520 120 610 255 570 230 520 270 475 230Z" fill="#3f343e"/><path d="M0 460L220 340 420 460 650 320 860 460 1080 345 1200 430V600H0Z" fill="#733c43"/><path d="M0 520Q300 450 600 520T1200 500V600H0Z" fill="#422f3d"/><path d="M490 285Q520 245 550 285Q575 325 520 350Q465 325 490 285Z" fill="#ffbd72"/><path d="M510 300Q520 275 530 300Q540 320 520 328Z" fill="#fff0b2"/>
+<path d="M0 520Q280 475 560 525T1200 510V600H0Z" fill="#8f443f" opacity=".3"/>
+<rect width="1200" height="600" fill="url(#fade)"/>
+<g fill="#fff" opacity=".55"><circle cx="110" cy="190" r="3"/><circle cx="320" cy="110" r="2"/><circle cx="1080" cy="210" r="3"/></g>
+</svg>
