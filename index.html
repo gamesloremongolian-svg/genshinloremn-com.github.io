@@ -424,6 +424,102 @@
     .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 12px; }
     .footer-links a:hover { color: var(--cyan); }
 
+
+    /* Desktop two-column layout with a persistent information sidebar */
+    .main-layout {
+      width: min(1160px, 92%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 278px;
+      gap: 24px;
+      align-items: start;
+    }
+    .main-content { min-width: 0; }
+    .main-content > .section.container {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .site-sidebar {
+      position: sticky;
+      top: 94px;
+      align-self: start;
+      display: grid;
+      gap: 14px;
+      padding-top: 64px;
+    }
+    .sidebar-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--panel-2), var(--panel));
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+    }
+    .sidebar-card h2 {
+      color: var(--gold);
+      font-size: 15px;
+      margin: 0 0 9px;
+    }
+    .sidebar-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .sidebar-kicker {
+      color: var(--cyan);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .sidebar-links { display: grid; gap: 8px; margin-top: 10px; }
+    .sidebar-links a {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 9px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      font-size: 11px;
+    }
+    .sidebar-links a:hover { color: var(--gold); background: rgba(217,182,109,.08); }
+    .sidebar-clock {
+      display: block;
+      color: var(--gold);
+      font-size: 25px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+      margin: 6px 0 3px;
+    }
+    .sidebar-contact { display: grid; gap: 8px; margin-top: 12px; }
+    .sidebar-contact a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+    .sidebar-contact .facebook-link { background: #1877f2; }
+    .sidebar-contact .messenger-link { background: #087cff; }
+    @media (max-width: 950px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .site-sidebar {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-top: 34px;
+        padding-bottom: 10px;
+      }
+    }
+    @media (max-width: 520px) {
+      .site-sidebar { grid-template-columns: 1fr; }
+      .sidebar-card { padding: 16px; }
+    }
+
     @media (max-width: 950px) {
       .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .game-image { height: 175px; }
@@ -531,6 +627,8 @@
       </div>
     </section>
 
+    <div class="main-layout">
+      <div class="main-content">
     <section class="section container" id="games">
       <div class="section-head">
         <div>
@@ -749,6 +847,47 @@
         </div>
       </div>
     </section>
+
+      </div>
+      <aside class="site-sidebar" aria-label="Сайтын нэмэлт мэдээлэл">
+        <section class="sidebar-card">
+          <div class="sidebar-kicker">About the archive</div>
+          <h2>Games Lore MN</h2>
+          <p>Видео тоглоомын ертөнц, дүрүүд, домог, нууц болон түүхийг Монгол хэлээр судлах бие даасан архив.</p>
+          <div class="sidebar-links">
+            <a href="#about">Бидний тухай <span>↗</span></a>
+            <a href="#categories">Судалгааны ангилал <span>↗</span></a>
+            <a href="#latest">Сүүлийн нийтлэл <span>↗</span></a>
+          </div>
+        </section>
+        <section class="sidebar-card">
+          <div class="sidebar-kicker">Explore games</div>
+          <h2>Тоглоомын архив</h2>
+          <div class="sidebar-links">
+            <a href="./genshin.html">Genshin Impact <span>↗</span></a>
+            <a href="./wuwa/">Wuthering Waves <span>↗</span></a>
+            <a href="./ananta/">ANANTA <span>↗</span></a>
+            <a href="./aniimo/">Aniimo <span>↗</span></a>
+            <a href="./delta-force/">Delta Force <span>↗</span></a>
+          </div>
+        </section>
+        <section class="sidebar-card">
+          <div class="sidebar-kicker">Mongolia · UTC+8</div>
+          <h2>Улаанбаатарын цаг</h2>
+          <time class="sidebar-clock" id="sidebarClock">--:--:--</time>
+          <p id="sidebarDate">Огноо ачаалж байна…</p>
+        </section>
+        <section class="sidebar-card">
+          <div class="sidebar-kicker">Community</div>
+          <h2>Холбоо барих</h2>
+          <p>Санал хүсэлт, хамтын ажиллагаа болон нийтлэлийн талаар бидэнтэй холбогдоорой.</p>
+          <div class="sidebar-contact">
+            <a class="facebook-link" href="https://www.facebook.com/share/1BQdjxcDbM/" target="_blank" rel="noopener noreferrer">Facebook Page ↗</a>
+            <a class="messenger-link" href="https://m.me/batarivjikh.bataa" target="_blank" rel="noopener noreferrer">Админд мессэж бичих ↗</a>
+          </div>
+        </section>
+      </aside>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -804,6 +943,8 @@
     // Улаанбаатарын цаг: төхөөрөмжийн бүсээс үл хамааран Asia/Ulaanbaatar ашиглана.
     const clockElement = document.getElementById("mongoliaClock");
     const dateElement = document.getElementById("mongoliaDate");
+    const sidebarClockElement = document.getElementById("sidebarClock");
+    const sidebarDateElement = document.getElementById("sidebarDate");
 
     function updateMongoliaClock() {
       const now = new Date();
@@ -825,6 +966,8 @@
       clockElement.textContent = timeFormatter.format(now);
       clockElement.dateTime = now.toISOString();
       dateElement.textContent = dateFormatter.format(now) + " · UTC+8";
+      if (sidebarClockElement) sidebarClockElement.textContent = timeFormatter.format(now);
+      if (sidebarDateElement) sidebarDateElement.textContent = dateFormatter.format(now) + " · UTC+8";
     }
 
     updateMongoliaClock();
