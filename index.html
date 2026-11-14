@@ -544,6 +544,18 @@
       color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
       border:1px solid #3d9e50!important;font-weight:800!important;text-shadow:none!important;
     }
+
+    .genre-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+    .genre-card{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-height:112px;padding:15px;border:1px solid var(--border);border-radius:14px;background:var(--panel);color:var(--text);text-align:left;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s}
+    .genre-card:hover,.genre-card.active{border-color:var(--gold);box-shadow:0 8px 22px rgba(0,0,0,.07);transform:translateY(-2px)}
+    .genre-card.active{background:rgba(75,170,90,.1)}
+    .genre-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:rgba(80,170,100,.13);color:#3eaa5a;font-size:20px}
+    .genre-card strong{font-size:13px;line-height:1.25}
+    .genre-card small{font-size:10px;color:var(--muted);line-height:1.3}
+    .genre-result{margin-top:12px;color:var(--muted);font-size:12px}
+    .game-card[hidden]{display:none!important}
+    @media(max-width:900px){.genre-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:560px){.genre-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.genre-card{min-height:100px;padding:11px}}
 </style>
 <link rel="stylesheet" href="assets/css/site-polish.css">
 <link rel="stylesheet" href="assets/css/cinematic-motion.css">
@@ -624,7 +636,7 @@
       </div>
 
       <div class="games-grid">
-        <a class="game-card" href="./genshin.html">
+        <a class="game-card" data-genres="action-rpg" href="./genshin.html">
           <div class="game-image">
             <img src="./assets/images/genshin-bg.png" alt="Genshin Impact-ийн Teyvat ертөнц" loading="lazy">
             <span class="game-number">01</span>
@@ -636,7 +648,7 @@
           </div>
         </a>
 
-        <a class="game-card" href="./wuwa/" aria-label="Wuthering Waves Lore архив нээх">
+        <a class="game-card" data-genres="action-rpg" href="./wuwa/" aria-label="Wuthering Waves Lore архив нээх">
           <div class="game-image">
             <img src="./assets/images/wuwa-bg.png" alt="Өргөн уудам уран зөгнөлт байгаль" loading="lazy">
             <span class="game-number">02</span>
@@ -648,7 +660,7 @@
           </div>
         </a>
 
-        <a class="game-card" href="./ananta/" aria-label="Ananta Lore архив нээх">
+        <a class="game-card" data-genres="action-rpg open-world" href="./ananta/" aria-label="Ananta Lore архив нээх">
           <div class="game-image">
             <img src="./assets/images/ananta-bg.png" alt="Ananta тоглоомын ертөнц" loading="lazy">
             <span class="game-number">03</span>
@@ -660,7 +672,7 @@
           </div>
         </a>
 
-        <a class="game-card" href="./aniimo/" aria-label="Aniimo Lore архив нээх">
+        <a class="game-card" data-genres="adventure" href="./aniimo/" aria-label="Aniimo Lore архив нээх">
           <div class="game-image">
             <img src="https://worldx-website-cdn.aniimo.com/official-website/worldx/office_global/20250925-145829.png" alt="Өнгөлөг уудам байгалийн тоглоомын орчин" loading="lazy">
             <span class="game-number">04</span>
@@ -672,7 +684,7 @@
           </div>
         </a>
 
-        <a class="game-card" href="./delta-force/" aria-label="Delta Force архив нээх">
+        <a class="game-card" data-genres="fps" href="./delta-force/" aria-label="Delta Force архив нээх">
           <div class="game-image">
             <img src="https://web.df.garena.com/02_h5/240923_official_website/en/pc/gamemode_bg_01.jpg" alt="Цахим спортын тоглоомын орчин" loading="lazy">
             <span class="game-number">05</span>
@@ -683,70 +695,70 @@
             <span class="game-status">LORE АРХИВ ↗</span>
           </div>
         </a>
-        <a class="game-card" href="./mongolia-games.html" aria-label="Монголын тоглоомын сан нээх">
+        <a class="game-card" data-genres="all" href="./mongolia-games.html" aria-label="Монголын тоглоомын сан нээх">
           <div class="game-image"><img src="https://www.radiopqp.com/files/2025/02/FO8DmZgacAAIzX-radiopqp.jpeg" alt="Монгол дахь MESA Nomadic Masters esports тэмцээний талбай" loading="lazy" decoding="async"><span class="game-number">06</span></div>
           <div class="game-info">
             <h3>Монголын тоглоомын сан</h3>
             <p>CS2 · PUBG Mobile · Dota 2 · MLBB · VALORANT</p>
             <span class="game-status">GAMING АРХИВ ↗</span>
           </div>
-        </a><a class="game-card" href="./games/cs2/" aria-label="Counter-Strike 2 мэдээлэл нээх">
+        </a><a class="game-card" data-genres="fps" href="./games/cs2/" aria-label="Counter-Strike 2 мэдээлэл нээх">
           <div class="game-image"><img src="https://shadow.tech/app/uploads/2024/12/COUNTERSTRIKE2_KEYART-min.jpg" alt="Counter-Strike 2 тоглоомын албан ёсны key art" loading="lazy" decoding="async"><span class="game-number">07</span></div>
           <div class="game-info"><h3>CS2</h3><p>Тактикийн FPS · Зэвсэг · Map</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/pubg-mobile/" aria-label="PUBG Mobile мэдээлэл нээх">
+        <a class="game-card" data-genres="battle-royale" href="./games/pubg-mobile/" aria-label="PUBG Mobile мэдээлэл нээх">
           <div class="game-image"><img src="https://media.pocketgamer.com/artwork/na-29411-1572390524/pubg-mobile-ios-artwork-key-art.jpg" alt="PUBG Mobile тоглоомын дүрүүд" loading="lazy" decoding="async"><span class="game-number">08</span></div>
           <div class="game-info"><h3>PUBG Mobile</h3><p>Battle Royale · Газрын зураг · Зэвсэг</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/dota-2/" aria-label="Dota 2 мэдээлэл нээх">
+        <a class="game-card" data-genres="moba" href="./games/dota-2/" aria-label="Dota 2 мэдээлэл нээх">
           <div class="game-image"><img src="https://static.tildacdn.com/tild3939-3035-4531-a433-303135353963/__2023-06-15__165942.png" alt="Dota 2 баатруудын сурталчилгааны зураг" loading="lazy" decoding="async"><span class="game-number">09</span></div>
           <div class="game-info"><h3>Dota 2</h3><p>MOBA · Баатрууд · Item</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/mlbb/" aria-label="Mobile Legends: Bang Bang мэдээлэл нээх">
+        <a class="game-card" data-genres="moba" href="./games/mlbb/" aria-label="Mobile Legends: Bang Bang мэдээлэл нээх">
           <div class="game-image"><img src="https://cdn-www.bluestacks.com/bs-images/mobile-legends-bang-bang-logo-fight-2ia0z1qrfbimzsgi_f3ka.jpg" alt="Mobile Legends Bang Bang баатрууд" loading="lazy" decoding="async"><span class="game-number">10</span></div>
           <div class="game-info"><h3>MLBB</h3><p>MOBA · Баатар · Build</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/valorant/" aria-label="VALORANT мэдээлэл нээх">
+        <a class="game-card" data-genres="fps" href="./games/valorant/" aria-label="VALORANT мэдээлэл нээх">
           <div class="game-image"><img src="https://www.washingtonpost.com/resizer/L-FezVuIJTTa89o_Wqt5HbWWnUs%3D/arc-anglerfish-washpost-prod-washpost/public/5RSLEPTG25GRZKEN6ITNF6R4MM.jpg" alt="VALORANT агентуудын сурталчилгааны зураг" loading="lazy" decoding="async"><span class="game-number">11</span></div>
           <div class="game-info"><h3>VALORANT</h3><p>Tactical FPS · Agent · Map</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/cod-mobile/" aria-label="Call of Duty: Mobile мэдээлэл нээх">
+        <a class="game-card" data-genres="fps battle-royale" href="./games/cod-mobile/" aria-label="Call of Duty: Mobile мэдээлэл нээх">
           <div class="game-image"><img src="https://cdn.mos.cms.futurecdn.net/KXrtjQ42ajPxyVbgQH5mja.jpg" alt="Call of Duty Mobile цэргүүдийн сурталчилгааны зураг" loading="lazy" decoding="async"><span class="game-number">12</span></div>
           <div class="game-info"><h3>COD Mobile</h3><p>FPS · Multiplayer · Battle Royale</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/lol/" aria-label="League of Legends мэдээлэл нээх">
+        <a class="game-card" data-genres="moba" href="./games/lol/" aria-label="League of Legends мэдээлэл нээх">
           <div class="game-image"><img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" alt="League of Legends Aatrox champion splash art" loading="lazy" decoding="async"><span class="game-number">13</span></div>
           <div class="game-info"><h3>League of Legends</h3><p>MOBA · Champion · Runeterra</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/free-fire/" aria-label="Garena Free Fire мэдээлэл нээх">
+        <a class="game-card" data-genres="battle-royale" href="./games/free-fire/" aria-label="Garena Free Fire мэдээлэл нээх">
           <div class="game-image"><img src="https://cdn.wildflamestudio.com/common/web_event/official2.ff.garena.all/202210/82fe305f7dbb9f25e68996f8f719e576.jpg" alt="Garena Free Fire дүрүүдийн сурталчилгааны зураг" loading="lazy" decoding="async"><span class="game-number">14</span></div>
           <div class="game-info"><h3>Free Fire</h3><p>Battle Royale · Character · Weapon</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/minecraft/" aria-label="Minecraft мэдээлэл нээх">
+        <a class="game-card" data-genres="sandbox" href="./games/minecraft/" aria-label="Minecraft мэдээлэл нээх">
           <div class="game-image"><img src="https://cdn.mos.cms.futurecdn.net/rpPGiw7RjFaeJCCDBC4Bna.jpg" alt="Minecraft ертөнц ба дүрүүд" loading="lazy" decoding="async"><span class="game-number">15</span></div>
           <div class="game-info"><h3>Minecraft</h3><p>Sandbox · Survival · Crafting</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/roblox/" aria-label="Roblox мэдээлэл нээх">
+        <a class="game-card" data-genres="sandbox" href="./games/roblox/" aria-label="Roblox мэдээлэл нээх">
           <div class="game-image"><img src="https://prod.assets.earlygamecdn.com/images/RobloxActiveCodes_2023-04-03-130932_hzxi.jpg?transform=Article+Webp" alt="Roblox avatar болон ертөнц" loading="lazy" decoding="async"><span class="game-number">16</span></div>
           <div class="game-info"><h3>Roblox</h3><p>Platform · Experiences · Avatars</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/gta-v/" aria-label="Grand Theft Auto V / Online мэдээлэл нээх">
+        <a class="game-card" data-genres="open-world" href="./games/gta-v/" aria-label="Grand Theft Auto V / Online мэдээлэл нээх">
           <div class="game-image"><img src="https://img.huffingtonpost.com/asset/5d02bf252400005117909416.jpeg?ops=scalefit_1440" alt="Grand Theft Auto V албан ёсны cover art" loading="lazy" decoding="async"><span class="game-number">17</span></div>
           <div class="game-info"><h3>GTA V</h3><p>Open World · Los Santos · Online</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/fortnite/" aria-label="Fortnite мэдээлэл нээх">
+        <a class="game-card" data-genres="battle-royale" href="./games/fortnite/" aria-label="Fortnite мэдээлэл нээх">
           <div class="game-image"><img src="https://assetsio.reedpopcdn.com/co2ekt.jpg?auto=webp&fit=bounds&format=jpg&height=1920&quality=80&width=1920" alt="Fortnite дүрүүдийн cover art" loading="lazy" decoding="async"><span class="game-number">18</span></div>
           <div class="game-info"><h3>Fortnite</h3><p>Battle Royale · Creative · Zero Build</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/pubg-pc/" aria-label="PUBG: BATTLEGROUNDS мэдээлэл нээх">
+        <a class="game-card" data-genres="battle-royale" href="./games/pubg-pc/" aria-label="PUBG: BATTLEGROUNDS мэдээлэл нээх">
           <div class="game-image"><img src="https://wstatic-prod.pubg.com/web/live/static/og/img-og-pubg.jpg" alt="PUBG Battlegrounds тоглоомын key art" loading="lazy" decoding="async"><span class="game-number">19</span></div>
           <div class="game-info"><h3>PUBG PC</h3><p>Battle Royale · Map · Weapon</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/efootball/" aria-label="eFootball мэдээлэл нээх">
+        <a class="game-card" data-genres="sports" href="./games/efootball/" aria-label="eFootball мэдээлэл нээх">
           <div class="game-image"><img src="https://www.thmmagazine.fr/wp-content/uploads/2021/07/eFootball-Konami.jpg" alt="eFootball тоглоомын Lionel Messi сурталчилгааны зураг" loading="lazy" decoding="async"><span class="game-number">20</span></div>
           <div class="game-info"><h3>eFootball</h3><p>Football · Dream Team · Players</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
-        <a class="game-card" href="./games/chess-com/" aria-label="Chess.com мэдээлэл нээх">
+        <a class="game-card" data-genres="strategy" href="./games/chess-com/" aria-label="Chess.com мэдээлэл нээх">
           <div class="game-image"><img src="https://www.chess.com/bundles/web/images/social/share-play-og.65416864.png" alt="Chess.com шатрын тоглоомын зураг" loading="lazy" decoding="async"><span class="game-number">21</span></div>
           <div class="game-info"><h3>Chess.com</h3><p>Chess · Openings · Tactics</p><span class="game-status">МЭДЭЭЛЭЛ ҮЗЭХ ↗</span></div>
         </a>
@@ -756,21 +768,24 @@
     <section class="section container" id="categories">
       <div class="section-head">
         <div>
-          <div class="section-kicker">Browse by topic</div>
-          <h2>Тоглоомын ангилал</h2>
-          <p>Сонирхсон сэдвээрээ судалгаагаа эхлүүлээрэй.</p>
+          <div class="section-kicker">Browse by game genre</div>
+          <h2>Тоглоомын төрлөөр</h2>
+          <p>Сонирхсон жанраа сонгоход тухайн төрөлд багтах тоглоомууд харагдана.</p>
         </div>
       </div>
-      <div class="category-grid">
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">✦</span><span><strong>Үндсэн түүх</strong><small>Main Story & Lore</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">♜</span><span><strong>Дүрүүд</strong><small>Characters</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">⌂</span><span><strong>Ертөнц ба бүс</strong><small>World & Regions</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">⌛</span><span><strong>Эртний түүх</strong><small>Ancient History</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">◇</span><span><strong>Домог, шашин</strong><small>Mythology</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">?</span><span><strong>Онол, таамаг</strong><small>Theories</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">⌕</span><span><strong>Нууц, тайлбар</strong><small>Mysteries</small></span></a>
-        <a class="category-card" href="./genshin-lore.html"><span class="category-icon">▤</span><span><strong>Хөтөч, мэдээлэл</strong><small>Guides & Info</small></span></a>
+      <div class="genre-grid" role="group" aria-label="Тоглоомын төрлөөр шүүх">
+        <button class="genre-card active" type="button" data-filter="all"><span class="genre-icon">▦</span><strong>Бүх тоглоом</strong><small>All games</small></button>
+        <button class="genre-card" type="button" data-filter="fps"><span class="genre-icon">◎</span><strong>FPS / Shooter</strong><small>Буудалт, тактик</small></button>
+        <button class="genre-card" type="button" data-filter="battle-royale"><span class="genre-icon">♜</span><strong>Battle Royale</strong><small>Амьд үлдэх тулаан</small></button>
+        <button class="genre-card" type="button" data-filter="moba"><span class="genre-icon">⚔</span><strong>MOBA</strong><small>Багийн стратеги</small></button>
+        <button class="genre-card" type="button" data-filter="action-rpg"><span class="genre-icon">✦</span><strong>Action RPG</strong><small>Дүр, чадвар, адал явдал</small></button>
+        <button class="genre-card" type="button" data-filter="open-world"><span class="genre-icon">⌂</span><strong>Open World</strong><small>Нээлттэй ертөнц</small></button>
+        <button class="genre-card" type="button" data-filter="sandbox"><span class="genre-icon">▧</span><strong>Sandbox</strong><small>Бүтээх, чөлөөт тоглолт</small></button>
+        <button class="genre-card" type="button" data-filter="sports"><span class="genre-icon">⚽</span><strong>Sports</strong><small>Спортын тоглоом</small></button>
+        <button class="genre-card" type="button" data-filter="strategy"><span class="genre-icon">♟</span><strong>Strategy</strong><small>Шатар, оюуны стратеги</small></button>
+        <button class="genre-card" type="button" data-filter="adventure"><span class="genre-icon">◇</span><strong>Adventure</strong><small>Адал явдал, цуглуулга</small></button>
       </div>
+      <p class="genre-result" id="genreResult" aria-live="polite">Бүх тоглоом харагдаж байна.</p>
     </section>
 
     <section class="section container" id="about">
@@ -919,7 +934,32 @@
     }
 
     updateVisitorCounter();
-  </script>
+  
+    // Homepage game genre filters
+    const genreButtons = document.querySelectorAll(".genre-card[data-filter]");
+    const gameCards = document.querySelectorAll("#games .game-card[data-genres]");
+    const genreResult = document.getElementById("genreResult");
+    genreButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        let visible = 0;
+        genreButtons.forEach(item => {
+          const active = item === button;
+          item.classList.toggle("active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+        gameCards.forEach(card => {
+          const genres = (card.dataset.genres || "").split(/\\s+/);
+          const show = filter === "all" || genres.includes(filter) || (filter === "all" && genres.includes("all"));
+          card.hidden = !show;
+          if (show) visible++;
+        });
+        genreResult.textContent = filter === "all" ? "Бүх тоглоом харагдаж байна." : "Сонгосон төрөлд " + visible + " тоглоом байна.";
+        document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"});
+      });
+    });
+
+</script>
 <nav class="glm-bottom-nav" aria-label="Доод навигаци"><a href="#games"><span>✧</span><span>Тоглоомууд</span></a><a href="#latest"><span>▤</span><span>Нийтлэл</span></a><a href="./lore-center.html"><span>⌕</span><span>Lore сан</span></a><a href="#about"><span>⌂</span><span>Бидний тухай</span></a></nav>
 </body>
 </html>
